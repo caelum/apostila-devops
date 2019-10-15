@@ -52,7 +52,7 @@ Esse foi o marco de início de uma nova área, focada no desenvolvimento de soft
 
 ### Projeto Apollo
 
-![Foto do astronauta sobre o solo da lua](imagens/capitulo-02/apollo-11.png)
+![Foto do astronauta sobre o solo da lua](imagens/capitulo-02/apollo-11.jpg)
 
 Após o projeto ENIAC ser concluído, milhares de outros projetos de software foram iniciados ao redor do mundo, sendo que na década de 60 um desses projetos era bastante ambicioso e com grande impacto mundial.
 
