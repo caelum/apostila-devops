@@ -158,11 +158,29 @@ Foi justamente para resolver esses problemas que alguns sysadmins começaram a s
 
 ### Agile Infrastructure
 
+Em 2008, no evento `Agile Conference`, Patrick DuBois and Andrew Schafer se reuniram para discutir sobre um tópico pouco explorado na comunidade: **Agile Infrastructure**.
 
+Eles discutiram e trocaram experiências sobre os problemas e frustrações que haviam passado em suas empresas, ao tentar levar o mindset do movimento `Agile` para a área de operações e ao tentar unir os times de desenvolvimento e operações. Posteriormente eles criaram um grupo de discussões para compartilhar suas ideias com outras pessoas ao redor do mundo.
+
+Patrick Debois palestrou no evento com o tema "Agile Infrastructure and Operations: how infra-gile are you?", sendo que sua palestra foi para contar sua experiência em utilizar os conceitos de Agile em três projetos dos quais ele participou. Os slides de sua palestra podem ser acessados em: http://www.jedi.be/presentations/agile-infrastructure-agile-2008.pdf
+
+![Foto do slide de apresentação do Patrick Debois](imagens/capitulo-02/patrick-debois.png)
+
+No ano seguinte, em 2009, na O’Reilly Velocity Conference, John Allspaw e Paul Hammond, ambos do Flickr, deram uma palestra com o tema "10+ Deploys per Day: Dev and Ops Cooperation at Flickr", contando sobre suas experiências de trabalho no Flickr, onde eles conseguiram unir os times de desenvolvimento e operações, conseguindo com isso ter um ambiente onde eram realizados mais de 10 deploys ao dia, algo que naquela época era bem inovador e difícil de se ver no mercado.
+
+E assim começa a nascer e crescer o interesse das pessoas sobre o tema **Agile Infrastructure**, para então tentar resolver os conflitos entre os times de Dev e de Ops, gerando melhores resultados para suas empresas.
+
+Patrick Debois não pôde ir ao evento para prestigiar a palestra de John Allspaw e Paul Hammond, mas assistiu remotamente a transmissão e ficou muito empolgado e feliz em ver que diversas outras pessoas e empresas estavam interessadas pelo tema que ele se apaixonou um ano antes.
 
 ### DevOps Days
 
+Ainda em 2009, Patrick Debois decidiu criar um evento para reunir pessoas interessadas pelo assunto e que também quisessem compartilhar suas experiências.
 
+O evento foi batizado de **DevOps Days**, na qual sua primeira edição ocorreu na Bélgica, terra natal de Patrick Debois, e foi fortemente divulgado na internet via Twitter, sendo que para isso foi necessário a criação de uma `hashtag`.
+
+A ideia era utilizar o próprio nome do evento como hashtag, mas preferiu-se remover a palavra `days`, e com isso a hashtag utilizada foi: **DevOps**.
+
+E foi justamente assim que surgiu o termo DevOps, o qual Patrick Debois é considerado um dos pioneiros e que rapidamente se espalhou pelo mundo, sendo adotando por milhares de empresas.
 
 ## DevOps Anti-Patterns
 
