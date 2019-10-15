@@ -138,6 +138,32 @@ Esse foi um grande marco na história da área de desenvolvimento de software, p
 
 ## A história do DevOps
 
+Agora que já aprendemos sobre a origem, evolução e problemas enfrentados pela área de desenvolvimento de software, vai ficar mais fácil de entender o que motivou o movimento DevOps.
+
+### Dev vs. Ops
+
+Mesmo com o manifesto e as metodologias ágeis sendo utilizadas como principal abordagem para o desenvolvimento de softwares, alguns problemas ainda persistiam no mercado.
+
+O grande problema é que a área de operações, também conhecida como infraestrutura, era tratada de maneira **isolada** da área de desenvolvimento, o que acabou criando um **silo** entre essas duas áreas.
+
+De um lado está o time de desenvolvimento, trabalhando de maneira ágil, buscando autonomia e necessitando de ciclos de release cada vez mais curtos, mas do outro lado está o time de operações, que possui outro ritmo de trabalho e processos que exigem mais controle, governança e estabilidade.
+
+São duas áreas com ideias, necessidades e processos distintos, que às vezes podem entrar em conflito, gerando um atrito entre esses dois times.
+
+O resultado desse conflito foi a perda de agilidade da empresa em inovação, o que geralmente a fazia perder o **Time to Market** ao tentar desenvolver uma nova ideia de negócio.
+
+A única maneira de resolver tal situação era então juntar os times de desenvolvimento e operações, fazendo com que eles trabalhassem como um time só, com metas compartilhadas e entendendo suas necessidades, problemas, valores e princípios, para que assim pudessem pensar juntos em como resolver os problemas e melhorar a capacidade e agilidade de inovação de sua empresa.
+
+Foi justamente para resolver esses problemas que alguns sysadmins começaram a se interessar pelo tema `Agile` e foram buscar por maneiras de o utilizar também na área de infraestrutura.
+
+### Agile Infrastructure
+
+
+
+### DevOps Days
+
+
+
 ## DevOps Anti-Patterns
 
 ## A cultura em um ambiente DevOps
