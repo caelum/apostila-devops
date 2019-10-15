@@ -100,7 +100,7 @@ Em 1968 ocorreu a primeira `NATO Software Engineering Conference`, na qual foram
 * Entregar projetos no prazo previsto; e
 * Entregar projetos de acordo com as especificações.
 
-![Foto da NATO Software Engineering Conference ](imagens/capitulo-02/nato.png)
+![Foto da NATO Software Engineering Conference](imagens/capitulo-02/nato.png)
 
 Nessa conferencia se cunhou então o termo **Software Crisis**, para descrever o cenário problemático atual da área de engenharia de software.
 
@@ -121,6 +121,20 @@ O problema foi que as tecnologias de software evoluíram muito rapidamente, for�
 Mas essa velocidade de evolução e necessidade de constantes mudanças causou problemas e atritos entre as equipes de desenvolvedores e sysadmins, pois ela afetava a estabilidade nos sistemas e aumentava o risco de problemas surgirem.
 
 E com isso se inicia uma nova era de grande **resistência às mudanças**.
+
+### Agile Manifesto
+
+Após um tempo de caos e diversos problemas recorrentes na área de engenharia de software, nasce um movimento denominado **Agile**, com o manifesto ágil publicado em 2001.
+
+![Foto dos valores do Manifesto Ágil](imagens/capitulo-02/agile-manifesto.png)
+
+O manifesto ágil surgiu de uma reunião entre 17 engenheiros de software que buscavam por melhores formas de desenvolver softwares e como lidar com os problemas enfrentados no mercado.
+
+Nesse encontro eles compartilharam seus valores e princípios, e também como acreditavam que o desenvolvimento de softwares deveria ser, sendo comum entre ele um foco grande em **ciclos de release curtos**, **adaptação às mudanças** e forte **ênfase nas pessoas**.
+
+Algumas metodologias de desenvolvimento de software alinhadas ao manifesto ágil foram surgindo e se popularizando. Dentre elas: Scrum, XP e Kanban.
+
+Esse foi um grande marco na história da área de desenvolvimento de software, pois o manifesto e as metodologias ágeis resgataram os valores e princípios da época do projeto Apollo, aumentando bastante com isso o sucesso dos projetos de software ao redor do mundo.
 
 ## A história do DevOps
 
