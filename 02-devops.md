@@ -182,7 +182,13 @@ A ideia era utilizar o próprio nome do evento como hashtag, mas preferiu-se rem
 
 E foi justamente assim que surgiu o termo DevOps, o qual Patrick Debois é considerado um dos pioneiros e que rapidamente se espalhou pelo mundo, sendo adotando por milhares de empresas.
 
+Perceba então que agora que entendemos história, motivação e origem do DevOps, fica mais fácil de entender o que ele é, e o porquê dele ter sido criado.
+
+DevOps pode ser considerado também com uma **extensão** do Agile, para contemplar também a área de infraestrutura e deixa-la mais alinhada com a área de desenvolvimento, fazendo assim que que essas duas áreas trabalhem de maneira similar e com muita colaboração, para que assim consigam entregar mais resultados para a empresa como um todo.
+
 ## DevOps Anti-Patterns
+
+
 
 ## A cultura em um ambiente DevOps
 
