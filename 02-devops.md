@@ -230,4 +230,154 @@ Ferramentas e automatização são muito importantes em um time DevOps, pois ela
 
 ## A cultura em um ambiente DevOps
 
+Em um ambiente no qual as pessoas são culpadas e punidas por **erros** que acontecem, uma cultura de **medo** será criada e certamente causará a criação de **silos** entre as pessoas e seus times, algo que prejudicará muito a comunicação e transparência entre elas.
+
+Isso torna o ambiente de trabalho um local **hostil**, no qual as pessoas têm medo de arriscar, inovar e colaborar, por conta do risco de errarem e serem punidas.
+
+Nesse tipo de ambiente os erros humanos são considerados como **a causa de um problema**, criando-se assim uma cultura que busca a eliminação de erros humanos, os considerando como **incompetência**.
+
+Uma outra abordagem seria considerar os erros humanos como **o sintoma de um problema sistêmico**, que levou as pessoas a os cometerem.
+
+Nessa segunda abordagem os problemas não são atribuídos às pessoas, mas ao processo ou sistema de trabalho na qual elas estão inseridas, criando-se assim **oportunidades de aprendizado**, que favorecem a transparência e a colaboração.
+
+Essa segunda abordagem está totalmente alinhada aos princípios e valores do movimento DevOps, devendo sempre ser preferida pelas empresas que querem adotá-lo.
+
+O coração do DevOps consiste em criar uma cultura na qual as pessoas não trabalhem de maneira isolada, mas sim unidas, com transparência, colaboração e com metas claras e compartilhadas, bem como resolvendo juntas a causa raiz dos problemas que surgirem ao longo do caminho.
+
+Conforme mencionado anteriormente, não existe uma única maneira de fazer DevOps. Cada empresa tem diferentes necessidades, problemas, clientes, processos, ferramentas e pessoas, fazendo com que a adoção de DevOps também seja diferente.
+
+Porém, existem alguns tópicos relacionados à cultura que são comuns e recorrentes entre as empresas, nos quais podemos os basear em um pilar que pode ser utilizado para se começar uma adoção de DevOps de maneira mais efetiva, que é a **colaboração**.
+
+Ao se basear nesse pilar será muito mais fácil de identificar os problemas de cultura de sua empresa, algo que certamente vai contribuir para as mudanças necessárias e para a adoção de DevOps de uma maneira mais efetiva.
+
+### Colaboração
+
+As pessoas passam boa parte dos seus dias no trabalho, portanto é muito importante e essencial que haja colaboração entre elas.
+
+Existem alguns aspectos que devem ser avaliados ao se planejar como abordar e melhorar o tema colaboração dentro de uma empresa. São eles:
+
+* Comunicação;
+* Transparência;
+* Autonomia;
+* Empatia;
+* Valores comuns; e
+* Mentoria.
+		
+### Comunicação
+
+Comunicação é a coisa mais importante para a colaboração de um time. Sem uma comunicação efetiva haverá desconfiança, retrabalho, desentendimentos e desunião entre as pessoas do time.
+
+Uma comunicação efetiva é capaz de ajudar um time a ter uma visão e entendimento compartilhado de seus objetivos, evitando que elas trabalhem de maneira isolada e competitiva.
+
+Incentivar a comunicação e o compartilhamento de informações dentro de um time, e também entre outros times e setores da empresa, ajuda a criar uma cultura de transparência e colaboração, favorecendo com isso o trabalho em time, e principalmente evitando a sobrecarga de trabalho e riscos ao deixar conhecimentos acumulado em poucas pessoas.
+
+Transparência é um ponto chave para a comunicação, pois sem ela as pessoas se sentirão excluídas, não mais sendo colaborativas, além disso favorecer a ocultação de problemas.
+
+Algumas práticas e técnicas para incentivar a comunicação incluem:
+
+* Pair Programming;
+* Code Reviews;
+* Programming Dojos;
+* Tech Talks;
+* Shared Coffee Breaks; e
+* Hack days.
+
+Algo que prejudica bastante a comunicação são as interrupções, principalmente durante reuniões. É necessário criar uma cultura onde as pessoas falem para serem entendidas e não apenas para influenciar. Interrupções atrapalham bastante no entendimento e quase sempre levam a discussões, distrações e conflitos.
+
+### Transparência
+
+Sem transparência será difícil haver colaboração entre as pessoas, principalmente entre times distintos. As pessoas precisam saber o que está acontecendo a qualquer momento, independente da área, e isso certamente facilitará o entendimento e tomada de decisões.
+
+É muito importante criar uma cultura de transparência que favorece o compartilhamento e facilidade no acesso às informações da empresa, pois caso contrário teremos uma cultura onde as pessoas têm medo, desconfiança e preferem ocultar problemas e dificuldades, para não causar problemas e evitar riscos de punição.
+
+### Autonomia
+
+Autonomia é outro conceito fundamental para se criar um ambiente mais colaborador e eficiente. As pessoas gostam de se sentir responsáveis pelas mudanças, melhorias e inovações, sendo que isso vai exigir a tomada de decisões.
+
+É muito ruim ter que pedir permissão o tempo inteiro para poder realizar parte do seu trabalho. Isso gera um certo desconforto, pois passa a impressão de falta de confiança, algo que pode desmotivar as pessoas.
+
+Além disso, não ter autonomia para tomar certas decisões pode atrapalhar no andamento de tarefas, algo que certamente prejudicará a agilidade na execução delas.
+
+### Empatia
+
+Empatia é a capacidade de se colocar no lugar de outra pessoa, entendendo o porquê ela age de determinada maneira, levando em consideração seus problemas, dificuldades, dentre outras coisas.
+
+Saber ouvir e compreender a ponto de vista do outro, sem julgar e questionar, são maneiras de se praticar a empatia.
+
+Ao valorizar a empatia em um time DevOps, começamos a fazer com que a equipe de Ops entenda e aprecie a importância de ser capaz de colocar código novo em produção de maneira ágil e contínua, bem como a equipe de Dev a entender os problemas e impactos causados por códigos mal escrito, lento e inseguro.
+
+Sendo assim, a empatia vai permitir que ambos os times de Dev e Ops colaborem e se ajudem a entregar e operar novas funcionalidades da melhor maneira possível, para satisfazer as necessidades de seus clientes e usuários.
+
+### Valores Comuns
+
+Um time é a união entre diversas pessoas distintas com um ou mais objetivos em comum. Isso é bem diferente do modelo de equipes, onde cada equipe possui os seus objetivos individuais, algo que não favorece a colaboração.
+
+Sendo assim, é muito importante deixar claro para todas as pessoas do time quais são seus objetivos em comum e também os seus valores em comum. Isso vai deixar claro a todos do time o porquê de seus comportamentos e práticas serem de determinada maneira.
+
+Deixar claro os valores de um time também pode ajudar nos casos de conflitos de ideias. Por exemplo, imagine uma situação de conflito entre duas pessoas de um time, na qual uma pessoa quer entregar um código o quanto antes, mesmo sabendo que ele não tem uma boa qualidade, para conseguir cumprir com um determinado cronograma, enquanto a outra pessoa prefere correr o risco de atrasar, para manter um padrão mínimo de qualidade.
+
+Qual das duas pessoas terá a razão?
+
+As duas pessoas podem ter a razão, dependendo de seu time, sendo que isso vai depender dos valores dele.
+
+Se um time valoriza muito a qualidade, então a segunda pessoa estaria mais certa em correr o risco de não cumprir o prazo acordado, para favorecer a qualidade das entregas, algo que vai de encontro com os valores defendidos pelo seu time.
+
+Ter valores e objetivos compartilhados é uma excelente maneira de favorecer a colaboração entre as pessoas de um time, além de ajudar na resolução de conflitos de ideias entre elas.
+
+### Mentoria
+
+Outra maneira de incentivar a colaboração entre as pessoas é por meio de programas de mentoria, com o objetivo de nivelar o conhecimento entre o time e melhorar a comunicação entre as pessoas.
+
+Pair programming, hackdays, treinamentos internos e externos e acompanhamento sênior/júnior são maneiras de promover um processo de mentoria.
+
+Isso certamente fará com que as pessoas colaborem mais entre si, além de melhorar os resultados obtidos pelo time e valorizar o potencial das pessoas.
+
+Outra vantagem é que as pessoas costumam a valorizar muito esse tipo de incentivo, de ponto de vista de carreira profissional, e tendem a permanecer mais tempo em empresas que investem nisso.
+
+## CALMS
+
+Ao estudar sobre cultura relacionada ao movimento DevOps, é comum encontrar o termo CALMS, que é um acrônimo para: Culture, Automation, Lean, Measurement e Sharing.
+
+O termo foi criado por Damon Edwards e John Willis em 2010, após o primeiro evento Devopsdays que ocorreu nos Estados Unidos, sendo que inicialmente o acrônimo era apenas CAMS, mas posteriormente o L, de Lean, foi acrescentado por sugestão de Jez Humble.
+
+A ideia desse acrônimo é mostrar os cinco princípios mais importantes ao adotar o modelo DevOps em uma empresa, sendo que para os autores o coração do DevOps é sobre pessoas e gestão.
+
+### Culture
+
+Cultura está relacionado ao tópico anterior, no qual foi discutido que o principal pilar sobre o tema é colaboração.
+
+Sem uma boa cultura, focada em colaboração, não adianta ter as melhores ferramentas e as melhores pessoas trabalhando em uma empresa, pois DevOps não nasceu para resolver problemas de ferramentas, mas sim problemas humanos.
+
+Outra dica em relação à cultura é formar times de projetos/produtos, com todas as pessoas necessárias fazendo parte dele, ao invés da clássica separação funcional, responsável por criar silos e desfavorecer a colaboração.
+
+### Automation
+
+Automação consiste em identificar todas as tarefas repetitivas, que são chatas, cansativas e sujeitas a falhas humanas, e utilizar ferramentas para automatizá-las.
+
+Isso diminui as chances de erros e falhas humanas, diminui estresse ao executar tais tarefas, reduz o tempo para executá-las, acelera o feedback e aumenta a confiabilidade.
+
+Os principais pontos para se buscar automatização são: build, testes, deploy e provisionamento.
+
+### Lean
+
+Utilize os conceitos de Lean a favor do time, para melhorar ainda mais a colaboração e melhoria de seus processos.
+
+Ideias do Lean que vão contribuir muito ao adotar e melhorar um ambiente DevOps: One Piece Flow, eliminação de desperdícios, System Thinking, Pull System, Kanban, Kaizen, experimentações, inspeção e adaptação.
+
+### Measurement
+
+É difícil saber se melhorias estão acontecendo ou se problemas estão sendo gerados, se não tivermos dados para analisar.
+
+DevOps não encerra quando colocamos um produto ou feature em produção. É extremamente importante coletar métricas que vão ajudar o time a tomar as melhores decisões.
+
+Métricas não se resumem a apenas dados técnicos, como SLA e response time, mas também a dados de negócio, como número de novos clientes.
+
+### Sharing
+
+Em um ambiente DevOps tanto as pessoas de Dev quanto as de Ops devem trabalhar juntas, compartilhando informações e metas, e pareando sempre que possível, para que ambos os lados entendem o trabalho e dificuldades de cada um.
+
+Isso facilita a criar um ambiente mais colaborativo e reduzir a superespecialização, onde cada um tem apenas uma responsabilidade e não se preocupa com o trabalho e problemas dos outros.
+
+Uma boa abordagem aqui é a ideia de que quem constrói um software também deveria ser responsável por buildar, deployar e monitorar o projeto. Uma famosa frase que remete a isso é a: **You build it, you run it**, citada em 2006 por Werner Vogels, que na época era CTO da Amazon.
+
 ## O papel das ferramentas em um ambiente DevOps
