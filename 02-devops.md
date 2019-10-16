@@ -380,4 +380,49 @@ Isso facilita a criar um ambiente mais colaborativo e reduzir a superespecializa
 
 Uma boa abordagem aqui é a ideia de que quem constrói um software também deveria ser responsável por buildar, deployar e monitorar o projeto. Uma famosa frase que remete a isso é a: **You build it, you run it**, citada em 2006 por Werner Vogels, que na época era CTO da Amazon.
 
+## Mudanças culturais para adotar DevOps
+
+Ao adotar DevOps em uma empresa algumas mudanças vão começar a surgir e ser percebidas pelas pessoas. Dentre as principais mudanças estão as relacionadas ao comportamento das pessoas, em relação aos itens culturais discutidos anteriormente, e também na organização dos times.
+
+Algumas características que devem ser observadas nesse tipo de ambiente são:
+
+* Otimizações focadas em entrega de valor;
+* Visão sistêmica do pipeline de entrega de valor;
+* Definição de pronto focada no usuário;
+* Entregas contínuas e pequenas;
+* Loops de feedback; e
+* Automatização.
+
+### Otimizações focadas em entrega de valor
+
+O foco de um time DevOps não é eficiência e produtividade. Ao invés de buscar por mais produtividade, mais tarefas sendo feitas ao mesmo tempo e mais entregas sendo realizadas, o foco muda para o entendimento do problema a ser resolvido, do ponto de vista de valor para os clientes e usuários, e como o time se organizará para solucioná-lo de maneira mais ágil e eficaz.
+
+### Visão sistêmica do pipeline de entrega de valor
+
+Todo o time deve ter a visão do processo de trabalho de ponta a ponta, sabendo quais são as etapas e atividades que deverão ser seguidas para se entregar valor ao cliente. O foco deixa de ser **fazer a minha parte e passar o bastão para o próximo** e passa a ser **entender o fluxo de valor e como otimiza-lo de maneira colaborativa**.
+
+### Definição de pronto focada no usuário
+
+De nada adianta um item estar pronto, do ponto de vista do desenvolvedor, se os usuários não podem ter acesso e dar feedback.
+
+Todas as pessoas do time devem ter a visão clara de que um item é considerado pronto apenas quando ele for entregue aos usuários. Isso favorece a colaboração entre os times de Dev, Ops, QA, etc. em entregar valor aos usuários de maneira mais ágil.
+
+### Entregas contínuas e pequenas
+
+Para diminuir os riscos e aumentar o ciclo de feedback, é importante fazer entregas contínuas e que elas sejam pequenas.
+
+Isso também contribui para manter um ritmo sustentável de trabalho do time e também dos usuários. Além disso, valor é algo que costuma diminuir bastante com o tempo, sendo assim, de nada adianta fazer um entrega depois de 8 meses de trabalho.
+
+### Loops de feedback
+
+Feedback é algo muito importante e valioso para um time DevOps e não deve se resumir a apenas o aceite ou rejeição dos usuários quanto à uma entrega.
+
+É importante que haja feedback entre os times de Dev e Ops durante todo o ciclo de entrega de valor, para que problemas e oportunidades sejam discutidas e tratadas de maneira colaborativa.
+
+### Automatização
+
+Após cultura, automatização é a coisa mais importante em um ambiente DevOps. Sem automatização, um time terá muita dificuldade de entregar valor de maneira ágil, segura, efetiva e com baixo risco. 
+
+Automatização acelera o processo de entrega de valor, aumenta a confiança no trabalho executado, diminui erros humanos em tarefas repetitivas e também contribui para a colaboração entre os times de Dev e Ops.
+
 ## O papel das ferramentas em um ambiente DevOps
