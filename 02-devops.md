@@ -425,4 +425,16 @@ Após cultura, automatização é a coisa mais importante em um ambiente DevOps.
 
 Automatização acelera o processo de entrega de valor, aumenta a confiança no trabalho executado, diminui erros humanos em tarefas repetitivas e também contribui para a colaboração entre os times de Dev e Ops.
 
+### The Three Ways
+
+No livro **The DevOps Handbook** os autores enfatizam que o modelo DevOps é composto por três princípios, chamados de **Three Ways**, que são fundamentais para a adoção efetiva do modelo.
+
+O primeiro princípio, chamado de **Principle of Flow**, foca em acelerar a entrega de trabalho que flui entre os times de Dev e Ops.
+
+O segundo princípio, chamado de **Principle of Feedback**, foca em melhorar o feedback entre os times de Ops e Dev, para criar um ambiente de trabalho mais seguro e colaborativo.
+
+O terceiro princípio, chamado de **Principle of Continuous Learning and Experimentation**, foca em criar uma cultura de confiança, resiliência e baseada em experimentações e adaptações contínuas.
+
+Recomendamos a utilização desses princípios ao adotar DevOps e promover as mudanças culturais em uma empresa.
+
 ## O papel das ferramentas em um ambiente DevOps
