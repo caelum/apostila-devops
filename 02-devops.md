@@ -188,7 +188,45 @@ DevOps pode ser considerado também com uma **extensão** do Agile, para contemp
 
 ## DevOps Anti-Patterns
 
+Assim como é importante conhecer os conceitos, motivações e boas práticas do DevOps, também é muito importante conhecer os mal-entendimentos e anti-patterns sobre esse tema, para evitar cair em algumas armadilhas comuns de se ver no mercado, evitando com isso uma dificuldade ao adotar DevOps em uma empresa.
 
+### DevOps é apenas para Dev e Ops
+
+Embora o termo DevOps seja uma abreviação de `Developers` e `Operations`, a ideia não é limitar a prática apenas a esses dois times.
+
+É importante que os outros times, como por exemplo QA, segurança e business, também sejam envolvidos e colaborem entre si, pois isso vai influenciar muito nos resultados.
+
+### DevOps é um time separado
+
+Criar um time DevOps separado dos outros times pode ser um tiro no pé, pois se a empresa já tem dificuldades de transparência, comunicação e colaboração, um novo time DevOps separado apenas vai criar mais um silo e não necessariamente resolverá tais problemas de cultura dela.
+
+### DevOps é um cargo
+
+DevOps é um movimento cultural, com objetivos de melhorar o ambiente de trabalho e os resultados produzidos em todo o processo de desenvolvimento e manutenção de softwares.
+
+Muitas vezes criar um cargo chamado `DevOps Engineer` cria a sensação de ser uma vaga para uma pessoa de desenvolvimento que também tenha conhecimentos em infra ou vice e versa. 
+
+Tem muita empresa que faz isso para redução de custos, contratando um profissional que vale por dois, mas no geral elas fazem isso apenas para atrair novos talentos, que estejam interessados em trabalhar em ambientes que sigam a cultura DevOps. 
+
+Há também o caso de muitos profissionais que fazem isso pois existem pesquisas que indicam maiores salários para cargos com esse nome.
+
+### DevOps não serve para empresas grandes
+
+Embora em empresas grandes seja mais difícil aplicar mudanças culturais e promover mais agilidade, também é totalmente possível aplicar DevOps nesse tipo de ambiente, seguindo algumas dicas de como lidar com os possíveis problemas, barreiras e dificuldades que surgirão no caminho.
+
+### DevOps é enxugar o time
+
+DevOps não significa ter menos pessoas, já que se tem a ideia de que um time DevOps é formado por profissionais `Full-Stack`, no qual cada pessoa tem todas as competências de Dev e de Ops. Isso pode levar a sobrecarga de trabalho e estresse, algo que certamente vai gerar mais erros e problemas que poderiam ser evitados.
+
+### DevOps somente pode ser feito de um jeito
+
+Não existe a famosa **Bala de Prata** no DevOps. Cada empresa possui diferentes necessidades e problemas e cada implementação de DevOps provavelmente será diferente. Inclusive em relação a quais ferramentas e técnicas que os times vão adotar.
+
+### DevOps é apenas sobre ferramentas e automatização
+
+DevOps não se resume a apenas utilizar ferramentas e tecnologias para automatizar um pipeline de build e deploy de aplicações.
+
+Ferramentas e automatização são muito importantes em um time DevOps, pois elas auxiliam muito na agilidade e produtividade, além de minimizar os erros humanos. Entretanto, de nada adianta adotar as melhores ferramentas do mercado, se o grande problema na empresa é cultural.
 
 ## A cultura em um ambiente DevOps
 
