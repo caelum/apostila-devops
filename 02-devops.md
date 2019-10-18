@@ -442,3 +442,40 @@ O terceiro princípio, chamado de **Principle of Continuous Learning and Experim
 Recomendamos a utilização desses princípios ao adotar DevOps e promover as mudanças culturais em uma empresa.
 
 ## O papel das ferramentas em um ambiente DevOps
+
+Geralmente DevOps está associado com a utilização de dezenas de ferramentas, sendo que isso pode criar uma falsa ilusão de que para adotar DevOps basta apenas utilizar tais ferramentas.
+
+Já discutimos anteriormente que uma adoção ao DevOps deveria focar mais na parte de **pessoas** e **cultura**, para depois se preocupar com ferramentas e automatização de processos.
+
+Mas claro, ferramentas e automatização são tópicos também considerados importantes no universo DevOps, não devendo ser ignorados.
+
+Devemos ter a visão de que as ferramentas na verdade são **complementos à cultura** que vão aumentar a agilidade do time, pois estão alí para automatizar tarefas e processos repetitivos e sujeitos a erros humanos.
+
+Certamente isso vai ser de grande valia para o time, pois vai acelerar o ciclo de entrega de software e de recebimento de feedbacks.
+
+### DevOps Toolchain
+
+![Foto com exemplos de ferramentas](imagens/capitulo-02/tools.png)
+
+Ao pesquisar sobre DevOps na internet é comum encontrar imagens similares à figura anterior.
+
+A imagem é uma representação do símbolo do infinito contendo as várias etapas envolvidas no ciclo de vida da **construção** e **operação** de um software e listando algumas ferramentas que podem ser utilizadas em cada uma delas.
+
+Perceba que desenvolver um software e o colocar em produção não se resume a apenas as atividades de codificação e deploy. Um processo mais eficaz deve contemplar muito mais etapas que também são importantes.
+
+Sendo assim, é comum encontrar processos que contemplem ao menos as seguintes etapas:
+
+1. Planejamento;
+1. Codificação;
+1. Build;
+1. Testes;
+1. Entrega;
+1. Deploy;
+1. Operação; e
+1. Monitoramento.
+
+E dentro de cada uma dessas etapas existem inúmeras ferramentas que podem auxiliar o time DevOps a ser mais efetivo em seu trabalho de entregar software de valor aos seus clientes e usuários.
+
+Ao longo do curso veremos mais detalhes sobre essas etapas e aprenderemos a utilizar algumas dessas ferramentas.
+
+Reforçamos que não existe um única opção de ferramenta em cada etapa, sendo que você deve estudar e analisar as diversas opções existentes, para assim conseguir escolher as ferramentas que forem mais apropriadas para o seu time.
