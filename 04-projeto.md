@@ -69,3 +69,59 @@ A aplicação possui uma tela para editar o perfil do usuário, na qual ele pode
 ![Tela de redefinir senha](imagens/capitulo-04/forum-senha.png)
 
 Para acessar essa funcionalidade o usuário precisa estar autenticado na aplicação.
+
+## Como rodar a aplicação?
+
+Agora que já conhecemos a aplicação que vamos trabalhar ao longo do curso, precisamos baixar seu código fonte para poder fazer o build e o deploy dela.
+
+## Código fonte do projeto
+
+O primeiro passo será baixar o código fonte da aplicação e configurar o ambiente de desenvolvimento.
+
+A nossa aplicação foi desenvolvida em *Java* e seu código-fonte está hospedado no *GitLab*, podendo ser acessado pelo seguinte endereço: https://gitlab.com/aovs/projetos-cursos/do25-alura-forum
+
+Para baixá-la em nosso computador será necessário a utilização do *Git*.
+
+## Exercício: download do código fonte da aplicação
+
+1. Abra o `terminal` e rode o seguinte comando para baixar o código fonte da aplicação:
+
+	```
+	git clone https://gitlab.com/aovs/projetos-cursos/do25-alura-forum
+	```
+
+2. Acesse o diretório `home` e verifique se uma pasta chamada `do25-alura-forum` foi criada e dentro dela se encontram os arquivos da aplicação.
+
+## Build do projeto
+
+Após baixar o projeto precisamos configurá-lo para então conseguir realizar o build dele.
+
+A configuração deve ser feita importando o projeto em uma `IDE Java`, que nosso caso será o *Eclipse*, e realizando nela também a configuração do servidor de aplicações `Tomcat`.
+
+Feito isso, já será possível realizar o build da aplicação para termos um pacote que poderá ser colocado em produção. Entretanto, existem algumas etapas que devemos seguir para conseguir realizar o build de maneira correta.
+
+Para facilitar esse processo a equipe de desenvolvimento criou um documento explicando o passo a passo necessário para realizar o build da aplicação, chamado de **Manual do Build**, ao qual devemos seguir, evitando assim possíveis problemas.
+
+## Exercício: build manual da aplicação
+
+1. Acesse o diretório do curso e abra o documento **manual-build.pdf**.
+
+1. Siga as instruções desse manual para realizar o build da aplicação.
+
+1. Em caso de dúvidas ou dificuldades peça ajuda ao instrutor.
+
+## Deploy do projeto
+
+Após realizar o build da aplicação agora devemos realizar o deploy dela, sendo que para isso devemos configurar toda a infra estrutura necessária.
+
+Como esse processo é um pouco complicado e sujeito a erros, a equipe de Ops também criou um documento com as instruções para realizar tal atividade, o qual é chamado de **Manual do Deploy**.
+
+Devemos seguir esse manual para conseguir simular um ambiente de produção, utilizando máquinas virtuais, com todas as configurações de infra estrutura necessárias para que a aplicação possa ser executada normalmente.
+
+## Exercício: deploy manual da aplicação
+
+1. Acesse o diretório do curso e abra o documento **manual-deploy.pdf**.
+
+1. Siga as instruções desse manual para realizar o deploy da aplicação.
+
+1. Em caso de dúvidas ou dificuldades peça ajuda ao instrutor.
