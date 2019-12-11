@@ -1,0 +1,23 @@
+[Unit]
+Description=Tomcat 8
+After=network.target
+
+[Service]
+Type=forking
+
+User=tomcat
+Group=tomcat
+
+Environment="JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64"
+Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true"
+
+Environment="CATALINA_BASE=/opt/tomcat/tomcat8"
+Environment="CATALINA_HOME=/opt/tomcat/tomcat8"
+Environment="CATALINA_PID=/opt/tomcat/tomcat8/temp/tomcat.pid"
+Environment="CATALINA_OPTS=-Xms384M -Xmx384M"
+
+ExecStart=/opt/tomcat/tomcat8/bin/startup.sh
+ExecStop=/opt/tomcat/tomcat8/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
