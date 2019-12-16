@@ -22,6 +22,18 @@ Isso faz com que o processo de build de uma aplicação seja considerado como al
 
 ## Os problemas do build manual
 
+É muito comum encontrar aplicações cujo processo de build é realizado de maneira manual, ou seja, com alguma pessoa do time de desenvolvimento seguindo um *passo a passo* de tarefas que precisam ser realizadas para gerar o artefato final do build.
+
+Isso foi exatamente o que fizemos no capítulo anterior, ao gerar o build da aplicação do fórum da Alura, o qual inclusive utilizamos o documento chamado **manual do build**, detalhando o passo a passo para realizar o build da aplicação.
+
+O problema dessa abordagem é que ela gera um risco elevado de erros acontecerem, uma vez que o processo de build de uma aplicação pode ser algo complexo e que envolva dezenas de passos a serem seguidos.
+
+Caso uma pessoa do time esqueça de realizar algum dos passos ou o realize de maneira incorreta, teremos um artefato final incompleto ou com erros que podem prejudicar as pessoas que utilizam a aplicação.
+
+Um exemplo clássico de erro comum que pode acontecer ao se ter um processo manual de build, é o de fazer o deploy da aplicação em ambiente de **produção**, mas com as configurações de banco de dados do ambiente de **desenvolvimento**.
+
+Você já passou por isso antes ou conhece alguém que tenha passado? Quais os impactos negativos que isso pode gerar para o time de desenvolvimento, para a área de tecnologia e até mesmo para a própria empresa?
+
 ## Automatização do processo de build
 
 ## Build tools
