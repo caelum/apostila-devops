@@ -129,3 +129,21 @@ Veja a seguir um exemplo do arquivo `pom.xml`:
 ```
 
 Para mais informações sobre o Maven e seu funcionamento, acesse o seu site em: https://maven.apache.org
+
+## Exercício: Adicionando o Maven ao projeto
+
+Nesse exercício vamos adicionar e configurar o Maven em nossa aplicação.
+
+1. O primeiro passo será converter o projeto para o `Maven`, sendo que isso pode ser feito diretamente no Eclipse, clicando com o botão direito no projeto e selecionando a opção: `Configure -> Convert to Maven Project`.
+
+![Opção Convert to Maven Project no Eclipse](imagens/capitulo-05/convert-maven-project.png)
+
+2. Na tela que será exibida devemos preencher algumas informações para o Maven, conforme a imagem a seguir:
+
+![Informações do projeto para o Maven](imagens/capitulo-05/maven-info.png)
+
+3. O próximo passo é configurar as dependências do projeto no arquivo `pom.xml`. Já deixamos o arquivo preenchido no diretório do curso, portanto apenas substitua o arquivo atual pelo arquivo disponibilizado.
+
+4. Por fim, devemos apagar **todos** os arquivos `.jar` do diretório `WebContent/WEB-INF/lib`.
+
+5. Pronto! O projeto agora já foi convertido para o Maven e deveria estar funcionando normalmente. Caso algum erro esteja aparecendo no projeto no Eclipse, peça auxilio ao instrutor.
