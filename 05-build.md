@@ -232,3 +232,57 @@ public DataSource producao() {
 ```
 
 5. Pronto! Ao rodar localmente a aplicação, o datasource carregado será o de desenvolvimento. Para que a aplicação carregue o `datasource` de produção será necessário adicionar a seguinte variável de ambiente no servidor: `spring.profiles.active=producao`.
+
+## Realizando o build automatizado com Maven
+
+Agora que já configuramos o Maven em nosso projeto podemos realizar o build de maneira automatizada, evitando assim erros e desperdício de tempo com essa tarefa repetitiva e rotineira.
+
+O build pode ser realizado de dentro da própria IDE Eclipse, clicando com o botão direito em cima do projeto e navegando na opção: `Run As -> Maven install`.
+
+![Opção para build do projeto no Eclipse](imagens/capitulo-05/maven-build-eclipse.png)
+
+Ao selecionar essa opção o Maven vai iniciar o processo de build, que deve levar alguns segundos para finalizar, e durante esse processo o Maven gera alguns logs sobre o seu andamento diretamente no `console` do Eclipse.
+
+Ao final do processo é esperado que a mensagem **BUILD SUCCESS** seja exibida no console, conforme demonstrado na seguinte figura:
+
+![Log de build realizado com sucesso no console Eclipse](imagens/capitulo-05/maven-build-eclipse-sucesso.png)
+
+### Artefatos do build
+
+Durante o processo de build o Maven gera os artefatos, por padrão, no diretório chamado **target**, que fica localizado no diretório raiz da aplicação:
+
+![Diretório target com os artefatos gerados pelo Maven](imagens/capitulo-05/maven-build-artefatos.png)
+
+Repare que diversos arquivos e diretórios foram criados, mas no nosso caso o que interessa é o arquivo **.war**, pois ele representa o artefato utilizado para deploy da aplicação em produção. No nosso caso então, será o arquivo gerado pelo Maven com o nome **alura-forum-0.0.1-SNAPSHOT.war**.
+
+### Build por linha de comando
+
+Não é obrigatório utilizar o Eclipse para gerar o build automatizado do projeto com o Maven. Isso é apenas um jeito mais cômodo para alguém do time de desenvolvimento que esteja utilizando o Eclipse e precise gerar o build do projeto.
+
+Uma outra maneira de gerar o build é pelo `terminal`, caso o Maven esteja instalado no computador. Para isso, basta acessar o diretório do projeto e rodar o seguinte comando:
+
+```
+mvn clean install
+```
+
+O build será realizado da mesma maneira e os artefatos ficarão disponíveis no mesmo diretório `target` do projeto.
+
+> **Clean ?**
+> Ao executar o Maven no exemplo mostrado anteriormente foi adicionado o parâmetro `clean`, que serve para **limpar** o build anterior, ou seja, apagar todos os artefatos que foram gerados no último build.
+>
+> O Maven possui diversos outros parâmetros, além do `clean` e `install`, como por exemplo o `test`, que serve para executar os testes automatizados do projeto.
+>
+> Para saber mais detalhes, acesse a documentação em: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+
+
+## Exercício: Gerando o build automatizado do projeto
+
+Nesse exercício vamos gerar o build da aplicação de maneira automatizada, utilizando o Maven.
+
+1. Abra o terminal e acesse o diretório do projeto.
+
+2. Rode o comando `mvn install` para gerar o build do projeto.
+
+3. Acesse o diretório do projeto e verifique se na pasta `target` os artefatos foram gerados normalmente.
+
+4. É preciso fazer mais alguma coisa manualmente ao realizar o build do projeto? Discuta com o instrutor e demais alunos da turma.
