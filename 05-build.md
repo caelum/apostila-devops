@@ -268,6 +268,7 @@ mvn clean install
 O build será realizado da mesma maneira e os artefatos ficarão disponíveis no mesmo diretório `target` do projeto.
 
 > **Clean ?**
+>
 > Ao executar o Maven no exemplo mostrado anteriormente foi adicionado o parâmetro `clean`, que serve para **limpar** o build anterior, ou seja, apagar todos os artefatos que foram gerados no último build.
 >
 > O Maven possui diversos outros parâmetros, além do `clean` e `install`, como por exemplo o `test`, que serve para executar os testes automatizados do projeto.
