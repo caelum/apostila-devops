@@ -54,4 +54,24 @@ Até meados de 2008 o SVN era uma das mais populares e utilizadas dentre elas, m
 
 ## Git
 
+O Git foi criado em 2005 por *Linus Torvalds*, o mesmo criador do kernel do *Linux*, e hoje é a ferramenta de controle de versão mais popular, utilizada e recomendada ao redor do mundo.
+
+Dentre as principais vantagens do Git estão:
+
+* Gratuito e open source
+* Distribuído
+* Alta performance
+* Extensível
+* Suporte a diferentes tipos de workflow
+
+Essas vantagens foram atraindo muitos desenvolvedores ao redor do mundo, que começaram a o utilizar como principal ferramenta para controle de versão, aumentando com isso sua popularidade.
+
+Depois de um tempo muitas ferramentas e serviços baseados no Git foram criadas, para facilitar ainda mais a vida das pessoas que trabalham com desenvolvimento de software, criando-se com isso uma enorme comunidade e apoio ao projeto.
+
+Um exemplo disso é o **GitHub**, que é um site que funciona como serviço para hospedagem de código fonte de projetos que utilizam o Git como controle de versão.
+
+O GitHub provavelmente foi a ferramenta que mais disseminou o uso do Git ao redor do mundo, além de também incentivar e apoiar fortemente os projetos de software open source, oferencendo planos gratuitos para esse tipo de projeto.
+
+Isso fez com que muitos projetos open source fossem migrados de outras plataformas, como *Google Code* e *SourceForge*, para o GitHub, aumentando assim tanto a sua popularidade, como também a do Git.
+
 ## E quanto ao time de Ops?
