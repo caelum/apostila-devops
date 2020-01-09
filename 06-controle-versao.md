@@ -4,7 +4,21 @@ Neste capítulo vamos aprender a utilizar o Git como ferramenta de controle de v
 
 ## Backup e colaboração
 
+Você provavelmente deve possuir diversos arquivos em seu computador pessoal. Sejam fotos, vídeos, planilhas, documentos do trabalho, da faculdade e/ou pessoais.
 
+E se algo *trágico* acontecesse com o seu computador, como ele queimar, der problema no HD ou até mesmo ser furtado? Além do prejuízo financeiro, você perderia todos os seus arquivos, algo que seria muito trágico e traumático.
+
+Por conta desse risco, quase todas as pessoas, inclusive pessoas que não trabalham diretamente na área de tecnologia, já possuem o hábito de realizar **cópias** de seus arquivos, em especial os arquivos que são considerados como sendo muito importantes.
+
+Seja utilizando algum serviço Web, como Dropbox ou Google Drive, ou utilizando algum dispositivo físico, como pendrive ou HD externo, as pessoas já desenvolveram há um bom tempo o hábito de realizar **backups** com frequência, pois nunca se sabe quando algo de ruim poderá acontecer com nossos arquivos.
+
+Ao trabalhar no desenvolvimento de uma aplicação temos a mesma situação, pois diversos arquivos serão criados, modificados e excluídos ao longo do tempo, e não queremos correr o risco de perder todo o trabalho já realizado até então.
+
+Devemos então ter o mesmo hábito de realizar backups do código fonte da aplicação. Mas a pergunta é: onde guardar e como realizar tais backups?
+
+Além disso, é raro trabalharmos de maneira isolada durante o projeto. Geralmente trabalhamos simultaneamente com outras pessoas, que juntas formam um time, e com isso surge mais um problema: como fazer para *sincronizar* o trabalho de todo mundo sem que uma pessoa sobrescreva o trabalho da outra, visto que cada pessoa vai trabalhar em seu próprio computador?
+
+Por fim, há ainda mais um problema: seria interessante não apenas ter um backup do código fonte, mas também ter registrado todo o **histórico** de evolução dele, pois dificilmente as pessoas vão conseguir se lembrar de todas as modificações que nele foram feitas ao longo do tempo.
 
 ## Sistemas de Controle de Versão
 
