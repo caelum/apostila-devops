@@ -142,4 +142,97 @@ O parâmetro `-m` é utilizado para escrever uma mensagem que explique o que aqu
 
 Perceba que as mensagens costumam ser curtas e objetivas em relação ao que aquele commit representa, facilitando assim quando for necessário analisar os commits do repositório.
 
+### Indicando quais alterações farão parte do commit
+
+Antes de realizar um commit precisamos indicar ao Git quais das alterações farão parte dele, pois o Git não considera que *todas as modificações* que foram realizadas desde o último commit serão adicionadas ao próximo commit a ser realizado.
+
+E essa indicação é feita com a utilização do comando `git add`. Por exemplo, imagine um repositório no qual temos dois arquivos, `index.html` e `logo.png`, que foram modificados e queremos adicionar ao próximo commit. O comando que devemos executar antes do commit deve ser então:
+
+```
+git add index.html
+git add imagens/logo.png
+```
+
+Repare que devemos informar o *caminho completo* do arquivo, e não somente o seu nome, além de ter que adicionar cada arquivo separadamente. Isso acaba sendo algo meio *chato*, mas é possível adicionar todos os arquivos que foram modificados de uma só vez, utilizando o comando `add` da seguinte maneira:
+
+```
+git add .
+```
+
+O ponto(`.`) utilizado no comando anterior indica ao Git que queremos adicionar quaisquer alterações que tiverem sido realizadas no repositório, inclusive em arquivos que estejam em subdiretórios, ou seja, o comando é `recursivo`.
+
+### Verificando o status do repositório
+
+E se eu não me lembrar quais arquivos foram modificados ou quais arquivos já foram adicionados?
+
+Para esse caso existe um outro comando útil do Git, que é o comando `git status`, tendo como objetivo indicar o *status* atual do repositório, ou seja, quais arquivos foram criados, modificados e excluídos, além de indicar também quais arquivos já foram *adicionados* pelo comando `add`.
+
+Ao rodar o comando `git status` em um repositório Git, uma mensagem como a demonstrada a seguir será apresentada:
+
+```
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   pom.xml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	WebContent/WEB-INF/views/index.jsp
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+Repare que a mensagem indica que um novo arquivo foi criado no repositório, que no caso é o arquivo `index.jsp`, além de também indicar que o arquivo `pom.xml` sofreu alterações.
+
+Se executarmos o comando `git add .` e em seguida o comando `git status`, a seguinte saída será exibida:
+
+```
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   WebContent/WEB-INF/views/index.jsp
+	modified:   pom.xml
+
+```
+
+Repare que agora a mensagem mudou, sendo que os dois arquivos estão aparecendo na seção `Changes to be committed`, a qual indica quais arquivos serão incluídos no próximo commit.
+
+### Listando os commits do repositório
+
+Outro comando importante do Git é o `git log`, utilizado para listar todos os commits registrados no repositório. Veja a seguir um exemplo do que é exibido ao executar esse comando:
+
+```
+commit 97fddae580b08e977f60fbdc8ca6fdcba3ec7c92 (HEAD -> master, origin/master)
+Author: Rodrigo Caneppele <r.caneppele@gmail.com>
+Date:   Mon Sep 24 15:56:13 2018 -0300
+
+    corrigindo instrucoes e senha do mysql
+
+commit 197af796a89ebf4793414b36f9fbe6bd547a1bde
+Author: Rodrigo Caneppele <r.caneppele@gmail.com>
+Date:   Fri Dec 8 11:33:14 2017 -0200
+
+    context-path do projeto
+
+commit fcda2b3a95593865d007fd0d362029e10b5e6008
+Author: Rodrigo Caneppele <r.caneppele@gmail.com>
+Date:   Fri Dec 8 11:32:41 2017 -0200
+
+    atualizando instrucoes
+
+commit febb65e93cdb751cbc00cd089c71f1ca5639273d
+Author: Rodrigo Caneppele <r.caneppele@gmail.com>
+Date:   Thu Nov 30 12:58:07 2017 -0200
+
+    correcao no nome da tabela
+```
+
+Repare que, para cada commit, o Git exibe o *autor* do commit, a *data* que o commit foi realizado e também a *mensagem* do commit. Além disso, repare que cada commit possui um identificador único, por exemplo: `97fddae580b08e977f60fbdc8ca6fdcba3ec7c92`.
+
+Esse identificador, também chamado de `id`, é gerado automaticamente pelo Git e serve para diferenciar um commit do outro.
+
 ## E quanto ao time de Ops?
