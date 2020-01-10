@@ -235,4 +235,34 @@ Repare que, para cada commit, o Git exibe o *autor* do commit, a *data* que o co
 
 Esse identificador, também chamado de `id`, é gerado automaticamente pelo Git e serve para diferenciar um commit do outro.
 
+## Exercício: Utilizando o Git na aplicação
+
+Nesse exercício vamos utilizar o Git em nossa aplicação.
+
+1. O primeiro passo será a criação do repositório. Abra o `Terminal`, acesse nele o diretório da aplicação e crie o repositório com o comando `git init`. Por exemplo:
+
+```
+cd Desktop/alura-forum
+git init
+```
+
+2. O próximo passo é fazer o commit dos arquivos do projeto, mas antes precisamos utilizar o comando `git add` para indicar quais arquivos serão adicionados ao commit. Rode o seguinte comando no Terminal:
+
+```
+git add .
+```
+
+3. Agora já podemos realizar o commit. Rode o seguinte comando:
+
+```
+git commit -m "criacao do repositorio do projeto"
+```
+
+4. Por fim, verifique se tudo está ok no repositório, utilizando para isso o comando `git status`. A seguinte saída deve ser apresentada:
+
+```
+On branch master
+nothing to commit, working tree clean
+```
+
 ## E quanto ao time de Ops?
