@@ -265,4 +265,169 @@ On branch master
 nothing to commit, working tree clean
 ```
 
+## Mais detalhes do Git
+
+Geralmente em uma aplicação podem existir arquivos que não queremos que façam parte do histórico de commits do Git, ou seja, arquivos aos quais o Git deve ignorar.
+
+Isso é comum para arquivos temporários, binários, ou outros similares. Por exemplo, na nossa aplicação vimos que existe o diretório `target`, utilizado pelo Maven ao gerar o build do projeto.
+
+Entretanto esse diretório e seus arquivos podem ser considerados como temporários, pois não são utilizados pelo código fonte da aplicação, podendo até serem excluídos, sem que isso causa efeitos colaterais nela.
+
+Sendo assim, ao realizar qualquer commit no repositório devemos tomar cuidado para não incluir acidentalmente tais arquivos ao utilizar o comando `git add`.
+
+Para evitar esse trabalho de ter que ficar lembrando de não incluir determinados arquivos no repositório, o Git possui um mecanismo que faz isso de maneira automatizada.
+
+Basta criar no diretório raiz do repositório um arquivo chamado `.gitignore`, e nele adicionar quais arquivos e diretórios devem sempre ser ignorados pelo Git. Veja a seguir um exemplo desse arquivo:
+
+```
+temp
+build
+/target/
+*.jar
+```
+
+Inclusive o projeto `alura-forum` que foi disponibilizado para vocês durante o curso já possui tal arquivo. Se você acessar o diretório da aplicação no terminal e rodar o comando `ls -la` verá que será listado o arquivo `.gitignore`. Caso você queira visualizar o conteúdo desse arquivo diretamente no terminal, basta utilizar o comando `cat .gitignore`.
+
+O Git possui muitos outros recursos e comandos que veremos ao longo do treinamento.
+
+## Hospedando o repositório no GitLab
+
+Uma das grandes vantagens do Git é ele funcionar de maneira *distribuída*, evitando assim a necessidade de se ter um *servidor central* para o repositório e fazer a sincronização com ele a cada novo commit.
+
+Isso nos permite trabalhar de maneira isolada e offline, que inclusive foi o que fizemos até então, pois criamos o repositório da aplicação e nele fizemos um commit sem estar conectado a nenhum servidor central externo.
+
+Embora isso seja uma característica interessante, ela nos traz um risco muito grande caso aconteça algo com o computador onde o repositório tenha sido criado, pois não estamos fazendo o backup dos arquivos e histórico de commits em nenhum outro local.
+
+No início desse capítulo discutimos o quão importante é manter um backup de nossos arquivos pessoais, sendo que isso também é válido para os repositórios de nossas aplicações.
+
+E além disso, para poder trabalhar em colaboração com outras pessoas na aplicação precisaremos compartilhar o repositório dela, para que assim todos consigam ter acesso ao código fonte dela e possam sincronizar suas modificações.
+
+A solução mais comum para esse tipo de problema é utilizar algum serviço online de hospedagem de repositórios Git, como GitHub, GitLab e Bitbucket, permitindo assim que as pessoas possam colaborar entre si, independente de onde elas estejam.
+
+![Site do GitLab](imagens/capitulo-06/gitlab-site.png)
+
+Durante o curso utilizaremos o GitLab como serviço para hospedar o repositório da nossa aplicação, pois hoje em dia ele é um dos mais populares e utilizados ao redor do mundo, além de possuir diversas ferramentas relacionadas ao tema DevOps :)
+
+## Exercício(opcional): Criando uma conta no GitLab
+
+Nesse exercício vamos criar uma nova conta no GitLab. Caso você já tenha cadastro no GitLab, pode pular esse exercício.
+
+1. Acesse o site do GitLab em https://gitlab.com
+
+2. No menu superior clique na opção **Register**
+
+3. Preencha o formulário com seus dados e clique no botão **Register** para criar a conta. Obs: em baixo desse botão também existe a opção para fazer login via Google, Twitter, etc.
+
+4. Você receberá um email com o link para verificação da conta. Acesse seu email e clique nesse link. Obs: Verifique a caixa de spam caso não tenha recebido o email.
+
+## Exercício: Criando um repositório no GitLab
+
+Nesse exercício vamos criar um repositório em nossa conta do GitLab.
+
+1. Acesse sua conta no site do GitLab
+
+2. Clique no botão **New project** ou entre diretamente no endereço https://gitlab.com/projects/new
+
+3. Preencha o campo *Project name* com **alura-forum**, deixe a visibilidade como **private** e clique no botão **Create project**.
+
+![Tela de criar repositório no site do GitLab](imagens/capitulo-06/gitlab-new-project.png)
+
+## Sincronizando o repositório local com o GitLab
+
+Agora que já criamos nosso repositório no GitLab, precisamos de alguma maneira o **vincular** com o repositório que criamos em nosso computador.
+
+No Git, esse repositório que está em nosso computador é chamado de **repositório local**. Já o repositório ao qual vamos vincular e sincronizar o nosso repositório local é chamado de **repositório remoto**.
+
+Para fazer essa *ponte* entre os repositórios local e remoto, devemos utilizar o comando `git remote add`, para assim adicionar um novo repositório remoto:
+
+```
+git remote add gitlab https://gitlab.com/usuario/repositorio.git
+```
+
+O comando `git remote add` precisa de dois parâmetros, sendo que o primeiro é o *apelido* do repositório remoto que estamos adicionando e o segundo é o endereço dele.
+
+O apelido é necessário, pois podemos ter mais de um repositório remoto vinculado a um mesmo repositório local. Com isso poderíamos ter um repositório remoto no GitLab e outro no GitHub, por exemplo, sincronizando nossos commits em ambos os serviços.
+
+Para saber quais são os repositórios remotos já adicionados em um repositório local, devemos utilizar o comando `git remote`:
+
+```
+git remote
+```
+
+O comando anterior exibe apenas os apelidos dos repositórios remotos, sendo necessário passar o parâmetro `-v` para ver também seus respectivos endereços.
+
+Após adicionar o repositório remoto já é possível sincronizar os commits, os enviando para o GitLab, com a utilização do comando `git push`:
+
+```
+git push gitlab master
+```
+
+O primeiro parâmetro do comando `push` é o apelido do repositório remoto ao qual enviaremos os commits, e o segundo é o nome da `branch` a qual pertencem esses commits. Mais adiante no curso veremos o que são e como funcionam as branchs no Git.
+
+Para fazer o caminho inverso, ou seja, atualizar o repositório **local** com os novos commits que foram enviados por outras pessoas para o repositório remoto, devemos utilizar o comando `git pull`, de maneira similar ao comando `git push`:
+
+```
+git pull origin master
+```
+
+## Exercício: Enviando os commits para o repositório remoto
+
+Nesse exercício vamos sincronizar os commits do repositório local com o repositório remoto no GitLab.
+
+1. Adicione o repositório remoto do GitLab em seu repositório local:
+
+```
+git remote add gitlab https://gitlab.com/SEU_USUARIO/alura-forum.git
+```
+
+2. Envie os `commits` do repositório local para o repositório remoto:
+
+```
+git push gitlab master
+```
+
+3. Verifique no GitLab se os commits e arquivos do projeto foram enviados com sucesso.
+
+## Clonando um repositório já existente
+
+Caso uma nova pessoa entre para o time de desenvolvimento, ela precisará ter acesso ao código fonte do projeto e como ele já existe e está hospedado no GitLab, não será necessário criar um novo repositório local em seu computador.
+
+Nesse caso ela precisaria apenas **baixar** o repositório do GitLab para o seu computador, sendo que isso deve ser feito com o comando `git clone`. Por exemplo:
+
+```
+git clone https://gitlab.com/usuario/projeto.git
+```
+
+Ao rodar o comando anterior, o Git vai realizar uma cópia do repositório remoto para o nosso computador, criando um diretório com o mesmo nome do projeto.
+
+Ao acessar esse novo diretório, veremos que temos todos os arquivos do projeto e todo o histórico de commits. Além disso, o Git automaticamente já adiciona esse endereço que clonamos como nosso repositório remoto:
+
+```
+git remote -v
+
+origin	https://gitlab.com/usuario/projeto.git (fetch)
+origin	https://gitlab.com/usuario/projeto.git (push)
+```
+
+Repare que por padrão o Git coloca o apelido do repositório remoto como *origin*, pois ele representa a *origem* de onde foi baixado o repositório.
+
+## Exercício: Renomeando o repositório remoto
+
+Nesse exercício vamos renomear o apelido do nosso repositório remoto, para que assim ele siga o padrão de nomenclatura padrão do Git.
+
+1. Execute no terminal o comando `git remote -v`. A saída deve ser algo como:
+
+```
+gitlab	https://gitlab.com/SEU_USUARIO/alura-forum.git (fetch)
+gitlab	https://gitlab.com/SEU_USUARIO/alura-forum.git (push)
+```
+
+2. Altere o apelido do repositório remoto de `gitlab` para `origin`:
+
+```
+git remote rename gitlab origin
+```
+
+3. Verifique se o repositório remoto foi renomeado executando novamente o comando `git remote -v`.
+
 ## E quanto ao time de Ops?
