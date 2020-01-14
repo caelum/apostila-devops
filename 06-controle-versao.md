@@ -431,3 +431,15 @@ git remote rename gitlab origin
 3. Verifique se o repositório remoto foi renomeado executando novamente o comando `git remote -v`.
 
 ## E quanto ao time de Ops?
+
+Até o momento falamos bastante sobre o Git e seu funcionamento, entretanto apenas do ponto de vista do time de desenvolvimento. Mas e quanto ao time de Ops, seria possível e interessante a utilização do Git?
+
+A resposta é sim! O time de Ops pode utilizar o Git, por exemplo, para controlar a evolução de arquivos de configuração de servidores, banco de dados, sistema operacional, etc.
+
+Isso é algo bem útil, pois todas as alterações que forem realizadas ficariam registradas em commits, com uma mensagem as explicando, evitando assim que o conhecimento fique concentrado apenas com a pessoa que as realizou.
+
+Um outro exemplo seria ao utilizar o conceito de `IaC`(Infrastructure as Code), ao qual toda a infra estrutura da aplicação é programável, com a utilização de arquivos de configuração.
+
+Certamente essas configurações vão evoluir e ser alteradas o tempo inteiro, e não podemos deixar de registrar cada uma dessas alterações, para os casos de backup, entendimento e rollback.
+
+Uma ferramenta de controle de versão, como o Git, é bastante útil para lidar com esses problemas que os times de Ops costumam enfrentar de maneira recorrente.
