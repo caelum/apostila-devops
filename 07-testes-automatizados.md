@@ -51,6 +51,86 @@ Para piorar a situação, podemos ainda entrar no mérito de discutir sobre o *f
 
 ## Testes automatizados
 
+Perceba que realizar testes de funcionalidades de uma aplicação é uma tarefa repetitiva, pois sempre o mesmo passo a passo deverá ser executado. Justamente por isso é que devemos tentar **automatizar** essa tarefa, pois um computador é um especialista em executar tarefas repetitivas, de maneira muito mais ágil e confiável do que um ser humano. Seres humanos são melhores em tarefas que exigem criatividade e que, eventualmente, necessitam de *improvisos* :)
+
+Não demorou muito para que as pessoas criassem ferramentas que automatizassem a execução de seus testes, nascendo assim o termo **testes automatizados**.
+
+Um teste automatizado nada mais é do que um programa, ou seja, é um trecho de código que vai verificar se o seu código se comporta de acordo com as regras de negócio da aplicação, sempre gerando os resultados esperados para cada cenário possível.
+
+Vamos a um exemplo: imagine que precisamos escrever um código para realizar o cálculo do desconto de um determinado produto, sendo que o desconto deve ser baseado no preço do produto. A regra determina que produtos cujo preço seja de até R$1000.00 não tem desconto, já produtos com preço superior a esse valor deve ter 10% de desconto.
+
+Poderíamos ter a seguinte classe, em Java, para implementar essa funcionalidade:
+
+```java
+public class CalculadoraDeDesconto {
+
+  private static final BigDecimal MIL_REAIS = new BigDecimal("1000.00");
+  private static final BigDecimal DEZ_POR_CENTO = new BigDecimal("0.1");
+
+  public BigDecimal valorDoDesconto(Produto produto) {
+    BigDecimal precoDoProduto = produto.getPreco();
+
+    if (precoDoProduto.compareTo(MIL_REAIS) <= 0) {
+      return BigDecimal.ZERO;
+    } else {
+      return precoDoProduto.multiply(DEZ_POR_CENTO);
+    }
+  }
+
+}
+```
+
+O código anterior aparenta estar correto e deveria funcionar de acordo com as regras de negócio da aplicação, mas podemos escrever um teste automatizado para ter certeza.
+
+Em Java poderíamos escrever o seguinte código para realizar os testes:
+
+```java
+public class TestaDescontos {
+
+  public static void main(String[] args) {
+    Produto caneta = new Produto(new BigDecimal("2.5"));
+    Produto celular = new Produto(new BigDecimal("1000"));
+    Produto notebook = new Produto(new BigDecimal("5000"));
+
+    CalculadoraDeDesconto calculadora = new CalculadoraDeDesconto();
+
+    System.out.println(calculadora.valorDoDesconto(caneta));
+    System.out.println(calculadora.valorDoDesconto(celular));
+    System.out.println(calculadora.valorDoDesconto(notebook));
+  }
+
+}
+```
+
+Ao executar o código de teste anterior, teremos a seguinte saída no console:
+
+```
+0
+0
+500.0
+```
+
+Provando assim que realmente o código da classe `CalculadoraDeDesconto` está correto e funciona de acordo com as regras de negócio da aplicação.
+
+Se alguma pessoa do time de desenvolvimento alterar o código da classe `CalculadoraDeDesconto` gerando, acidentalmente, um bug, ao executar novamente a classe de testes a saída será diferente, indicando assim a possível existência de um bug na aplicação.
+
+Essa é a essência dos testes automatizados. Executar de maneira **ágil** os testes da aplicação e receber, também de maneira ágil, o **feedback** de que tudo continua funcionando normalmente ou de que algum problema surgiu.
+
+Porém, podemos melhorar ainda mais a automatização desses testes, com a utilização de ferramentas criadas para esse objetivo, pois ainda estamos realizando alguns passos de maneira manual.
+
+Por exemplo, o teste anterior está em uma classe Java com o método `main`, mas essa classe executa apenas os testes da classe `CalculadoraDeDesconto`. Em uma aplicação real teremos dezenas, centenas ou até milhares de outras classes contendo regras de negócio, e precisaríamos com isso ter uma classe de teste para cada classe dessa.
+
+O problema é que teríamos que executar as classes de testes uma de cada vez, aumentando assim o tempo desse processo. Além disso, para saber se um teste deu certo, ou seja, se a classe testada está funcionando corretamente, devemos analisar o que foi impresso no console, e isso também para cada uma das classes de teste.
+
+Aqui entra a necessidade de se utilizar alguma ferramenta que simplifique esse processo, para que possamos escrever, executar e analisar os testes de maneira ágil e eficiente.
+
+Existem várias ferramentas que atendem a esse propósito, sendo elas conhecidas como ferramentas de **Unit Testing**. Dentre as principais estão:
+
+* JUnit(Java)
+* NUnit(.Net)
+* PHPUnit(PHP)
+* PyUnit(Python)
+
 ### JUnit
 
 ## Exercício
