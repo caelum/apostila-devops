@@ -131,7 +131,153 @@ Existem várias ferramentas que atendem a esse propósito, sendo elas conhecidas
 * PHPUnit(PHP)
 * PyUnit(Python)
 
+Como nossa aplicação utiliza a linguagem Java, utilizaremos então o JUnit como principal ferramenta para testes automatizados. No caso das outras linguagens de programação, as ferramentas são muito parecidas e ao aprender uma delas fica fácil aprender as outras também.
+
 ### JUnit
+
+JUnit é um framework para testes automatizados em Java e foi criado em 1997 por Kent Beck e Erich Gamma durante um voo da Suíça para os Estados Unidos. O objetivo era criar um framework para escrever e executar testes automatizados em Java, de uma maneira que fosse simples e rápida.
+
+Para entender melhor como funciona o seu funcionamento vamos refazer o teste automatizado do exemplo anterior, relacionado com a classe `CalculadoraDeDesconto`, porém dessa vez utilizando o JUnit.
+
+Assim como no exemplo anterior, precisamos criar uma classe que vai conter os nossos testes, entretanto ao utilizar o JUnit não devemos criar uma classe com método `main`, mas sim uma classe Java comum:
+
+```java
+public class CalculadoraDeDescontoTest {
+
+}
+```
+
+O nome da classe de teste, pela convenção, deve ser o mesmo nome da classe a ser testada, seguida pelo sufixo **Test**. Outra convenção é que as classes de teste fiquem separadas das classes sendo testada, geralmente utilizando-se para isso outro `source folder`.
+
+Agora para cada cenário de teste devemos criar um método e adicionar nele a anotação do JUnit `@Test`:
+
+```java
+public class CalculadoraDeDescontoTest {
+
+  @Test
+  public void produtoBaratoNaoDeveriaTerDesconto() {
+    Produto caneta = new Produto(new BigDecimal("2.5"));
+
+    CalculadoraDeDesconto calculadora = new CalculadoraDeDesconto();
+
+    BigDecimal desconto = calculadora.valorDoDesconto(caneta);
+  }
+
+}
+```
+
+O teste anterior ainda está incompleto, pois precisamos verificar se tudo saiu conforme o esperado, sendo que para isso devemos utilizar as classes de **assertivas** do JUnit:
+
+```java
+public class CalculadoraDeDescontoTest {
+
+  @Test
+  public void produtoBaratoNaoDeveriaTerDesconto() {
+    Produto caneta = new Produto(new BigDecimal("2.5"));
+
+    CalculadoraDeDesconto calculadora = new CalculadoraDeDesconto();
+
+    BigDecimal desconto = calculadora.valorDoDesconto(caneta);
+
+    Assertions.assertEquals(BigDecimal.ZERO, desconto);
+  }
+
+}
+```
+
+Agora o teste já está completo e podemos executá-lo. Embora as classes de teste não tenham o método `main`, as IDEs costumam ter integração com o JUnit e facilitam a execução dos testes.
+
+No caso do Eclipse, basta clicar com o botão direito do mouse na classe e escolher a opção `Run As -> JUnit Test`.
+
+Ao executar o teste anterior, o Eclipse nos exibirá a seguinte tela:
+
+![Aba JUnit no Eclipse mostrando o resultado dos testes](imagens/capitulo-07/junit-teste-sucesso.png)
+
+A barra horizontal na cor **verde** indica que os testes foram executados e as asserções estão corretas, nos indicando assim que nosso código funciona conforme o esperado.
+
+Se alguma pessoa alterar o código da classe `CalculadoraDeDesconto` gerando um bug, ao executar novamente os testes teremos o seguinte resultado:
+
+![Aba JUnit no Eclipse mostrando que algum teste falhou](imagens/capitulo-07/junit-teste-falha.png)
+
+Repare como fica mais fácil de descobrir o bug e sua possível causa ao analisar esse relatório do JUnit.
+
+Após corrigir o bug, podemos escrever os testes dos outros cenários que estão relacionados com a classe `CalculadoraDeDesconto`:
+
+```java
+public class CalculadoraDeDescontoTest {
+  
+  private CalculadoraDeDesconto calculadora;
+  
+  @BeforeEach
+  public void beforeEach() {
+    calculadora = new CalculadoraDeDesconto();
+  }
+
+  @Test
+  public void produtoBaratoNaoDeveriaTerDesconto() {
+    Produto caneta = new Produto(new BigDecimal("2.5"));
+    
+    BigDecimal desconto = calculadora.valorDoDesconto(caneta);
+    
+    Assertions.assertEquals(BigDecimal.ZERO, desconto);
+  }
+  
+  @Test
+  public void produtoQueCustaExatamente1000ReaisNaoDeveriaTerDesconto() {
+    Produto caneta = new Produto(new BigDecimal("1000.00"));
+    
+    BigDecimal desconto = calculadora.valorDoDesconto(caneta);
+    
+    Assertions.assertEquals(BigDecimal.ZERO, desconto);
+  }
+  
+  @Test
+  public void produtoComPrecoMaiorQue1000ReaisDeveriaTerDescontoDe10PorCento() {
+    Produto caneta = new Produto(new BigDecimal("2000.00"));
+    
+    BigDecimal desconto = calculadora.valorDoDesconto(caneta);
+    BigDecimal descontoEsperado = new BigDecimal("200.00");
+    
+    Assertions.assertEquals(descontoEsperado, desconto);
+  }
+
+}
+```
+
+Agora sim estamos testando todos os cenários e nosso teste está muito mais confiável.
+
+Repare que para evitar ficar repetindo o código que cria o objeto `CalculadoraDeDesconto` em todos os testes, o isolamos em um método anotado com `@BeforeEach`, ao qual o JUnit chama automaticamente antes de realizar cada um dos testes.
+
+Porém, ao executar todos os testes veremos que um deles falha:
+
+![Aba JUnit no Eclipse mostrando que um dos testes falhou](imagens/capitulo-07/junit-teste-falha-2.png)
+
+Na verdade o teste não falhou por conta de um bug na lógica do código da classe `CalculadoraDeDesconto`, mas sim por conta de um problema de arredondamento do valor retornado. Como estamos utilizando a classe `BigDecimal` do Java para representar os valores monetários, é recomendado indicar quantas casas decimais utilizaremos:
+
+```java
+public class CalculadoraDeDesconto {
+
+  private static final BigDecimal MIL_REAIS = new BigDecimal("1000.00");
+  private static final BigDecimal DEZ_POR_CENTO = new BigDecimal("0.1");
+
+  public BigDecimal valorDoDesconto(Produto produto) {
+    BigDecimal precoDoProduto = produto.getPreco();
+
+    if (precoDoProduto.compareTo(MIL_REAIS) <= 0) {
+      return BigDecimal.ZERO;
+    } else {
+      return precoDoProduto.multiply(DEZ_POR_CENTO).setScale(2, RoundingMode.HALF_UP);
+    }
+  }
+
+}
+```
+
+Pronto! Feito esse ajuste os testes vão passar normalmente:
+
+![Aba JUnit no Eclipse mostrando que todos os testes passaram](imagens/capitulo-07/junit-teste-sucesso-2.png)
+
+Perceba então como é muito mais simples utilizar uma ferramenta, como o JUnit, para escrever, executar e analisar o resultado dos testes automatizados em uma aplicação.
 
 ## Exercício
 
