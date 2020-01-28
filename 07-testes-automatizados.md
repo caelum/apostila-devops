@@ -279,9 +279,108 @@ Pronto! Feito esse ajuste os testes vão passar normalmente:
 
 Perceba então como é muito mais simples utilizar uma ferramenta, como o JUnit, para escrever, executar e analisar o resultado dos testes automatizados em uma aplicação.
 
-## Exercício
+## Exercício: Configurando o projeto para os testes automatizados
+
+Nesse exercício vamos adicionar um novo `source folder` em nossa aplicação, o qual será utilizado para as classes de testes automatizados.
+
+1. Clique com o botão direito do mouse no projeto e selecione a opção: `Build Path -> Configure Build Path...`
+
+![Opção Configure Build Path no Eclipse](imagens/capitulo-07/build-path-opcao.png)
+
+2. Clique na aba superior `Source` e então clique no botão **Add Folder...**
+
+![Opção Add Folder no Eclipse](imagens/capitulo-07/build-path-add-folder.png)
+
+3. Na janela que foi aberta, clique no botão **Create New Folder...**, adicione uma pasta chamada **test** e então clique no botão **Finish**.
+
+![Tela para preencher nome do source folder](imagens/capitulo-07/build-path-folder-name.png)
+
+4. Verifique na tela principal do `build path` se a nova pasta está sendo listada:
+
+![Tela de listagem de source folders](imagens/capitulo-07/build-path-lista.png)
+
+5. Dê um duplo clique na opção **Output folder** e altere-o conforme a imagem a seguir:
+
+![Tela de configuração do output folder do source folder de test](imagens/capitulo-07/build-path-output-folder.png)
+
+6. Dê um duplo clique na opção **Contains test sources** para alterar seu valor para **Yes** e confira se o novo source folder está configurado conforme a imagem a seguir:
+
+![Tela com as configurações do novo source folder test](imagens/capitulo-07/build-path-finalizado.png)
+
+7. Clique no botão **Apply and close** para finalizar a criação do novo source folder.
+
+8. Agora, para finalizar, clique com o botão direito do mouse no projeto e selecione a opção **Maven -> Update Project...**.
+
+## Exercício: Escrevendo testes automatizados na aplicação
+
+Nesse exercício vamos escrever alguns testes automatizados em nossa aplicação utilizando o JUnit.
+
+1. Primeiramente, precisamos adicionar o JUnit ao projeto. Abra o arquivo **pom.xml**, procure a seção de **dependências** e adicione o JUnit como dependência:
+
+```xml
+<dependency>
+  <groupId>org.junit.jupiter</groupId>
+  <artifactId>junit-jupiter-engine</artifactId>
+  <version>5.6.0</version>
+  <scope>test</scope>
+</dependency>
+```
+
+2. Precisamos também adicionar o plugin do Maven responsável por executar os testes automatizados. Ainda no `pom.xml`, procure a seção de **plugins** e adicione o novo plugin:
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-surefire-plugin</artifactId>
+  <version>3.0.0-M4</version>
+</plugin>
+```
+
+3. Agora já podemos escrever os testes automatizados utilizando o JUnit. A classe `Topico` é uma boa candidata para começarmos a escrever os testes, pois ela possui alguns métodos que contém regras de negócio da aplicação.
+
+4. Clique com o botão direito em cima da classe **Topico**, que está localizada no pacote **br.com.alura.forum.model**, e escolha a opção **New -> Other... -> Junit Test Case**:
+
+![Tela de criação da classe de teste](imagens/capitulo-07/junit-new-test-case.png)
+
+5. Repare que que o Eclipse já preencheu automaticamente as informações de maneira correta. Clique em **Finish** e verifique se a classe **TopicoTest** foi criada corretamente no pacote **br.com.alura.forum.model**, dentro do source folder **test**.
+
+6. Apague o método `test()`, criado automaticamente como um exemplo, e crie o primeiro teste conforme o código a seguir:
+
+```java
+class TopicoTest {
+
+  private Usuario joao;
+  private Categoria frontend;
+  private Categoria html;
+  private Curso htmlBasico;
+  
+  @BeforeEach
+  public void before() {
+    this.joao = new Usuario("João", "joao@email.com.br", "123456");
+    this.frontend = new Categoria("FRONT-END");
+    this.html = new Categoria("HTML", frontend);
+    this.htmlBasico = new Curso("HTML Básico", html);
+  }
+
+  @Test
+  public void aoFecharUmTopicoSeuStatusDeveriaSerAlteradoParaFechado() {
+    Topico duvida = new Topico("Dúvida HTML", "Qual tag utilizar?", joao, htmlBasico);
+    
+    duvida.fechar();
+    
+    Assertions.assertEquals(StatusTopico.FECHADO, duvida.getStatus());
+  }
+
+}
+```
+
+7. Execute o teste, clicando com botão direito na classe e escolhendo a opção **Run As -> JUnit Test**, e verifique se ele passa com sucesso.
+
+8. Analise o código da classe **Topico** e verifique que outros testes poderiam ser criados. Discuta com os outros alunos(as) e instrutor(a) da turma sobre isso.
 
 ## Tipos de testes automatizados
+
+
 
 ### Testes de unidade
 
