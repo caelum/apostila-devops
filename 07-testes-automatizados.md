@@ -592,7 +592,78 @@ public class ListagemDeClientesTest {
 
 Repare no código anterior que existe um acoplamento forte entre o teste e os componentes visuais da página. Qualquer alteração feita no front-end da aplicação pode fazer com que vários testes falhem, tornando assim esse tipo de teste bem *frágil*.
 
-## Exercício
+## Exercício: Testes automatizados com Mockito
+
+Nesse exercício vamos escrever mais um teste de unidade, entretanto dessa vez será necessário a utilização de mocks e portanto utilizaremos a biblioteca Mockito.
+
+1. Primeiramente, precisamos adicionar o Mockito como dependência do projeto. Abra o arquivo **pom.xml** e adicione mais uma dependência:
+
+```xml
+<dependency>
+  <groupId>org.mockito</groupId>
+  <artifactId>mockito-junit-jupiter</artifactId>
+  <version>3.2.4</version>
+  <scope>test</scope>
+</dependency>
+```
+
+2. A classe que vamos testar será a **DashboardService**, que está localizada no pacote **br.com.alura.forum.service**. Clique com o botão direto nela e escolha a opção **New -> Other... -> JUnit Test Case**.
+
+3. Apague o método de exemplo que foi criado automaticamente e escreva o seguinte código:
+
+```java
+@ExtendWith(MockitoExtension.class)
+class DashboardServiceTest {
+
+  @InjectMocks
+  private DashboardService dashboardService;
+
+  @Mock
+  private CategoriaDao categoriaDao;
+
+  @Mock
+  private TopicoDao topicoDao;
+
+  private List<Categoria> categorias;
+
+  @BeforeEach
+  public void before() {
+    Categoria backend = new Categoria("Back-End", null);
+    Categoria frontend = new Categoria("Front-End", null);
+    Categoria mobile = new Categoria("Mobile", null);
+
+    this.categorias = Arrays.asList(backend,frontend, mobile);
+  }
+
+}
+```
+
+4. Agora que já configuramos o mockito para injetar os mocks, podemos escrever os nossos testes. Vamos testar se o `DashboardService` devolve as categorias com os contadores zerados, no caso de não haver nenhum tópico cadastrado:
+
+```java
+@Test
+  public void contadoresDeveriamEstarZeradosNoCasoDeNaoHaverTopicosAbertos() {
+    Mockito.when(categoriaDao.buscarTodasAsCategoriasPrincipais()).thenReturn(categorias);
+    categorias.forEach(c -> {
+      Mockito.when(topicoDao.countPorCategoria(c)).thenReturn(0l);
+      Mockito.when(topicoDao.countPorCategoriaEAbertosNaUltimaSemana(c)).thenReturn(0l);
+      Mockito.when(topicoDao.countPorCategoriaENaoRespondidos(c)).thenReturn(0l);
+    });
+
+    List<DashboardItem> dashboard = dashboardService.buscarDadosDoDashboardDeTopicos();
+
+    Assertions.assertEquals(3, dashboard.size());
+    dashboard.forEach(d -> {
+      Assertions.assertEquals(0, d.getQtdTopicos());
+      Assertions.assertEquals(0, d.getQtdTopicosDaUltimaSemana());
+      Assertions.assertEquals(0, d.getQtdTopicosNaoRespondidos());
+    });
+  }
+```
+
+5. Que outros cenários poderíamos testar? Discuta com os outros alunos(as) e instrutor(a) da turma sobre isso.
+
+6. Não se esqueça de fazer o commit das alterações no projeto!
 
 BOX:Piramide de testes
 
