@@ -380,15 +380,210 @@ class TopicoTest {
 
 ## Tipos de testes automatizados
 
+Existem diversos tipos de testes automatizados que podemos escrever para verificar a corretude da aplicação, além de encontrar possíveis bugs. O tipo de teste que vimos na seção anterior é chamado de **teste de unidade**, também conhecido como teste unitário, sendo utilizado para testar classes e métodos de maneira isolada do resto do sistema.
 
+Entretanto, existem outros tipos de testes que são mais complexos do que um simples teste de unidade e também são importantes, pois nem sempre conseguiremos testar uma classe de maneira isolada.
 
 ### Testes de unidade
 
+Testes de unidade servem para testar apenas uma classe ou método, de maneira isolada das outras classes, verificando se seu comportamento está de acordo com o desejado. Nesse tipo de teste, verificamos a funcionalidade da classe e/ou método em questão passando o mínimo possível por outras classes ou dependências do nosso sistema.
+
+> **Unidade?**
+>
+> Unidade é a menor parte testável de uma aplicação. Em uma linguagem de programação orientada a objetos, como o Java, a menor unidade é um método.
+>
+> O termo correto para esse tipo de teste é teste de unidade, porém o termo teste unitário propagou-se e é o mais encontrado nas traduções.
+
+Em testes de unidade não estamos interessados no comportamento real das dependências da classe, mas em como a classe em questão se comporta diante das possíveis respostas das dependências, ou então, se a classe modificou as dependências da maneira esperada.
+
+Para isso, quando criamos um teste de unidade, simulamos a execução de métodos da classe a ser testada. Fazemos isso passando parâmetros, caso necessário, ao método testado e definimos o resultado que esperamos. Se o resultado for igual ao que definimos como esperado, o teste passa. Caso contrário, falha.
+
+Justamente por conta dessas características é que os testes de unidade são mais simples de escrever, além de também serem executados de maneira muito mais rápida.
+
 ### Testes de integração
+
+Nem sempre será possível testar uma classe de maneira isolada, utilizando testes de unidade, pois é comum que algumas classes precisem se *integrar* com outras classes, módulos ou até mesmo outros sistemas externos.
+
+Para esse tipo de classe um teste de unidade não vai funcionar, pois a essência dela é se integrar com "serviços" externos, não sendo possível assim executar seu código de maneira isolada.
+
+Surge assim a necessidade de se escrever testes um pouco mais complexos que os testes de unidade, de maneira em que a integração que a classe faz possa também ser testada.
+
+Esse tipo de teste é chamado de **teste de integração** e seu objetivo é testar justamente a integração entre classes, módulos e/ou serviços externos da aplicação.
+
+Um exemplo de classe que precisaríamos testar via testes de integração são as classes **DAO**(Data Access Object), cujo objetivo é isolar o acesso ao banco de dados da aplicação.
+
+A essência dessa classe é fazer o acesso ao banco de dados da aplicação, ou seja, ao executar os métodos dessa classe ocorrerá uma integração entre a aplicação e o banco de dados em si.
+
+Vejamos um exemplo desse tipo de classe:
+
+```java
+@Repository
+public class FaturaDao {
+
+  @PersistenceContext
+  private EntityManager em;
+
+  public List<Fatura> buscarFaturasVencidas() {
+    String jpql = "SELECT f FROM Fatura f WHERE f.dataVencimento < :hoje AND f.dataPagamento IS NULL";
+    return em.createQuery(jpql, Fatura.class)
+        .setParameter("hoje", LocalDate.now())
+        .getResultList();
+  }
+
+}
+```
+
+Repare no código anterior que a classe possui um método chamado `buscarFaturasVencidas()`, cujo objetivo é carregar do banco de dados as faturas não pagas e já vencidas. Sempre que esse método for executado uma integração ao banco de dados será efetuada.
+
+Para testar essa classe será necessário escrever um teste de integração. Entretanto, um teste de integração pode ser bastante complexo, dependendo do tipo de integração sendo realizada pela classe a ser testada.
+
+Por exemplo, ao escrever o teste da classe `Dao` mostrada no exemplo anterior, os seguintes questionamentos e dificuldades poderão surgir:
+
+* Como fazer com os parâmetros injetados na classe, por exemplo o `EntityManager`?
+* O teste vai acessar o mesmo banco de dados utilizado pelo time de desenvolvimento?
+* Os dados já existentes no banco de dados vão interferir nos testes?
+* Seria melhor utilizar um outro banco de dados para os testes?
+
+Todas essas questões devem ser levadas em consideração, para que assim seja possível saber como escrever os testes de integração.
+
+Além de aumentar a dificuldade para escrever e dar manutenção no código desse tipo de teste, o tempo de execução dele será bem maior, se comparado aos testes de unidade.
 
 ### Mocks
 
+Existe também o caso de algumas classes que se integram com outras, entretanto a integração em si não é o foco principal delas. Nesses casos é comum que a classe faça a integração apenas para buscar algum tipo de informação, utilizando então essa informação para executar alguma lógica.
+
+Por exemplo, suponha que temos a seguinte classe:
+
+```java
+@Service
+public class ProcessadorDePagamentos {
+
+  private PagamentoService pagamentoService;
+
+  @Autowired
+  public ProcessadorDePagamentos(PagamentoService pagamentoService) {
+    this.pagamentoService = pagamentoService;
+  }
+
+  public void processarPagamentos(List<Fatura> faturas) {
+    for(Fatura atual : faturas) {
+      Pagamento recebido = pagamentoService.buscarPagamentoDaFatura(atual);
+      if (recebido != null) {
+        atual.setDataPagamento(recebido.getData());
+        atual.setValorPago(recebido.getValor());
+        atual.setStatus(StatusFatura.PAGO);
+      }
+    }
+  }
+
+}
+```
+
+A classe anterior tem como objetivo buscar o pagamento de determinadas faturas e, caso elas tenha sido pagas, atualizar suas informações.
+
+Para realizar esse trabalho ela precisa utilizar uma outra classe, que no caso é a classe `PagamentoService`, que é responsável por buscar o pagamento de determinada fatura. Sendo assim, perceba então que existe uma integração entre as classes `ProcessadorDePagamentos` e `PagamentoService`.
+
+Porém, ao testar essa classe não estamos interessados na integração dela com a classe `PagamentoService`, mas sim na sua lógica interna, que representa uma regra de negócio da aplicação.
+
+O objetivo agora é escreve um teste de unidade para essa classe, mas para isso precisamos **isolar**, de alguma maneira, as dependências dela.
+
+Para nos ajudar com isso foi criado um conceito chamado de **Mock**, que nada mais é do que uma classe que vai **simular** o comportamento de outra classe. É como se fosse um **dublê** de filmes, que atua no lugar do ator ou atriz em determinadas cenas.
+
+Poderíamos criar uma classe chamada `PagamentoServiceMock`, que seria utilizada como `mock` da classe `PagamentoService`, e então ao testar a classe `ProcessadorDePagamentos` utilizaríamos a classe `mock` e não a classe verdadeira.
+
+Já existem bibliotecas de `mock` que fazem esse trabalho automaticamente, como por exemplo o **Mockito**, no caso do Java.
+
+Veja um exemplo de teste de unidade da classe `ProcessadorDePagamento` utilizando o Mockito:
+
+```java
+@RunWith(MockitoJUnitRunner.class)
+public class ProcessadorDePagamentoTest {
+
+  @Mock
+  private PagamentoService pagamentoServiceMock;
+
+  private ProcessadorDePagamentos processador;
+
+  @BeforeEach
+  public void before() {
+    processador = new ProcessadorDePagamentos(pagamentoServiceMock);
+  }
+
+  @Test
+  public void faturaNaoPagaDeveriaManterSeusDadosInalterados() {
+    Fatura contaDeLuz = new Fatura("Conta de Luz", new BigDecimal(105.90));
+    List<Fatura> faturas = Arrays.asList(contaDeLuz);
+
+    //configurando comportamento do mock:
+    Mockito.when(pagamentoServiceMock.buscarPagamentoDaFatura(contaDeLuz)).thenReturn(null);
+
+    processador.processarPagamentos(faturas);
+
+    Assertions.assertNull(contaDeLuz.getDataPagamento());
+    Assertions.assertNull(contaDeLuz.getValorPago());
+    Assertions.assertEquals(StatusFatura.EM_ABERTO, contaDeLuz.getStatus());
+  }
+
+}
+```
+
+Repare no código anterior que antes de chamar o método `processarPagamentos()` configuramos o `mock` com o comportamento que desejamos para esse cenário de teste.
+
+Com isso o teste se comportará como um simples teste de unidade, pois a integração não ocorrerá de verdade, uma vez que estamos utilizando um `mock` e não a classe verdadeira.
+
 ### Testes de aceitação
+
+Nem sempre testar as classes de maneira isolada, com testes de unidade, e de maneira integrada, com testes de integração, significa que a aplicação está funcionando corretamente e sem bugs.
+
+Isso porque, até então, não fizemos um teste do ponto de vista do usuário da aplicação, que seria bem mais realista. Todos os testes que vimos até o momento são focados no código da aplicação, sendo que os usuários não tem acesso diretamente e ele.
+
+Um usuário utiliza a aplicação por meio de sua interface gráfica, por exemplo utilizando um browser, no caso de uma aplicação Web, e por meio dessa interface ele interage com suas funcionalidades.
+
+Faz sentido então criar testes que sejam mais realistas, ou seja, que simulem o uso do software de maneira mais próxima possível a como os usuários a utilizam.
+
+Esse tipo de teste é chamado de **teste de aceitação**, também conhecido como **teste de sistema** ou até mesmo como **teste end-to-end**, uma vez que ele testa a aplicação de ponta a ponta.
+
+Para escrever testes de aceitação automatizados será necessário utilizar alguma ferramenta que consiga interagir com a interface gráfica da aplicação, como por exemplo o **Selenium WebDriver**. Esse tipo de ferramenta é capaz de interagir com o browser, acessando URLs, preenchendo formulários, clicando em botões e links, localizando informações na página, etc.
+
+O problema desse tipo de teste é que ele costuma ser bem mais trabalhoso de escrever e dar manutenção, além de exigir do time de desenvolvimento que aprenda uma nova ferramenta para a escrita dos testes, como o Selenium WebDriver.
+
+Além disso, como esse teste vai simular um usuário navegando pela aplicação e interagindo com suas funcionalidades, ele tende a ser bem demorado para executar. Enquanto um teste de unidade é executado em milissegundos, um teste de aceitação pode levar de segundos a minutos para ser executado completamente.
+
+Vejamos um exemplo de teste de aceitação escrito na linguagem Java com a utilização da biblioteca Selenium WebDriver:
+
+```java
+public class ListagemDeClientesTest {
+
+  private WebDriver browser;
+
+  @BeforeEach
+  public void before() {
+    this.browser = new ChromeDriver();
+    browser.navigate().to("http://localhost:8080/sistema");
+  }
+
+  @Test
+  public void deveriaExibirAListaDeClientes() {
+    //clica no menu para abrir a pagina de clientes
+    browser.findElement(By.id("menu-clientes")).click();
+
+    //recupera o titulo principal da pagina
+    WebElement titulo = browser.findElement(By.tagName("h1"));
+
+    //recupera a listagem de clientes
+    WebElement tabela = browser.findElement(By.id("tabela-clientes"));
+
+    //verifica se o titulo da pagina esta correto
+    Assertions.assertEquals("Lista de clientes cadastrados", titulo.getText());
+
+    //verifica se a listagem de clientes foi encontrada na pagina
+    Assertions.assertNotNull(tabela);
+  }
+
+}
+```
+
+Repare no código anterior que existe um acoplamento forte entre o teste e os componentes visuais da página. Qualquer alteração feita no front-end da aplicação pode fazer com que vários testes falhem, tornando assim esse tipo de teste bem *frágil*.
 
 ## Exercício
 
