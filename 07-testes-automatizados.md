@@ -378,6 +378,13 @@ class TopicoTest {
 
 8. Analise o código da classe **Topico** e verifique que outros testes poderiam ser criados. Discuta com os outros alunos(as) e instrutor(a) da turma sobre isso.
 
+9. Lembre-se de fazer o commit das alterações no projeto:
+
+```
+git add .
+git commit -m "criacao dos primeiros testes automatizados"
+```
+
 ## Tipos de testes automatizados
 
 Existem diversos tipos de testes automatizados que podemos escrever para verificar a corretude da aplicação, além de encontrar possíveis bugs. O tipo de teste que vimos na seção anterior é chamado de **teste de unidade**, também conhecido como teste unitário, sendo utilizado para testar classes e métodos de maneira isolada do resto do sistema.
