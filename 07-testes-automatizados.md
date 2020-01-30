@@ -285,27 +285,27 @@ Nesse exercício vamos adicionar um novo `source folder` em nossa aplicação, o
 
 1. Clique com o botão direito do mouse no projeto e selecione a opção: `Build Path -> Configure Build Path...`
 
-![Opção Configure Build Path no Eclipse](imagens/capitulo-07/build-path-opcao.png)
+  ![Opção Configure Build Path no Eclipse](imagens/capitulo-07/build-path-opcao.png)
 
 2. Clique na aba superior `Source` e então clique no botão **Add Folder...**
 
-![Opção Add Folder no Eclipse](imagens/capitulo-07/build-path-add-folder.png)
+  ![Opção Add Folder no Eclipse](imagens/capitulo-07/build-path-add-folder.png)
 
 3. Na janela que foi aberta, clique no botão **Create New Folder...**, adicione uma pasta chamada **test** e então clique no botão **Finish**.
 
-![Tela para preencher nome do source folder](imagens/capitulo-07/build-path-folder-name.png)
+  ![Tela para preencher nome do source folder](imagens/capitulo-07/build-path-folder-name.png)
 
 4. Verifique na tela principal do `build path` se a nova pasta está sendo listada:
 
-![Tela de listagem de source folders](imagens/capitulo-07/build-path-lista.png)
+  ![Tela de listagem de source folders](imagens/capitulo-07/build-path-lista.png)
 
 5. Dê um duplo clique na opção **Output folder** e altere-o conforme a imagem a seguir:
 
-![Tela de configuração do output folder do source folder de test](imagens/capitulo-07/build-path-output-folder.png)
+  ![Tela de configuração do output folder do source folder de test](imagens/capitulo-07/build-path-output-folder.png)
 
 6. Dê um duplo clique na opção **Contains test sources** para alterar seu valor para **Yes** e confira se o novo source folder está configurado conforme a imagem a seguir:
 
-![Tela com as configurações do novo source folder test](imagens/capitulo-07/build-path-finalizado.png)
+  ![Tela com as configurações do novo source folder test](imagens/capitulo-07/build-path-finalizado.png)
 
 7. Clique no botão **Apply and close** para finalizar a criação do novo source folder.
 
@@ -317,62 +317,62 @@ Nesse exercício vamos escrever alguns testes automatizados em nossa aplicação
 
 1. Primeiramente, precisamos adicionar o JUnit ao projeto. Abra o arquivo **pom.xml**, procure a seção de **dependências** e adicione o JUnit como dependência:
 
-```xml
-<dependency>
-  <groupId>org.junit.jupiter</groupId>
-  <artifactId>junit-jupiter-engine</artifactId>
-  <version>5.6.0</version>
-  <scope>test</scope>
-</dependency>
-```
+  ```xml
+  <dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>5.6.0</version>
+    <scope>test</scope>
+  </dependency>
+  ```
 
 2. Precisamos também adicionar o plugin do Maven responsável por executar os testes automatizados. Ainda no `pom.xml`, procure a seção de **plugins** e adicione o novo plugin:
 
-```xml
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-surefire-plugin</artifactId>
-  <version>3.0.0-M4</version>
-</plugin>
-```
+  ```xml
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.0.0-M4</version>
+  </plugin>
+  ```
 
 3. Agora já podemos escrever os testes automatizados utilizando o JUnit. A classe `Topico` é uma boa candidata para começarmos a escrever os testes, pois ela possui alguns métodos que contém regras de negócio da aplicação.
 
 4. Clique com o botão direito em cima da classe **Topico**, que está localizada no pacote **br.com.alura.forum.model**, e escolha a opção **New -> Other... -> Junit Test Case**:
 
-![Tela de criação da classe de teste](imagens/capitulo-07/junit-new-test-case.png)
+  ![Tela de criação da classe de teste](imagens/capitulo-07/junit-new-test-case.png)
 
 5. Repare que que o Eclipse já preencheu automaticamente as informações de maneira correta. Clique em **Finish** e verifique se a classe **TopicoTest** foi criada corretamente no pacote **br.com.alura.forum.model**, dentro do source folder **test**.
 
 6. Apague o método `test()`, criado automaticamente como um exemplo, e crie o primeiro teste conforme o código a seguir:
 
-```java
-class TopicoTest {
+  ```java
+  class TopicoTest {
 
-  private Usuario joao;
-  private Categoria frontend;
-  private Categoria html;
-  private Curso htmlBasico;
-  
-  @BeforeEach
-  public void before() {
-    this.joao = new Usuario("João", "joao@email.com.br", "123456");
-    this.frontend = new Categoria("FRONT-END");
-    this.html = new Categoria("HTML", frontend);
-    this.htmlBasico = new Curso("HTML Básico", html);
-  }
-
-  @Test
-  public void aoFecharUmTopicoSeuStatusDeveriaSerAlteradoParaFechado() {
-    Topico duvida = new Topico("Dúvida HTML", "Qual tag utilizar?", joao, htmlBasico);
+    private Usuario joao;
+    private Categoria frontend;
+    private Categoria html;
+    private Curso htmlBasico;
     
-    duvida.fechar();
-    
-    Assertions.assertEquals(StatusTopico.FECHADO, duvida.getStatus());
-  }
+    @BeforeEach
+    public void before() {
+      this.joao = new Usuario("João", "joao@email.com.br", "123456");
+      this.frontend = new Categoria("FRONT-END");
+      this.html = new Categoria("HTML", frontend);
+      this.htmlBasico = new Curso("HTML Básico", html);
+    }
 
-}
-```
+    @Test
+    public void aoFecharUmTopicoSeuStatusDeveriaSerAlteradoParaFechado() {
+      Topico duvida = new Topico("Dúvida HTML", "Qual tag utilizar?", joao, htmlBasico);
+      
+      duvida.fechar();
+      
+      Assertions.assertEquals(StatusTopico.FECHADO, duvida.getStatus());
+    }
+
+  }
+  ```
 
 7. Execute o teste, clicando com botão direito na classe e escolhendo a opção **Run As -> JUnit Test**, e verifique se ele passa com sucesso.
 
@@ -380,10 +380,10 @@ class TopicoTest {
 
 9. Lembre-se de fazer o commit das alterações no projeto:
 
-```
-git add .
-git commit -m "criacao dos primeiros testes automatizados"
-```
+  ```
+  git add .
+  git commit -m "criacao dos primeiros testes automatizados"
+  ```
 
 ## Tipos de testes automatizados
 
@@ -598,68 +598,68 @@ Nesse exercício vamos escrever mais um teste de unidade, entretanto dessa vez s
 
 1. Primeiramente, precisamos adicionar o Mockito como dependência do projeto. Abra o arquivo **pom.xml** e adicione mais uma dependência:
 
-```xml
-<dependency>
-  <groupId>org.mockito</groupId>
-  <artifactId>mockito-junit-jupiter</artifactId>
-  <version>3.2.4</version>
-  <scope>test</scope>
-</dependency>
-```
+  ```xml
+  <dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-junit-jupiter</artifactId>
+    <version>3.2.4</version>
+    <scope>test</scope>
+  </dependency>
+  ```
 
 2. A classe que vamos testar será a **DashboardService**, que está localizada no pacote **br.com.alura.forum.service**. Clique com o botão direto nela e escolha a opção **New -> Other... -> JUnit Test Case**.
 
 3. Apague o método de exemplo que foi criado automaticamente e escreva o seguinte código:
 
-```java
-@ExtendWith(MockitoExtension.class)
-class DashboardServiceTest {
+  ```java
+  @ExtendWith(MockitoExtension.class)
+  class DashboardServiceTest {
 
-  @InjectMocks
-  private DashboardService dashboardService;
+    @InjectMocks
+    private DashboardService dashboardService;
 
-  @Mock
-  private CategoriaDao categoriaDao;
+    @Mock
+    private CategoriaDao categoriaDao;
 
-  @Mock
-  private TopicoDao topicoDao;
+    @Mock
+    private TopicoDao topicoDao;
 
-  private List<Categoria> categorias;
+    private List<Categoria> categorias;
 
-  @BeforeEach
-  public void before() {
-    Categoria backend = new Categoria("Back-End", null);
-    Categoria frontend = new Categoria("Front-End", null);
-    Categoria mobile = new Categoria("Mobile", null);
+    @BeforeEach
+    public void before() {
+      Categoria backend = new Categoria("Back-End", null);
+      Categoria frontend = new Categoria("Front-End", null);
+      Categoria mobile = new Categoria("Mobile", null);
 
-    this.categorias = Arrays.asList(backend,frontend, mobile);
+      this.categorias = Arrays.asList(backend,frontend, mobile);
+    }
+
   }
-
-}
-```
+  ```
 
 4. Agora que já configuramos o mockito para injetar os mocks, podemos escrever os nossos testes. Vamos testar se o `DashboardService` devolve as categorias com os contadores zerados, no caso de não haver nenhum tópico cadastrado:
 
-```java
-@Test
-  public void contadoresDeveriamEstarZeradosNoCasoDeNaoHaverTopicosAbertos() {
-    Mockito.when(categoriaDao.buscarTodasAsCategoriasPrincipais()).thenReturn(categorias);
-    categorias.forEach(c -> {
-      Mockito.when(topicoDao.countPorCategoria(c)).thenReturn(0l);
-      Mockito.when(topicoDao.countPorCategoriaEAbertosNaUltimaSemana(c)).thenReturn(0l);
-      Mockito.when(topicoDao.countPorCategoriaENaoRespondidos(c)).thenReturn(0l);
-    });
+  ```java
+  @Test
+    public void contadoresDeveriamEstarZeradosNoCasoDeNaoHaverTopicosAbertos() {
+      Mockito.when(categoriaDao.buscarTodasAsCategoriasPrincipais()).thenReturn(categorias);
+      categorias.forEach(c -> {
+        Mockito.when(topicoDao.countPorCategoria(c)).thenReturn(0l);
+        Mockito.when(topicoDao.countPorCategoriaEAbertosNaUltimaSemana(c)).thenReturn(0l);
+        Mockito.when(topicoDao.countPorCategoriaENaoRespondidos(c)).thenReturn(0l);
+      });
 
-    List<DashboardItem> dashboard = dashboardService.buscarDadosDoDashboardDeTopicos();
+      List<DashboardItem> dashboard = dashboardService.buscarDadosDoDashboardDeTopicos();
 
-    Assertions.assertEquals(3, dashboard.size());
-    dashboard.forEach(d -> {
-      Assertions.assertEquals(0, d.getQtdTopicos());
-      Assertions.assertEquals(0, d.getQtdTopicosDaUltimaSemana());
-      Assertions.assertEquals(0, d.getQtdTopicosNaoRespondidos());
-    });
-  }
-```
+      Assertions.assertEquals(3, dashboard.size());
+      dashboard.forEach(d -> {
+        Assertions.assertEquals(0, d.getQtdTopicos());
+        Assertions.assertEquals(0, d.getQtdTopicosDaUltimaSemana());
+        Assertions.assertEquals(0, d.getQtdTopicosNaoRespondidos());
+      });
+    }
+  ```
 
 5. Que outros cenários poderíamos testar? Discuta com os outros alunos(as) e instrutor(a) da turma sobre isso.
 
@@ -749,29 +749,29 @@ Nesse exercício vamos adicionar o JaCoCo como biblioteca de cobertura de testes
 
 1. Primeiramente, precisamos adicionar o JaCoCo como **plugin** do Maven. Abra o arquivo **pom.xml** e adicione o plugin do JaCoCo:
 
-```xml
-<plugin>
-  <groupId>org.jacoco</groupId>
-  <artifactId>jacoco-maven-plugin</artifactId>
-  <version>0.8.5</version>
-  
-  <executions>
-    <execution>
-      <goals>
-        <goal>prepare-agent</goal>
-      </goals>
-    </execution>
+  ```xml
+  <plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.5</version>
+    
+    <executions>
+      <execution>
+        <goals>
+          <goal>prepare-agent</goal>
+        </goals>
+      </execution>
 
-    <execution>
-      <id>report</id>
-      <phase>test</phase>
-      <goals>
-        <goal>report</goal>
-      </goals>
-    </execution>
-  </executions>
-</plugin>
-```
+      <execution>
+        <id>report</id>
+        <phase>test</phase>
+        <goals>
+          <goal>report</goal>
+        </goals>
+      </execution>
+    </executions>
+  </plugin>
+  ```
 
 2. Agora vamos executar todos os testes da aplicação via Maven. Clique com o botão direito em cima do projeto e selecione a opção **Run As -> Maven test**.
 
@@ -779,33 +779,33 @@ Nesse exercício vamos adicionar o JaCoCo como biblioteca de cobertura de testes
 
 4. Discuta com os(as) alunos(as) e com o(a) instrutor(a) da turma sobre os percentuais da nossa aplicação.
 
-<!--@note
-  Aqui a ideia é discutir sobre a má pratica de querer 100% de cobertura, pois com isso o foco passa a ser "bater o percentual", nem para isso seja necessario criar testes inuteis e desnecessarios.
--->
+  <!--@note
+    Aqui a ideia é discutir sobre a má pratica de querer 100% de cobertura, pois com isso o foco passa a ser "bater o percentual", nem para isso seja necessario criar testes inuteis e desnecessarios.
+  -->
 
 5. É possível também definir um percentual mínimo de cobertura de testes que será aceito, forçando o Maven a interromper o build quando esse percentual não for atingido:
 
-```xml
-<execution>
-  <id>jacoco-check</id>
-  <goals>
-    <goal>check</goal>
-  </goals>
-  <configuration>
-    <rules>
-      <rule>
-        <element>PACKAGE</element>
-          <limits>
-            <limit>
-              <counter>LINE</counter>
-              <value>COVEREDRATIO</value>
-              <minimum>0.50</minimum>
-            </limit>
-          </limits>
-        </rule>
-      </rules>
-  </configuration>
-</execution>
-```
+  ```xml
+  <execution>
+    <id>jacoco-check</id>
+    <goals>
+      <goal>check</goal>
+    </goals>
+    <configuration>
+      <rules>
+        <rule>
+          <element>PACKAGE</element>
+            <limits>
+              <limit>
+                <counter>LINE</counter>
+                <value>COVEREDRATIO</value>
+                <minimum>0.50</minimum>
+              </limit>
+            </limits>
+          </rule>
+        </rules>
+    </configuration>
+  </execution>
+  ```
 
 ## Métrica: Change Failure Rate

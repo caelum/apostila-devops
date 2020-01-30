@@ -136,11 +136,11 @@ Nesse exercício vamos adicionar e configurar o Maven em nossa aplicação.
 
 1. O primeiro passo será converter o projeto para o `Maven`, sendo que isso pode ser feito diretamente no Eclipse, clicando com o botão direito no projeto e selecionando a opção: `Configure -> Convert to Maven Project`.
 
-![Opção Convert to Maven Project no Eclipse](imagens/capitulo-05/convert-maven-project.png)
+  ![Opção Convert to Maven Project no Eclipse](imagens/capitulo-05/convert-maven-project.png)
 
 2. Na tela que será exibida devemos preencher algumas informações para o Maven, conforme a imagem a seguir:
 
-![Informações do projeto para o Maven](imagens/capitulo-05/maven-info.png)
+  ![Informações do projeto para o Maven](imagens/capitulo-05/maven-info.png)
 
 3. O próximo passo é configurar as dependências do projeto no arquivo `pom.xml`. Já deixamos o arquivo preenchido no diretório do curso, portanto apenas substitua o arquivo atual pelo arquivo disponibilizado.
 
@@ -154,82 +154,82 @@ Nesse exercício vamos adicionar na aplicação o conceito de **Profiles**, para
 
 1. No pacote **br.com.alura.forum.config** crie uma classe chamada **DataSourceConfiguration**:
 
-```java
-@Configuration
-public class DataSourceConfiguration {
+  ```java
+  @Configuration
+  public class DataSourceConfiguration {
 
-}
-```
+  }
+  ```
 
 2. Abra a classe **JPAConfiguration** procure pelos dois métodos chamados **datasource** e mova-os para a classe **DataSourceConfiguration**. Você pode remover os comentários do código e renomear os métodos conforme o exemplo a seguir:
 
-```java
-@Configuration
-public class DataSourceConfiguration {
+  ```java
+  @Configuration
+  public class DataSourceConfiguration {
 
-	@Bean
-	public DataSource desenvolvimento() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/alura_forum?useSSL=false");
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
-		return dataSource;
-	}
+  	@Bean
+  	public DataSource desenvolvimento() {
+  		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+  		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+  		dataSource.setUrl("jdbc:mysql://localhost:3306/alura_forum?useSSL=false");
+  		dataSource.setUsername("root");
+  		dataSource.setPassword("");
+  		return dataSource;
+  	}
 
-	@Bean
-	public DataSource producao() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://192.168.56.110:3306/alura_forum?useSSL=false");
-		dataSource.setUsername("alura");
-		dataSource.setPassword("qwerty123");
-		return dataSource;
-	}
+  	@Bean
+  	public DataSource producao() {
+  		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+  		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+  		dataSource.setUrl("jdbc:mysql://192.168.56.110:3306/alura_forum?useSSL=false");
+  		dataSource.setUsername("alura");
+  		dataSource.setPassword("qwerty123");
+  		return dataSource;
+  	}
 
-}
-```
+  }
+  ```
 
 3. A classe **JPAConfiguration** estará com um erro de compilação. Para resolve-lo você fazer o seguinte ajuste:
 
-```java
-@EnableTransactionManagement
-public class JPAConfiguration {
+  ```java
+  @EnableTransactionManagement
+  public class JPAConfiguration {
 
-	@Autowired
-	private DataSource dataSource;
+  	@Autowired
+  	private DataSource dataSource;
 
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(dataSource);
-		em.setPackagesToScan(new String[] { "br.com.alura.forum.model" });
+  	@Bean
+  	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+  		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+  		em.setDataSource(dataSource);
+  		em.setPackagesToScan(new String[] { "br.com.alura.forum.model" });
 
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		em.setJpaVendorAdapter(vendorAdapter);
-		em.setJpaProperties(additionalProperties());
+  		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+  		em.setJpaVendorAdapter(vendorAdapter);
+  		em.setJpaProperties(additionalProperties());
 
-		return em;
-	}
+  		return em;
+  	}
 
-	//resto do código continua igual...
-}
-```
+  	//resto do código continua igual...
+  }
+  ```
 
 4. Por fim, na classe **DataSourceConfiguration** precisamos adicionar no método **producao** a anotação `@Profile("producao")`, ficando o código da seguinte maneira:
 
-```java
-@Bean
-@Profile("producao")
-public DataSource producao() {
-	DriverManagerDataSource dataSource = new DriverManagerDataSource();
-	dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	dataSource.setUrl("jdbc:mysql://192.168.56.110:3306/alura_forum?useSSL=false");
-	dataSource.setUsername("alura");
-	dataSource.setPassword("qwerty123");
-	return dataSource;
-}
-```
+  ```java
+  @Bean
+  @Profile("producao")
+  public DataSource producao() {
+  	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+  	dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+  	dataSource.setUrl("jdbc:mysql://192.168.56.110:3306/alura_forum?useSSL=false");
+  	dataSource.setUsername("alura");
+  	dataSource.setPassword("qwerty123");
+  	return dataSource;
+  }
+  ```
 
 5. Pronto! Ao rodar localmente a aplicação, o datasource carregado será o de desenvolvimento. Para que a aplicação carregue o `datasource` de produção será necessário adicionar a seguinte variável de ambiente no servidor: `spring.profiles.active=producao`.
 

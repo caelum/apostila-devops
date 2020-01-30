@@ -241,29 +241,29 @@ Nesse exercício vamos utilizar o Git em nossa aplicação.
 
 1. O primeiro passo será a criação do repositório. Abra o `Terminal`, acesse nele o diretório da aplicação e crie o repositório com o comando `git init`. Por exemplo:
 
-```
-cd Desktop/alura-forum
-git init
-```
+  ```
+  cd Desktop/alura-forum
+  git init
+  ```
 
 2. O próximo passo é fazer o commit dos arquivos do projeto, mas antes precisamos utilizar o comando `git add` para indicar quais arquivos serão adicionados ao commit. Rode o seguinte comando no Terminal:
 
-```
-git add .
-```
+  ```
+  git add .
+  ```
 
 3. Agora já podemos realizar o commit. Rode o seguinte comando:
 
-```
-git commit -m "criacao do repositorio do projeto"
-```
+  ```
+  git commit -m "criacao do repositorio do projeto"
+  ```
 
 4. Por fim, verifique se tudo está ok no repositório, utilizando para isso o comando `git status`. A seguinte saída deve ser apresentada:
 
-```
-On branch master
-nothing to commit, working tree clean
-```
+  ```
+  On branch master
+  nothing to commit, working tree clean
+  ```
 
 ## Mais detalhes do Git
 
@@ -330,7 +330,7 @@ Nesse exercício vamos criar um repositório em nossa conta do GitLab.
 
 3. Preencha o campo *Project name* com **alura-forum**, deixe a visibilidade como **private** e clique no botão **Create project**.
 
-![Tela de criar repositório no site do GitLab](imagens/capitulo-06/gitlab-new-project.png)
+  ![Tela de criar repositório no site do GitLab](imagens/capitulo-06/gitlab-new-project.png)
 
 ## Sincronizando o repositório local com o GitLab
 
@@ -376,15 +376,15 @@ Nesse exercício vamos sincronizar os commits do repositório local com o reposi
 
 1. Adicione o repositório remoto do GitLab em seu repositório local:
 
-```
-git remote add gitlab https://gitlab.com/SEU_USUARIO/alura-forum.git
-```
+  ```
+  git remote add gitlab https://gitlab.com/SEU_USUARIO/alura-forum.git
+  ```
 
 2. Envie os `commits` do repositório local para o repositório remoto:
 
-```
-git push gitlab master
-```
+  ```
+  git push gitlab master
+  ```
 
 3. Verifique no GitLab se os commits e arquivos do projeto foram enviados com sucesso.
 
@@ -417,16 +417,16 @@ Nesse exercício vamos renomear o apelido do nosso repositório remoto, para que
 
 1. Execute no terminal o comando `git remote -v`. A saída deve ser algo como:
 
-```
-gitlab	https://gitlab.com/SEU_USUARIO/alura-forum.git (fetch)
-gitlab	https://gitlab.com/SEU_USUARIO/alura-forum.git (push)
-```
+  ```
+  gitlab	https://gitlab.com/SEU_USUARIO/alura-forum.git (fetch)
+  gitlab	https://gitlab.com/SEU_USUARIO/alura-forum.git (push)
+  ```
 
 2. Altere o apelido do repositório remoto de `gitlab` para `origin`:
 
-```
-git remote rename gitlab origin
-```
+  ```
+  git remote rename gitlab origin
+  ```
 
 3. Verifique se o repositório remoto foi renomeado executando novamente o comando `git remote -v`.
 
