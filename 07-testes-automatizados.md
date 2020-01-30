@@ -809,3 +809,36 @@ Nesse exercício vamos adicionar o JaCoCo como biblioteca de cobertura de testes
   ```
 
 ## Métrica: Change Failure Rate
+
+No livro **Accelerate: The Science of Lean Software and DevOps** os autores discutem sobre quatro métricas que são extremamente importantes para times DevOps:
+
+* Lead Time for Changes
+* Deployment Frequency
+* MTTR (Mean Time To Recover)
+* Change Failure Rate
+
+Essas métricas servem para que o time consiga medir o quão eficiente ele está, em relação à adoção do modelo DevOps e das melhorias que ele deveria trazer para a organização como um todo.
+
+Uma dessas métricas é chamada de **Change Failure Rate**, sendo que seu objetivo é medir a taxa de falhas que acontece a cada mudança no software, ou seja, a cada deploy que é realizado medimos se houve ou não algum tipo de problema relacionado com as mudanças que foram feitas na aplicação.
+
+Se essa taxa estiver muito alta, por exemplo 80%, significa que a cada 10 deploys, 8 deles apresentam algum tipo de problema e o time DevOps terá que *correr* para o solucionar o mais rápido possível ou então fazer um **rollback**, retornando para a última versão estável da aplicação.
+
+Ou seja, um time DevOps deveria sempre medir qual é o seu Change Failure Rate atual e buscar maneiras de diminuir essa taxa, para assim evitar que problemas surjam a cada deploy da aplicação.
+
+Isso evita ambientes em que o termo **deploy** seja algo traumático e que ninguém quer fazer a toda hora, pois sempre vai gerar problemas e dores de cabeça. Nesse tipo de ambiente os deploys costumam ser realizados apenas nas sextas-feiras à noite, pois o time terá o final de semana para resolver os problemas que certamente vão surgir.
+
+### Reduzindo a Change Failure Rate
+
+Uma das maneiras de diminuir a Change Failure Rate é utilizando a prática de escrever testes automatizados, conforme foi visto nesse capítulo, pois os testes nos dão um feedback rápido se tudo continua funcionando normalmente, após mudanças serem realizadas no código da aplicação.
+
+Perceba então a importância dos testes automatizados em uma aplicação, pois além de garantir que as regras de negócio estão sendo implementadas corretamente e promover uma maior segurança ao mexer no código fonte dela, eles nos ajudam a diminuir a chances de falhas ocorrem ao realizar deploy das novas mudanças.
+
+Isso certamente vai diminuir o trauma do time em realizar deploys, além de até poder aumentar a frequência dos deploys sendo realizados, que inclusive é o foco de outra métrica, a **Deployment Frequency**.
+
+Uma outra maneira de diminuir a Change Failure Rate é reduzindo-se o **escopo** das mudanças sendo realizadas na aplicação.
+
+Antigamente era comum ter ciclos de entrega mais longos, que duravam meses ou até anos, e com isso o número de mudanças sendo realizadas na aplicação era muito grande, aumentando assim proporcionalmente as chances de falhas acontecerem.
+
+Times que trabalham com metodologias ágeis tem preferência por ciclos de entrega mais curtos, com duração de dias ou poucas semanas, e com isso o escopo acaba sendo bem pequeno, contemplando poucas mudanças e reduzindo assim as chances de muitos problemas acontecerem.
+
+Essa pode ser uma outra prática a ser seguida que com certeza diminuirá bastante o número de falhas ao realizar mudanças na aplicação.
