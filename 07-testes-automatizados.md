@@ -719,6 +719,93 @@ Você pode conhecer mais detalhes sobre essa técnica e encontrar livros sobre o
 
 ## Cobertura de testes
 
-## Exercício
+Uma outra prática, ainda relacionada com testes automatizados, que é bastante utilizada pelos times de desenvolvimento é a de medir a porcentagem do código que está coberta por testes automatizados.
+
+Essa prática é chamada de **Code Coverage**, também conhecida como **Test Coverage**, e seu principal objetivo é identificar possíveis trechos do código da aplicação que não possuem testes automatizados.
+
+Se o time de desenvolvimento já utiliza a prática de escrever testes automatizados para as funcionalidades da aplicação, é importante saber quais funcionalidades ainda não foram testadas, para que então se escreva os testes automatizados delas, diminuindo com isso a chance de bugs passarem despercebidos.
+
+Existem ferramentas que automatizam esse processo de analisar o código fonte da aplicação e gerar um relatório quanto à cobertura de testes, podendo inclusive ser adicionadas ao processo de build da aplicação.
+
+Algumas dessas ferramentas são:
+
+* JaCoCo
+* Emma
+* Cobertura
+* Clover
+* NCover
+
+### JaCoCo
+
+**JaCoCo** é uma ferramenta gratuita para análise de cobertura de código em aplicações Java, que funciona de maneira bem simples e pode ser integrada ao Maven.
+
+Ao executar os testes automatizados com JUnit, a biblioteca JaCoCo consegue executar a análise do código e gerar uma relatório em HTML, CSV ou XML. Nesse relatório é possível identificar de maneira numérica quantas classes, métodos e linhas de códigos estão sem cobertura de testes.
+
+![Exemplo de relatório de cobertura de testes do JaCoCo](imagens/capitulo-07/jacoco-relatorio.png)
+
+## Exercício: Code Coverage com JaCoCo
+
+Nesse exercício vamos adicionar o JaCoCo como biblioteca de cobertura de testes em nossa aplicação, além de configurar sua integração com o Maven.
+
+1. Primeiramente, precisamos adicionar o JaCoCo como **plugin** do Maven. Abra o arquivo **pom.xml** e adicione o plugin do JaCoCo:
+
+```xml
+<plugin>
+  <groupId>org.jacoco</groupId>
+  <artifactId>jacoco-maven-plugin</artifactId>
+  <version>0.8.5</version>
+  
+  <executions>
+    <execution>
+      <goals>
+        <goal>prepare-agent</goal>
+      </goals>
+    </execution>
+
+    <execution>
+      <id>report</id>
+      <phase>test</phase>
+      <goals>
+        <goal>report</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+```
+
+2. Agora vamos executar todos os testes da aplicação via Maven. Clique com o botão direito em cima do projeto e selecione a opção **Run As -> Maven test**.
+
+3. Após os testes serem executados, acesse o diretório do projeto e entre na pasta **target/site/jacoco**. Abra no browser o arquivo **index.html** para ver e navegar pelo relatório.
+
+4. Discuta com os(as) alunos(as) e com o(a) instrutor(a) da turma sobre os percentuais da nossa aplicação.
+
+<!--@note
+  Aqui a ideia é discutir sobre a má pratica de querer 100% de cobertura, pois com isso o foco passa a ser "bater o percentual", nem para isso seja necessario criar testes inuteis e desnecessarios.
+-->
+
+5. É possível também definir um percentual mínimo de cobertura de testes que será aceito, forçando o Maven a interromper o build quando esse percentual não for atingido:
+
+```xml
+<execution>
+  <id>jacoco-check</id>
+  <goals>
+    <goal>check</goal>
+  </goals>
+  <configuration>
+    <rules>
+      <rule>
+        <element>PACKAGE</element>
+          <limits>
+            <limit>
+              <counter>LINE</counter>
+              <value>COVEREDRATIO</value>
+              <minimum>0.50</minimum>
+            </limit>
+          </limits>
+        </rule>
+      </rules>
+  </configuration>
+</execution>
+```
 
 ## Métrica: Change Failure Rate
