@@ -665,7 +665,57 @@ class DashboardServiceTest {
 
 6. Não se esqueça de fazer o commit das alterações no projeto!
 
-BOX:Piramide de testes
+## Para saber mais: Pirâmide de Testes
+
+Sabendo das desvantagens dos testes de aceitação, podemos perceber que é interessante termos mais testes de unidade isolados do que teste de integração e do que testes de aceitação pela UI.
+
+Autores experientes na aplicação da prática de testes automatizados recomendam que a proporção entre esses tipos de testes siga um modelo que foi batizado de **Pirâmide de testes**:
+
+![Pirâmide de testes](imagens/capitulo-07/piramide-testes.png)
+
+Testes de unidades são rápidos: uma suíte extensa em geral é executada em milissegundos ou segundos. Além disso, são bem baratos de se escrever porque estão isolados e no mesmo nível de abstração do código.
+
+Testes de integração são um pouco mais lentos, tendo uma suíte executada em alguns minutos, em geral. É comum acessarem outras peças da infra-estrutura, como *Bancos de Dados* ou *WebServices*. Por isso, seu setup é mais complicado e tais testes acabam sendo mais caros de desenvolver e manter.
+
+Testes de aceitação são os mais lentos, chegando a horas de execução, no caso de uma suíte muito extensa, além de caros, pela complexidade de escrevê-los. Além disso, qualquer alteração visual pode quebrá-los e, às vezes, apresentam falhas intermitentes.
+
+Testes repetitivos, que verificam funcionalidades e detectam regressões devem ser automatizados. Mas ainda são necessários testes manuais, que permitam que o software seja criticado com um olhar humano. Exemplos de testes manuais interessantes são: testes exploratórios, de usabilidade, de segurança, de performance, carga, dentre outros.
+
+Veja mais detalhes em: http://martinfowler.com/bliki/TestPyramid.html
+
+## Para saber mais: TDD (Test Driven Development)
+
+Em desenvolvimento de software existe um conceito chamado TDD, que significa **Test Driven Development**, ou seja, desenvolvimento guiado por testes, sendo também uma técnica relacionada com testes automatizados.
+
+TDD é uma técnica que consiste em pequenas iterações, em que novos casos de testes de funcionalidades desejadas são criados antes mesmo da implementação. Nesse momento, o teste escrito deve falhar, já que a funcionalidade implementada não existe. Então, o código necessário para que os testes passem deve ser escrito e o teste deve passar. O ciclo se repete para o próximo teste mais simples que ainda não passa.
+
+Um dos principais benefício dessa técnica é que, como os testes são escritos antes da implementação do trecho a ser testado, a pessoa que está programando não é influenciada pelo código já feito - assim, ela tende a escrever testes melhores, pensando no comportamento em vez da implementação.
+
+Isso é muito importante, pois os testes automatizados deveriam focar no comportamento da aplicação, e não no que uma implementação em si faz.
+
+Além disso, nota-se que TDD influencia a escrita de códigos com baixo acoplamento, algo que é ótimo, já que classes muito acopladas são difíceis de testar.
+
+O TDD também é uma espécie de guia: como o teste é escrito antes da implementação, nenhum código será escrito por "acharmos" que vamos precisar dele. Em sistemas sem testes, é comum encontrarmos diversos trechos de código que jamais serão utilizados pela aplicação, simplesmente porque a pessoa quem desenvolveu "achou" que alguém um dia precisaria daquele determinado trecho de código.
+
+TDD é uma prática um pouco difícil de se adotar, mas depois que o time de desenvolvimento pega o jeito e o hábito é adquirido, podemos ver claramente as diversas vantagens dessa técnica.
+
+Veja mais detalhes em: https://martinfowler.com/bliki/TestDrivenDevelopment.html
+
+## Para saber mais: Refactoring
+
+No processo de desenvolvimento de software passamos grande parte do tempo lendo trechos de código. Muitas vezes esse tempo é maior do que o tempo gasto escrevendo novas linhas de código. Isso acontece pois, para qualquer alteração, é preciso procurar quais classes ou arquivos serão afetados, entender qual é o funcionamento atual e como adicionar o novo comportamento sem mudar o antigo.
+
+Uma consequência direta disso é que quanto maior a dificuldade em ler e entender uma parte do código, maior é o tempo gasto para fazer uma alteração nela. Mesmo se a pessoa que fez o código for a mesma a fazer a alteração, ela precisa de algum tempo lendo o código para lembrar o que foi feito.
+
+Para evitar esse problema é preciso manter a qualidade e a clareza do código sempre altas, diminuindo assim o custo para fazer alterações nele. É preciso melhorar o código já pronto sem mudar o seu comportamento, sendo que isso é uma prática chamada de **Rafactoring**, conhecida em português como **Refatoração**.
+
+O objetivo da refatoração é melhorar algum aspecto do código com o cuidado de não mudar o comportamento atual da aplicação. Exemplos de aspectos que podem ser melhorados: legibilidade, clareza, baixo acoplamento, separação de responsabilidades, etc.
+
+Refatorar sem ter uma garantia concreta de que o comportamento do código não vai mudar é um pouco imprudente, pois não adianta nada melhorar o código se algo que já existe é quebrado. 
+
+Portanto, é indispensável que existam testes automatizados para o código que está sendo refatorado. Se não existem testes para o que precisa ser refatorado ou se os testes não cobrem todos os comportamentos, é preciso escrevê-los antes de refatorar.
+
+Você pode conhecer mais detalhes sobre essa técnica e encontrar livros sobre o assunto no seguinte endereço: https://martinfowler.com/tags/refactoring.html
 
 ## Cobertura de testes
 
