@@ -264,6 +264,96 @@ Mais adiante no curso veremos com mais detalhes e aplicaremos esse princípio em
 
 ## Jenkins
 
+**Jenkins**(https://jenkins.io) é um servidor de integração contínua capaz de orquestrar de maneira automatizada o fluxo utilizado em processos de integração contínua. Por ser gratuito e extensível, por meio de plugins, se tornou bastante popular e utilizado ao redor do mundo.
+
+![Imagem mostrando logotipo e slogan do Jenkins](imagens/capitulo-08/jenkins-logo.png)
+
+Ele foi desenvolvido em Java, o que o torna portável, mas também suporta aplicações em diversas outras linguagens de programação. Utilizaremos o Jenkins ao longo do curso, sendo que nos próximos exercícios aprenderemos como o instalar, configurar e utilizar.
+
+## Exercício: Instalação do Jenkins
+
+Nesse exercício vamos fazer a instalação e configuração inicial do Jenkins.
+
+1. Acesse o diretório do curso e copie o arquivo `jenkins.war` para o **Desktop**.
+
+2. Abra o terminal, acesse o diretório Desktop e rode o seguinte comando para inicializar o Jenkins:
+
+  ```
+  java -jar jenkins.war --httpPort=8082
+  ```
+
+3. A partir da versão 2 o jenkins possui um mecanismo de autenticação que já vem habilitado por padrão. Na primeira vez que você executar o jenkins pelo terminal uma senha será gerada para acessá-lo:
+
+  ![Senha gerada pelo Jenkins no Terminal](imagens/capitulo-08/jenkins-senha-terminal.png)
+
+4. Abra o navegador e acesse o Jenkins em http://localhost:8082
+
+  ![Tela do Jenkins para adicionar a senha padrão](imagens/capitulo-08/jenkins-senha-tela.png)
+
+5. Na próxima tela temos a possibilidade de instalar os plugins que queremos utilizar no Jenkins:
+
+  ![Tela para escolher o modo de instalação dos plugins](imagens/capitulo-08/jenkins-plugins-modo.png)
+
+6. Selecione a segunda opção(**Select plugins to install**) e na próxima tela clique no link **None**, para desmarcar os plugins que já vem selecionados por padrão:
+
+  ![Tela de listagem de plugins](imagens/capitulo-08/jenkins-plugins-none.png)
+
+7. Inicialmente precisaremos apenas dos plugins do **Git** e do **Maven Integration**. Selecione-os e clique no botão **Install**.
+
+  ![Tela de plugins mostrando o plugin do Git](imagens/capitulo-08/jenkins-plugins-git.png)
+
+8. O próximo passo será a criação de um usuário `admin` no jenkins. Crie um usuário com o username **admin** e com password **caelum**. Preencha também os campos `Full name` e `E-mail address` com o seu nome e email, e então clique no botão **Save and finish**:
+
+  ![Tela com formulário para criação do usuário admin](imagens/capitulo-08/jenkins-form-admin.png)
+
+9. Na próxima tela, de configuração da instância do Jenkins, deixe a configuração padrão e clique no botão **Save and finish**.
+
+  ![Tela de configuração da instância do Jenkins](imagens/capitulo-08/jenkins-instancia.png)
+
+10. Por fim, clique no botão **Start using Jenkins** para acessar a tela principal do Jenkins:
+
+  ![Tela principal do Jenkins](imagens/capitulo-08/jenkins-home.png)
+
+## Integração contínua com Jenkins
+
+Agora que o Jenkins já está pronto para uso, podemos o utilizar para melhorar nosso processo de integração contínua. A ideia agora é seguir os **princípios** mencionados anteriormente.
+
+Inclusive, boa parte desses princípios nós já estamos seguindo, como por exemplo, estamos utilizando o Git para controle de versão, automatizamos o build da aplicação, estamos escrevendo testes automatizados e eles estão integrados ao build, e o build está sendo executado de maneira ágil.
+
+O próximo passo será utilizar o Jenkins como servidor, para automatizar o processo de executar o build da aplicação a cada novo commit efetuado no repositório, além de nos alertar no caso de ocorrer algum erro no processo ou no caso de algum teste automatizado falhar.
+
+## Exercício: Utilizando o Jenkins como servidor de integração contínua
+
+Nesse exercício vamos utilizar o Jenkins como servidor de integração contínua, configurando-o para executar os testes automatizados a cada novo commit realizado no repositório da aplicação.
+
+1. Acesse o Jenkins no browser em http://localhost:8082 e, no menu lateral esquerdo, clique na opção **New Item**.
+
+2. Preencha o campo *item name* com **alura-forum-testes**, selecione a opção **Maven project** e clique no botão **Ok**.
+
+  ![Tela de criação de Item no Jenkins](imagens/capitulo-08/jenkins-new-item.png)
+
+3. No formulário de configuração do novo Item, procure a seção chamada **Source Code Management**, marque a opção **Git** e no campo **Repository URL** preencha com **file:///home/LOGIN_DA_TURMA/Desktop/alura-forum**. Obs: Deve ser o caminho do repositório Git da aplicação alura-forum em seu computador. Em caso de dificuldades, peça ajuda ao instrutor(a).
+
+  ![Source Code Management na tela de configuração de item no Jenkins](imagens/capitulo-08/jenkins-new-item-scm.png)
+
+4. Na seção **Build Triggers**, marque a opção **Poll SCM** e no campo **Schedule** preencha com: `* * * * *`.
+
+  ![Build Triggers na tela de configuração de item no Jenkins](imagens/capitulo-08/jenkins-new-item-build-triggers.png)
+
+5. Na seção **Build**, preencha o campo **Goals and options** com o valor: `clean test` e clique no botão **Save** para finalizar a configuração.
+
+  ![Build na tela de configuração de item no Jenkins](imagens/capitulo-08/jenkins-new-item-build.png)
+
+6. Para forçar um novo build, clique no botão **Build Now**, localizado no menu lateral esquerdo da tela:
+
+  ![Botão Build Now no Jenkins](imagens/capitulo-08/jenkins-build-now.png)
+
+7. O build deve passar, e clicando nele somos redirecionados para a tela de detalhes, na qual podemos ver quais testes foram executados, dentre outras informações:
+
+  ![Tela de detalhes do build no Jenkins](imagens/capitulo-08/jenkins-build-resultado.png)
+
+8. Repare que no canto superior direito da tela é informado quanto tempo o build levou para ser executado. No exemplo anterior, levou apenas 23 segundos, que é um tempo muito bom. Claro, esse tempo só foi bem pequeno pelo fato da nossa aplicação possuir poucos testes, sendo natural ele aumentar com o andamento do projeto.
+
 ## Git: Branches
 
 ## Feature-Branch vs. Trunk-Based
