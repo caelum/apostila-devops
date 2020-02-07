@@ -309,7 +309,13 @@ Nesse exercício vamos adicionar um novo `source folder` em nossa aplicação, o
 
 7. Clique no botão **Apply and close** para finalizar a criação do novo source folder.
 
-8. Agora, para finalizar, clique com o botão direito do mouse no projeto e selecione a opção **Maven -> Update Project...**.
+8. Abra o arquivo `pom.xml`, procure pela tag **<build>** e dentro dela adicione a seguinte tag, logo abaixo da tag **<sourceDirectory>src</sourceDirectory>**:
+
+  ```
+  <testSourceDirectory>test</testSourceDirectory>
+  ```
+
+9. Agora, para finalizar, clique com o botão direito do mouse no projeto e selecione a opção **Maven -> Update Project...**.
 
 ## Exercício: Escrevendo testes automatizados na aplicação
 
