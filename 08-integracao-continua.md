@@ -354,6 +354,60 @@ Nesse exercício vamos utilizar o Jenkins como servidor de integração contínu
 
 8. Repare que no canto superior direito da tela é informado quanto tempo o build levou para ser executado. No exemplo anterior, levou apenas 23 segundos, que é um tempo muito bom. Claro, esse tempo só foi bem pequeno pelo fato da nossa aplicação possuir poucos testes, sendo natural ele aumentar com o andamento do projeto.
 
+## Plugins do Jenkins
+
+Uma das grandes vantagens do Jenkins é sua extensibilidade, obtida por meio de **plugins** que podem ser criados para adicionar novas funcionalidades a ele.
+
+Um plugin pode ser desenvolvido por qualquer pessoa no mundo, podendo também ser compartilhado livremente para a comunidade tirar benefício dele. Atualmente o Jenkins possui mais de 1500 plugins, utilizados para melhorar algumas tarefas, tais como: relatórios de testes, análise estática de código, build e deploy da aplicação, etc.
+
+![Tela de plugins no site do Jenkins](imagens/capitulo-08/jenkins-site-plugins.png)
+
+## Exercício: Utilizando plugins do Jenkins
+
+Nesse exercício vamos adicionar alguns plugins ao Jenkins, para tirar proveito de sua extensibilidade e incrementar nosso processo de integração contínua.
+
+1. Acesse o Jenkins no browser em https://localhost:8082
+
+2. No menu lateral esquerdo clique na opção **Manage Jenkins**.
+
+3. Na tela que foi aberta, selecione a opção **Manage Plugins**.
+
+  ![Opção Manage Plugins](imagens/capitulo-08/jenkins-manage-plugins.png)
+
+4. Na tela que foi aberta, clique na aba superior **Available** e espere o Jenkins carregar a lista de plugins disponíveis.
+
+  ![Aba Available na tela de Manage Plugins](imagens/capitulo-08/jenkins-manage-plugins-available.png)
+
+5. Marque os seguintes plugins: **Green ball**, **Radiator View** e **Test Results Analyzer**, e então clique no botão **Download now and install after restart**.
+
+6. Na tela de instalação que foi aberta, marque a checkbox **Restart Jenkins when installation is complete and no jobs are running** e aguarde a finalização da instalação.
+
+  ![Tela de instalação dos plugins](imagens/capitulo-08/jenkins-manage-plugins-install.png)
+
+7. O plugin *Green balls* é ativado automaticamente e sua função é trocar a cor de azul para verde, nos builds executados com sucesso:
+
+  ![Dashboard do Jenkins com plugin green balls](imagens/capitulo-08/jenkins-plugin-green-ball.png)
+
+8. O plugin *Test Results Analyzer* adiciona uma nova tela com mais informações sobre os testes automatizados da aplicação. Para acessá-lo, basta entrar na tela de detalhes do *Item* **alura-forum-testes** e clicar na nova opção **Test Results Analyzer** no menu lateral esquerdo:
+
+  ![Tela do plugin Test Results Analyzer](imagens/capitulo-08/jenkins-plugin-test-results-analyzer.png)
+
+9. O plugin *Radiator View* precisa ser configurado, para adicionar uma nova forma de visualizar o status de cada projeto sendo monitorado pelo Jenkins. Acesse a tela principal do Jenkins e clique no botão com o símbolo **+**, localizado ao lado da aba superior **All**:
+
+  ![Botão para adicionar nova view no Jenkins](imagens/capitulo-08/jenkins-plugin-radiator-botao.png)
+
+10. No formulário que foi aberto, preencha o campo **View name** com o valor **Radiator**, marque a opção **Raditor** e clique no botão **Ok**:
+
+  ![Tela de configuração de nova view no Jenkins](imagens/capitulo-08/jenkins-plugin-radiator-form.png)
+
+11. No novo formulário que foi aberto, marque o projeto *alura-forum-testes* na opção **Jobs** e marque também as opções **Show stable builds** e **Show build details**, e então finalize clicando no botão **Ok**.
+
+  ![Tela do Radiator View](imagens/capitulo-08/jenkins-plugin-radiator-tela.png)
+
+12. O Radiator divide a tela de acordo com o número de projetos selecionados, exibindo como fundo de cada um a cor verde, no caso do último build ter passado com sucesso, ou vermelho no caso de ter falhado. Essa tela do Radiator poderia ser exibida em um monitor ou TV de tela grande na sala do time DevOps, para que todos tenham visibilidade do status de cada projeto, além de tornar ágil a identificação das aplicações cujo build falhou.
+
+Para conhecer melhor esses e outros plugins do Jenkins, acesse o site: https://plugins.jenkins.io
+
 ## Git: Branches
 
 ## Feature-Branch vs. Trunk-Based
