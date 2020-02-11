@@ -110,7 +110,7 @@ Entretanto, compartilhar informações não era visto com bons olhos pelas empre
 
 Esse **isolamento** entre as empresas acabou levando a um aumento na complexidade de seus sistemas, algo que motivou a necessidade de especialização de perfis e aumento no número de papéis relacionados a área de tecnologia.
 
-E assim se inicia, infelizmente, o surgimento de **silos** dentro da área de tecnologia, pois de um lado estavam os **engenheiros de software**, especializados na criação e manutenção de produtos, e do outro estavam os **sysadmins**, especializados no gerenciamento dos sistemas.
+E assim se inicia, infelizmente, o surgimento de **silos** dentro da área de tecnologia, pois de um lado estavam os **engenheiros de software**, especializados no desenvolvimento e manutenção de produtos, e do outro estavam os **sysadmins**, especializados na operação dos sistemas.
 
 Cada um desses dois perfis têm habilidades e necessidades distintas, sendo que em situações de problemas é comum que não haja uma colaboração entre eles.
 
@@ -166,7 +166,7 @@ Patrick Debois palestrou no evento com o tema **"Agile Infrastructure and Operat
 
 ![Foto do slide de apresentação do Patrick Debois](imagens/capitulo-02/patrick-debois.png)
 
-No ano seguinte, em 2009, na O’Reilly Velocity Conference, John Allspaw e Paul Hammond, ambos do Flickr, deram uma palestra com o tema **"10+ Deploys per Day: Dev and Ops Cooperation at Flickr"**, contando sobre suas experiências de trabalho no Flickr, onde eles conseguiram unir os times de desenvolvimento e operações, conseguindo com isso ter um ambiente onde eram realizados mais de 10 deploys ao dia, algo que naquela época era bem inovador e difícil de se ver no mercado.
+No ano seguinte, em 2009, na O’Reilly Velocity Conference, John Allspaw e Paul Hammond, ambos do Flickr, deram uma palestra com o tema **["10+ Deploys per Day: Dev and Ops Cooperation at Flickr"](https://www.youtube.com/watch?v=LdOe18KhtT4)**, contando sobre suas experiências de trabalho no Flickr, onde eles conseguiram unir os times de desenvolvimento e operações, conseguindo com isso ter um ambiente onde eram realizados mais de 10 deploys ao dia, algo que naquela época era bem inovador e difícil de se ver no mercado.
 
 E assim começa a nascer e crescer o interesse das pessoas sobre o tema **Agile Infrastructure**, para então tentar resolver os conflitos entre os times de Dev e de Ops, gerando melhores resultados para suas empresas.
 
