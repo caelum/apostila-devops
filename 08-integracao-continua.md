@@ -408,6 +408,118 @@ Nesse exercício vamos adicionar alguns plugins ao Jenkins, para tirar proveito 
 
 Para conhecer melhor esses e outros plugins do Jenkins, acesse o site: https://plugins.jenkins.io
 
-## Git: Branches
+## Branches
+
+Uma outra abordagem muito utilizada para se trabalhar em time, com várias pessoas utilizando o mesmo repositório de código, é utilizar o conceito chamado de **branch**, sendo esse um recurso disponibilizado pelos sistemas de controle de versão.
+
+Todo commit é realizado em alguma branch, sendo que no caso do Git ele cria automaticamente uma branch chamada **master**, que geralmente é utilizada como branch principal do projeto.
+
+Mas é possível também criar outras branches no repositório, além da branch *master*, para assim ser possível **separar** logicamente os commits do repositório. Essa separação permite, por exemplo, que uma pessoa trabalhe e realize seus commits em outra branch, de maneira isolada, sem atrapalhar com isso as outras pessoas, que podem continuar a trabalhar na branch master.
+
+### Utilizando branches no Git
+
+No Git, branches são bem simples e performáticas de se trabalhar, algo bem diferente das branches no SVN, que eram lentas e causavam muita dor de cabeça para os times de desenvolvimento.
+
+Para listar as branches de um repositório devemos utilizar o comando `git branch`:
+
+```
+git branch
+
+* master
+```
+
+Repare que foi listada apenas a branch `master`, que é a única existente em nosso repositório. O asterisco(`*`) antes do nome `master` é para indicar em qual branch estamos no momento.
+
+Para criar uma nova branch devemos utilizar o comando `git branch nome_da_branch`:
+
+```
+git branch login
+```
+
+Agora ao executar novamente o comando `git branch` veremos que temos duas branches no repositório:
+
+```
+git branch
+
+login
+* master
+```
+
+Podemos trocar de branch com o comando `git checkout nome_da_branch`:
+
+```
+git checkout login
+
+Switched to branch 'login'
+```
+
+E agora ao realizar novos commits eles serão registrados na branch `login`, que é a branch selecionada no momento.
+
+### Merge de commits
+
+Após finalizar o trabalho em uma branch separada, vamos precisar juntar os commits realizados nela aos novos commits da branch `master`. Isso é feito com a utilização do comando `git merge nome_da_branch`:
+
+```
+git checkout master
+git merge login
+```
+
+Caso ocorra algum conflito, o Git nos avisará e precisaremos resolvê-los para continuar com o processo de `merge` dos commits.
+
+Caso a branch não seja mais utilizada, é possível excluí-la com o comando `git branch -d nome_da_branch`:
+
+```
+git branch -d login
+
+Deleted branch login (was a43904b).
+```
+
+### Feature-Branch
+
+Existe uma prática utilizada por diversos times de desenvolvimento ao redor do mundo, que consiste em sempre desenvolver as funcionalidades da aplicação em branches separadas, evitando com isso realizar commits diretamente na branch `master`. Essa prática é chamada de **Feature-Branch**.
+
+A ideia consiste em criar uma branch para cada nova funcionalidade a ser desenvolvida e cada pessoa do time deve trabalhar na branch específica de sua funcionalidade, sendo que após a funcionalidade ser concluída um merge dos commits deve ser realizado na branch `master`.
+
+Isso serve para manter a branch `master` estável, ou seja, ela nunca deverá ter funcionalidades incompletas, representando com isso um *estado seguro* que pode ir para produção a qualquer momento. Outra vantagem é permitir que as pessoas trabalhem em suas respectivas funcionalidades sem atrapalhar o trabalho das outras pessoas com seus commits.
+
+### Trunk-Based
+
+Uma outra prática, diferente da feature-branch, consiste em não utilizar branches para cada nova funcionalidade a ser desenvolvida, mas sim sempre utilizar a branch principal, ou seja, a branch `master`.
+
+Essa prática ficou conhecida como **Trunk-Based**, sendo que `trunk` é o nome da branch principal no SVN, que é equivalente à branch `master` no Git.
+
+Nessa prática o foco é evitar a criação de branches, para que assim todos possam trabalhar juntos e serem forçados com isso a integrarem seus códigos a todo momento, para detectar e corrigir o quanto antes os possíveis problemas de integração que surgirem.
+
+Ao utilizar essa prática, todas as pessoas do time devem desenvolver suas funcionalidades na branch `master`, ou `trunk`, no caso do SVN, sempre realizando o processo de integração contínua, para antecipar problemas.
+
+O problema é que na branch master teremos código de funcionalidades incompletas misturado com o código das que já foram finalizadas, podendo com isso dificultar o trabalho de gerar um build para fazer deploy em produção, pois será necessário fazer algum tipo de tratamento para o trabalho ainda não concluído. Uma técnica utilizada para resolver esse problema é chamada de **Feature Toggle**.
+
+> **Feature Toggle?**
+>
+> Com certeza você já utilizou um interruptor para ligar uma lâmpada em algum cômodo de sua residência. Um interruptor de energia é algo bem simples de utilizar, pois possui apenas duas posições possíveis: ligado e desligado.
+>
+> Feature Toggle nada mais é do que uma técnica utilizada para se criar uma espécie de *interruptor*, mas ao invés de ligar/desligar uma lâmpada, ele serve para ativar/desativar uma funcionalidade em uma aplicação.
+>
+> Essa técnica pode ser utilizada para diversos objetivos, sendo um deles o de *esconder* as funcionalidades incompletas de uma aplicação, no caso do time estar trabalhando no modelo *trunk-based*.
 
 ## Feature-Branch vs. Trunk-Based
+
+Agora você deve estar se perguntando: Devo utilizar qual das duas práticas, feature-branch ou trunk-based? Qual delas é melhor?
+
+Na verdade não existe a melhor prática, pois ambas possuem vantagens e desvantagens, devendo você e seu time avaliar qual delas se encaixa melhor em seu contexto.
+
+Alguns especialistas renomados em desenvolvimento de software, como Martin Fowler, por exemplo, criticam a utilização de feature-branch, pais quando uma pessoa do time cria uma branch para desenvolver sua funcionalidade, ela está se **separando** da branch principal e do resto do time, podendo ficar bastante tempo sem integrar seu código. E já discutimos anteriormente que separar as pessoas em **silos** é algo ruim.
+
+Isso aumenta as chances de conflitos e dores de cabeça quando ela terminar sua funcionalidade e for integrar seu código com o código das outras pessoas, que também ficaram todo esse tempo trabalhando separadas.
+
+Mas essa crítica é bem antiga, da época em que ainda não existia o Git e o SVN era a principal ferramenta de controle de versão utilizada pelos times de desenvolvimento de software.
+
+Trabalhar com branches no SVN era bem difícil, pois uma branch era uma cópia completa do repositório, algo pouco performático. Além disso, naquela época não existia o termo DevOps e as pessoas não seguiam a prática de integração contínua.
+
+Ou seja, quando um time criava uma branch, ela costumava existir por muito tempo, geralmente meses, e ao realizar o merge com a branch principal, diversos conflitos e problemas aconteciam, forçando o time a parar seus trabalhos e focar na resolução desses problemas, algo que tomava muito tempo das pessoas. Com isso, criou-se uma cultura de medo e resistência à utilização de branches, pois elas eram traumáticas para as pessoas.
+
+Mas no Git isso é totalmente diferente, pois branches são simples e performáticas de se trabalhar, bem diferente das branches do SVN.
+
+Sendo assim, é totalmente possível de se trabalhar com branches no Git, no modelo de feature-branch, realizando o processo de integração contínua, para se evitar os pesadelos das traumáticas branches do SVN.
+
+A única recomendação é tentar manter o tempo de vida das branches curtas, dias ou poucas semanas, e orientar as pessoas do time a sempre sincronizarem seus repositório locais com o remoto, para não acumular commits quando o merge for realizado. Ou seja, evitar sincronizar apenas quando a funcionalidade for concluída.
