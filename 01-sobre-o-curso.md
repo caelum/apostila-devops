@@ -18,7 +18,7 @@ Também vamos aprender sobre o papel das ferramentas e da automatização em um 
 
 ## Código fonte
 
-O código fonte dos projetos que serão utilizados como exemplo nesse curso estão disponíveis no GitLab, nos seguintes endereços: https://gitlab.com/aovs/projetos-cursos/do25-alura-forum e https://gitlab.com/aovs/projetos-cursos/do25-alura-forum-client
+O código fonte do projeto que será utilizado como exemplo nesse curso está disponível no GitLab, no seguinte endereço: https://gitlab.com/aovs/projetos-cursos/do25-alura-forum
 
 Fique à vontade para navegar pelo código fonte do projeto e baixá-lo para realizar os exercícios em seu computador.
 
