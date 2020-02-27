@@ -188,7 +188,7 @@ DevOps pode ser considerado também com uma **extensão** do Agile, para contemp
 
 ## DevOps Anti-Patterns
 
-Assim como é importante conhecer os conceitos, motivações e boas práticas do DevOps, também é muito importante conhecer os mal-entendimentos e anti-patterns sobre esse tema, para evitar cair em algumas armadilhas comuns de se ver no mercado, evitando com isso uma dificuldade ao adotar DevOps em uma empresa.
+Assim como é importante conhecer os conceitos, motivações e boas práticas do DevOps, também é muito importante conhecer os mal-entendidos e anti-patterns sobre esse tema, para evitar cair em algumas armadilhas comuns de se ver no mercado, evitando com isso uma dificuldade ao adotar DevOps em uma empresa.
 
 ### DevOps é apenas para Dev e Ops
 
