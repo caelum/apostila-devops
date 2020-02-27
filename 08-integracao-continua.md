@@ -58,7 +58,7 @@ Os testes automatizados, conforme foi visto no capítulo anterior, costumam ajud
 
 ## Integração Contínua
 
-Existe uma frase bem famosa do Martin Fowler, citada em seu livro *Continuous Integration*, que diz: "If it hurts, do it more often", que em português seria algo como: "Se dói, faça mais vezes".
+Existe uma frase bem famosa do Martin Fowler, citada no livro *Continuous Integration*, que diz: "If it hurts, do it more often", que em português seria algo como: "Se dói, faça mais vezes".
 
 Embora essa frase seja meio *estranha*, soando até como *masoquismo*, ela reflete exatamente a solução para os problemas citados acima, pois integrar código é uma tarefa dolorosa apenas quando não a fazemos com bastante frequência.
 
