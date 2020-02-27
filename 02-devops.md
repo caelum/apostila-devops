@@ -56,7 +56,7 @@ Esse foi o marco de início de uma nova área, focada no desenvolvimento de soft
 
 Após o projeto ENIAC ser concluído, milhares de outros projetos de software foram iniciados ao redor do mundo, sendo que na década de 60 um desses projetos era bastante ambicioso e com grande impacto mundial.
 
-Em 1961 o presidente americano John Kennedy anunciou que em 10 anos os Estados Unidos da América levariam uma pessoa à lua, a trazendo de volta para a Terra em segurança. Criou-se então um projeto, batizado de Apollo, sendo sua missão atribuída à NASA.
+Em 1961, o presidente americano John Kennedy anunciou que em 10 anos os Estados Unidos da América levariam uma pessoa à lua, a trazendo de volta para a Terra em segurança. Criou-se então um projeto, batizado de Apollo, sendo sua missão atribuída à NASA.
 
 Para realizar tal missão a NASA precisava construir um foguete e também de alguém capaz de desenvolver um software complexo para controle aéreo, que seria utilizado nesse foguete a ser enviado à lua.
 
@@ -88,11 +88,11 @@ Nasce assim o termo **Software Engineering**, na qual Margaret Hamilton foi uma 
 
 Embora os projetos ENIAC e Apollo tenham sido bem-sucedidos, ao redor do mundo a grande maioria dos projetos de software fracassava e muitos problemas começaram a surgir, visto que essa era uma área nova e que não seguia os padrões das outras engenharias.
 
-Em 1967 o `NATO Science Committee` criou um grupo de estudos sobre Ciência da Computação, formado por cientistas de diversos países e indústrias, com o objetivo de discutir sobre o estado atual da área de engenharia de software.
+Em 1967, o `NATO Science Committee` criou um grupo de estudos sobre Ciência da Computação, formado por cientistas de diversos países e indústrias, com o objetivo de discutir sobre o estado atual da área de engenharia de software.
 
 Foram formados três grupos focados em discutir sobre projeto de software, desenvolvimento de software e operação de software, com objetivos de definir, descrever e começar a pensar em como resolver os problemas da engenharia de software.
 
-Em 1968 ocorreu a primeira `NATO Software Engineering Conference`, na qual foram identificados os principais problemas da engenharia de software, dentre eles:
+Em 1968, ocorreu a primeira `NATO Software Engineering Conference`, na qual foram identificados os principais problemas da engenharia de software, dentre eles:
 
 * Definição e métricas de sucesso do projeto;
 * Softwares complexos que exigem investimentos altos e viabilidade incerta;
@@ -158,7 +158,7 @@ Foi justamente para resolver esses problemas que alguns sysadmins começaram a s
 
 ### Agile Infrastructure
 
-Em 2008, no evento `Agile Conference`, Patrick DuBois and Andrew Schafer se reuniram para discutir sobre um tópico pouco explorado na comunidade: **Agile Infrastructure**.
+Em 2008, no evento `Agile Conference`, Patrick DuBois e Andrew Schafer se reuniram para discutir sobre um tópico pouco explorado na comunidade: **Agile Infrastructure**.
 
 Eles discutiram e trocaram experiências sobre os problemas e frustrações que haviam passado em suas empresas, ao tentar levar o mindset do movimento `Agile` para a área de operações e ao tentar unir os times de desenvolvimento e operações. Posteriormente eles criaram um grupo de discussões para compartilhar suas ideias com outras pessoas ao redor do mundo.
 
@@ -188,7 +188,7 @@ DevOps pode ser considerado também com uma **extensão** do Agile, para contemp
 
 ## DevOps Anti-Patterns
 
-Assim como é importante conhecer os conceitos, motivações e boas práticas do DevOps, também é muito importante conhecer os mal-entendimentos e anti-patterns sobre esse tema, para evitar cair em algumas armadilhas comuns de se ver no mercado, evitando com isso uma dificuldade ao adotar DevOps em uma empresa.
+Assim como é importante conhecer os conceitos, motivações e boas práticas do DevOps, também é muito importante conhecer os mal-entendidos e anti-patterns sobre esse tema, para evitar cair em algumas armadilhas comuns de se ver no mercado, evitando com isso uma dificuldade ao adotar DevOps em uma empresa.
 
 ### DevOps é apenas para Dev e Ops
 
