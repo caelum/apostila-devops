@@ -2,127 +2,118 @@
 
 ## Ementa:
 
+Sobre o Curso
+1. DevOps
+2. O curso
+3. Código fonte
+4. Bibliografia complementar
+
 DevOps
 1. O que é DevOps?
-2. História e motivações do DevOps
-3. Vantagens e desafios para adotar DevOps
-4. Cultura e ferramentas
-5. DevOps Anti-Patterns
+2. A história do desenvolvimento de software
+3. A história do DevOps
+4. DevOps Anti-Patterns
+5. A cultura em um ambiente DevOps
+5. CALMS
+6. Mudanças culturais para adotar DevOps
+7. The Three Ways
+8. O papel das ferramentas em um ambiente DevOps
 
 Lean
-1. O que é Lean?
+1. O que é Lean
 2. Exercício: Lean Lego Game
 3. Sobre Lean: o método Toyota
 4. Push vs. Pull Systems
 5. Kanban
-5. System Thinking
-6. Work Cells
-7. Kaizen
-8. Lean e DevOps
-
-A cultura em um ambiente DevOps
-1. Colaboração
-2. Comunicação
-3. Transparência
-4. Autonomia
-5. Empatia
-6. Desafios culturais para adotar DevOps
-
-Ferramentas e automatização
-1. O papel das ferramentas no modelo DevOps
-2. A importância da automatização
-3. DevOps Workflow
-4. Tipos e exemplos de ferramentas
+6. Systems Thinking
+7. Work Cells
+8. Kaizen
+9. Lean e DevOps
 
 O projeto do curso
-1. Conhecendo o projeto do curso
-2. Como fazer o build do projeto?
-3. Como fazer o deploy do projeto?
-4. Manuais de build e deploy
-5. Exercício: Build e Deploy manuais do projeto
+1. Alura Fórum: o fórum da plataforma Alura
+2. As funcionalidades da aplicação
+3. Como rodar a aplicação?
+4. Código fonte do projeto
+5. Exercício: download do código fonte da aplicação
+6. Build do projeto
+7. Exercício: build manual da aplicação
+8. Deploy do projeto
+9. Exercício: deploy manual da aplicação
 
-Build
-1. Source Control Management
-2. Git
-3. Exercício: Primeiros passos com Git
-4. Hospedagem de repositórios e GitLab
-5. Exercício: Criando uma conta no GitLab e hospedando o código fonte do projeto
-6. Exercício: Mais detalhes do Git
-7. Build do projeto
-8. Gerenciamento de dependências
-9. Maven
-10. Exercício: Utilizando Maven para gerenciamento de dependências e build do projeto
-11. Ambientes e profiles
-12. Exercício: Utilizando profiles com Maven
+Build automatizado
+1. Build
+2. Os problemas do build manual
+3. Automatização do processo de build
+4. Build tools
+5. Automatizando o build do fórum da Alura
+6. Exercício: Adicionando o Maven ao projeto
+7. Exercício: Isolando os datasources com profiles
+8. Realizando o build automatizado com Maven
+9. Exercício: Gerando o build automatizado do projeto
 
-Testes automatizados e Qualidade
-1. A importância dos testes automatizados
-2. Tipos de testes automatizados
-3. Test Driven Development
-4. JUnit
-5. Selenium WebDriver
-6. Exercício: Escrevendo testes automatizados
-7. Refactoring
-8. SonarQube
-9. Exercício: Instalação e configuração do SonarQube
+Controle de Versão
+1. Backup e colaboração
+2. Sistemas de Controle de Versão
+3. Git
+4. Utilizando o Git
+5. Exercício: Utilizando o Git na aplicação
+6. Mais detalhes do Git
+7. Hospedando o repositório no GitLab
+8. Exercício(opcional): Criando uma conta no GitLab
+9. Exercício: Criando um repositório no GitLab
+10. Sincronizando o repositório local com o GitLab
+11. Exercício: Enviando os commits para o repositório remoto
+12. Clonando um repositório já existente
+13. Exercício: Renomeando o repositório remoto
+14. E quanto ao time de Ops?
 
-Continuous Integration
-1. O que é integração contínua?
-2. Trunk Based vs. Feature Branch
-3. Ferramentas de CI
-3. Jenkins
-4. Exercício: Instalando e configurando o Jenkins
-5. Exercício: Criando um Job para executar os testes automatizados do projeto
+Testes Automatizados
+1. O processo de desenvolvimento de um software
+2. Funcionalidades e bugs
+3. Testes manuais e seus problemas
+4. Testes automatizados
+5. Exercício: Configurando o projeto para os testes automatizados
+6. Exercício: Escrevendo testes automatizados na aplicação
+7. Tipos de testes automatizados
+8. Exercício: Testes automatizados com Mockito
+9. Para saber mais: Pirâmide de Testes
+10. Para saber mais: TDD (Test Driven Development)
+11. Para saber mais: Refactoring
+12. Cobertura de testes
+13. Exercício: Code Coverage com JaCoCo
+14. Métrica: Change Failure Rate
 
-Deploy e Continuous Delivery
-1. Deploy manual e seus problemas
-2. Maquinas Virtuais
-3. VirtualBox
-4. Exercício: Criando uma VM no VirtualBox
-5. Vagrant
-6. Exercício: Instalação e configuração do Vagrant
-7. Infrastructure as Code
-8. Ansible
-9. Exercício: Instalação e configuração do Ansible
-10. Exercício: Automatizando a infra do projeto com Ansible e Vagrant
-11. O que é entrega contínua?
-12. 1-Click Deployment
-13. Exercício: 1-Click Deployment
+Integração Contínua
+1. Trabalhando em time
+2. Integration hell
+3. Integração Contínua
+4. Princípios da integração contínua
+5. Jenkins
+6. Exercício: Instalação do Jenkins
+7. Integração contínua com Jenkins
+8. Exercício: Utilizando o Jenkins como servidor de integração contínua
+9. Plugins do Jenkins
+10. Exercício: Utilizando plugins do Jenkins
+11. Branches
+12. Feature-Branch vs. Trunk-Based
 
-Continuous Deployment
-1. O que é deploy contínuo?
-2. Diferença entre Continuous Integration, Delivery e Deployment
-3. Feature Toggle
-4. Exercício: Automatizando o processo de deploy
-5. Problemas e rollback
-6. Blue Green Deployment
-7. Canary Deployment
-8. Exercício: Blue Green Deployment
+Entrega Contínua
+1. O trauma do deploy
+2. Janela de deploy
+3. Continuous Delivery
+4. Os pilares da Continuous Delivery
+5. Os problemas do deploy manual
+6. Automatizando o deploy
+7. One-Click deploy
+8. Blue-Green Deployment
+9. Reduzindo o Lead Time
 
-Containers
-1. Virtualização vs. containers
-2. Docker
-3. Exercício: "Dockerizando" a aplicação
-4. Mudanças no processo de build e deploy
-5. Exercício: Ajustando o build e o deploy para utilizar docker
-6. Docker Compose
-7. Exercício: Docker Compose
+Deploy Contínuo
+
 
 Monitoramento e Logs
-1. A importância do monitoramento contínuo
-2. Ferramentas de monitoramento
-3. Prometheus
-4. Grafana
-5. Exercício: Monitorando a aplicação com Prometheus
-6. Lidando com zilhões de logs
-7. ELK Stack: Elasticsearch, Logstash e Kibana
-8. Exercício: Melhorando a análise de logs com ELK
 
-Apêndice: Outros tópicos
-1. Segurança e DevSecOps
-2. Arquitetura de Microsserviços
-3. Resiliência e Chaos Engineering
-4. Kubernetes
 
 ## Para mais informações sobre o curso, acesse: https://www.caelum.com.br/curso-devops
 
