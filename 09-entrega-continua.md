@@ -144,6 +144,251 @@ Existem diversas ferramentas no mercado que podemos utilizar para automatizar o 
 
 No nosso caso utilizaremos o **Jenkins**, pois já estamos o utilizando no processo de integração contínua, o que facilitará nosso trabalho, e também utilizaremos o **Vagrant**, já que estamos utilizando máquinas virtuais com o VirtualBox.
 
+## Vagrant
+
+![Logotipo do Vagrant](imagens/capitulo-09/vagrant-logo.png)
+
+Vagrant é uma ferramenta utilizada para criar e gerenciar máquinas virtuais de maneira simples, orquestrada e, principalmente, automatizada.
+
+Ela suporta diversas ferramentas de máquinas virtuais, que são chamadas de `Providers`, tais como: VirtualBox, VMware, Hyper-V e Docker.
+
+E para fazer toda a configuração das máquinas virtuais, conforme as necessidades de nossas aplicações, podemos utilizar em conjunto com o Vagrant alguma ferramenta de **provisionamento**, como por exemplo Chef e Puppet.
+
+### Instalação do Vagrant
+
+Para instalar o Vagrant devemos entrar em sua página de download (https://www.vagrantup.com/downloads.html) e escolher a versão apropriada, de acordo com o sistema operacional desejado. O Vagrant é uma ferramenta gratuita e multi-plataforma.
+
+![Página de download do Vagrant](imagens/capitulo-09/vagrant-download.png)
+
+Seu processo de instalação é bem simples, o qual devemos apenas executar o arquivo binário baixado, que pode variar de acordo com o sistema operacional. No curso utilizaremos a versão **2.2.7**.
+
+Após instalar o Vagrant, sua utilização é feita via comandos executados no `Terminal` ou `Prompt`, sendo que existem diversos possíveis comandos e conceitos que veremos ao longo desse capítulo.
+
+### Criando um projeto com Vagrant
+
+O primeiro passo é inicializar um novo projeto Vagrant, sendo que isso é feito com o comando `init`:
+
+```
+vagrant init
+
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.
+```
+
+Repare na mensagem anterior que o Vagrant diz ter criado um arquivo chamado **Vagrantfile**. Esse é o arquivo de configurações do projeto, sendo que nele ensinaremos ao Vagrant o que ele deve fazer, ou seja, como ele deve criar e gerenciar nossas máquinas virtuais.
+
+Se abrirmos esse arquivo em algum editor de texto, veremos que ele foi criado com o seguinte conteúdo:
+
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "base"
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  # config.vm.box_check_update = false
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # NOTE: This will enable public access to the opened port
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine and only allow access
+  # via 127.0.0.1 to disable public access
+  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  # config.vm.network "private_network", ip: "192.168.33.10"
+
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network.
+  # config.vm.network "public_network"
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  # config.vm.synced_folder "../data", "/vagrant_data"
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  # config.vm.provider "virtualbox" do |vb|
+  #   # Display the VirtualBox GUI when booting the machine
+  #   vb.gui = true
+  #
+  #   # Customize the amount of memory on the VM:
+  #   vb.memory = "1024"
+  # end
+  #
+  # View the documentation for the provider you are using for more
+  # information on available options.
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   apt-get update
+  #   apt-get install -y apache2
+  # SHELL
+end
+```
+
+Repare que o arquivo já vem com bastante comandos pré-definidos, sendo que a maioria deles está comentado. A ideia é que esse arquivo sirva como um exemplo para o nosso projeto, o qual podemos descomentar e editar apenas o que for de nosso interesse.
+
+De maneira resumida podemos dizer que o arquivo `Vagrantfile` possui cinco principais *blocos* de configuração:
+
+* **Boxes**: Box é o termo utilizado pelo Vagrant para se referir ao nosso ambiente em si, ou seja, à nossa máquina virtual. É nesse bloco que indicamos qual será o sistema operacional da nossa VM;
+* **Networking**: Utilizamos esse bloco para realizar configurações referentes à rede interna da VM e sua integração com o Host;
+* **Synced Folder**: Nesse bloco indicamos se queremos compartilhar diretório(s) do Host com a VM, além de configurar como será a sincronização entre eles;
+* **Provider**: Configurações específicas do provider, como o VirtualBox, por exemplo; e
+* **Provisioning**: Após instalar e subir a VM, podemos configurar o Vagrant para instalar softwares, criar e alterar configurações dentro da VM, etc. É aí que entram as ferramentas de provisionamento, a qual devem ser configurados nesse bloco do Vagrantfile.
+
+### Boxes
+
+Box é a base de uma VM para o Vagrant. Ao utilizar diretamente uma ferramenta de máquinas virtuais, como o VirtualBox, devemos baixar a imagem `.iso` do sistema operacional e fazer sua instalação manualmente no VirtualBox.
+
+No Vagrant todo esse trabalho já está abstraído em um Box, que funciona como um pacote contendo o sistema operacional e, opcionalmente, arquivos e softwares pré-instalados e configurados.
+
+Ou seja, se precisamos de uma máquina virtual Ubuntu para o VirtualBox, devemos apenas pedir para o Vagrant baixar esse box.
+
+O Vagrant mantem um repositório de boxes online, chamado de **Vagrant Cloud**, na qual qualquer pessoa pode hospedar e compartilhar seus boxes com outras pessoas ao redor do mundo. Você pode acessar o Vagrant Cloud para explorar e pesquisar por boxes em: https://vagrantcloud.com/boxes/search
+
+![Site do Vagrant Cloud](imagens/capitulo-09/vagrant-cloud.png)
+
+Para adicionar um box devemos utilizar o comando `vagrant box add`:
+
+```
+vagrant box add ubuntu/bionic64
+```
+
+Ao executar o comando anterior, o Vagrant vai pesquisar na Vagrant Cloud um box chamado `ubuntu/bionic64` e caso o encontre vai realizar o seu download.
+
+Também é possível adicionar um box a partir de um arquivo existente no computador, evitando o download na internet:
+
+```
+vagrant box add diretorio/ubuntu.box --name ubuntu/bionic64
+```
+
+Após ter adicionado um box ao Vagrant, podemos o utilizar em nosso projeto, adicionando a seguinte configuração no arquivo `Vagrantfile`:
+
+```
+config.vm.box = "ubuntu/bionic64"
+```
+
+### Criando uma VM com Vagrant
+
+Adicionando apenas a configuração do box no `Vagrantfile`, deixando todas as outras comentadas, já é possível pedir ao Vagrant que crie e execute a VM no VirtualBox. Isso pode ser feito com o comando `vagrant up`, que deve ser executado dentro do diretório do projeto, o qual deve conter o arquivo `Vagrantfile`:
+
+```
+vagrant up
+```
+
+Ao executar o comando anterior o Vagrant criará uma VM no VirtualBox, caso ela ainda não tenha sido criada anteriormente, a inicializando na sequência. Se abrirmos o VirtualBox será possível ver que uma nova VM foi criada e está sendo executada:
+
+![VM criada pelo Vagrant no VirtualBox](imagens/capitulo-09/vagrant-vm-virtualbox.png)
+
+### Interagindo com a VM
+
+É possível acessar e interagir com a VM via SSH, utilizando o comando `vagrant ssh`:
+
+```
+vagrant ssh
+
+Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-88-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue Mar 10 19:59:07 UTC 2020
+
+  System load:  0.0               Processes:             94
+  Usage of /:   10.1% of 9.63GB   Users logged in:       0
+  Memory usage: 12%               IP address for enp0s3: 10.0.2.15
+  Swap usage:   0%
+
+
+0 packages can be updated.
+0 updates are security updates.
+
+
+Last login: Tue Mar 10 19:45:07 2020 from 10.0.2.2
+vagrant@ubuntu-bionic:~$
+```
+
+### Outros comandos do Vagrant
+
+A seguir veja uma relação dos principais comandos do Vagrant que podemos utilizar, e quais os seus objetivos:
+
+* **vagrant up**: Cria e/ou inicializa a VM;
+* **vagrant suspend**: Suspende temporariamente a VM, sem desligá-la;
+* **vagrant resume**: Resume a VM que estava suspensa temporariamente;
+* **vagrant halt**: Desliga a VM;
+* **vagrant destroy**: Desliga e apaga permanentemente a VM;
+* **vagrant upload**: Copia arquivos do host para a VM;
+* **vagrant reload**: Reinicia a VM, recarregando as configurações do Vagrantfile;
+* **vagrant status**: Exibe o status atual da VM; e
+* **vagrant package**: Cria um novo box com o estado atual da VM.
+
+### Configurando a rede da VM
+
+O Vagrant por padrão configura a rede da VM como sendo privada, impedindo com isso que outras VMs tenham acesso a ela. Para alterar esse comportamento e torná-la pública, a seguinte configuração deve ser feita no arquivo `Vagrantfile`:
+
+```
+config.vm.network "public_network"
+```
+
+Dessa maneira a VM poderá ser acessada publicamente. O endereço `IP` da VM será obtido via `DHCP` do host, mas também é possível definir um IP estático alterando a configuração para:
+
+```
+config.vm.network "public_network", ip: "192.168.0.30"
+```
+
+### Provisionamento da VM
+
+Até então a VM está apenas com o sistema operacional instalado, ou seja, não possui nenhum software instalado ou configuração executada internamente.
+
+Mas geralmente é necessário realizar diversas configurações no sistema operacional, além de instalar os softwares necessários na VM, como por exemplo: Java, MySQL, Apache Tomcat, etc.
+
+Essa parte deve ser configurada no bloco `provisioning` do `Vagrantfile`, sendo que é necessário utilizar alguma ferramenta de provisionamento, como por exemplo: Ansible, Chef, Puppet, CFEngine, Salt, dentre outras, ou até mesmo pode ser feita via Shell Scripting.
+
+Por exemplo, a instalação do MySQL via Shell Scripting poderia ser feita com as seguintes configurações no `Vagrantfile`:
+
+```
+config.vm.provision "shell", inline: <<-SHELL
+  apt-get update
+  apt-get install -y mysql-server
+SHELL
+```
+
+Também é possível deixar os comandos em um arquivo separado, indicando para o Vagrant o caminho do arquivo a ser executado com a seguinte configuração:
+
+```
+config.vm.provision "shell", path: "vagrant/script.sh"
+```
+
+No exemplo anterior o Vagrant vai procurar e executar os comandos do arquivo `script.sh`, que está localizado dentro do diretório `vagrant`, devendo esse diretório estar na raiz do projeto, ou seja, no mesmo diretório onde estiver o arquivo `Vagrantfile`, pois é a partir desse diretório que o Vagrant busca pelos arquivos referenciados nas configurações.
 
 ## One-Click deploy
 
