@@ -122,7 +122,28 @@ Além disso, ficará mais fácil de identificar etapas que são executadas de ma
 
 ## Os problemas do deploy manual
 
+Dos três pilares da entrega contínua, listados anteriormente, ainda não estamos seguindo da melhor maneira o último deles, que é o pilar da automatização.
+
+Já temos parte do processo de entrega automatizado, mas apenas a parte focada na integração da aplicação, faltando ainda a parte da entrega em si, ou seja, relacionada com o deploy da aplicação.
+
+Para fazer o deploy de nossa aplicação foi necessário seguir o *manual do deploy*, que é uma documentação explicando todo o passo a passo a ser realizado, de maneira manual, para conseguir realizar o deploy de maneira correta.
+
+Esse é justamente o problema, pois todo o processo de deploy é realizado de maneira manual, sem nenhum tipo de ferramenta de automatização, o que torna o processo burocrático, lento e sujeito a erros humanos.
+
+Lembre-se que isso é justamente o que estamos tentando evitar, com a utilização da prática de entrega contínua, para que todo o processo de entrega de software seja o mais automatizado possível, evitando com isso dificuldades e dores de cabeça.
+
+É comum encontrar times que mesmo utilizando um processo automatizado para a integração contínua, por parte do time de desenvolvimento, ainda possui um processo de deploy manual, por parte do time de operações.
+
+Isso acaba sendo ruim, pois causa uma dependência forte entre os times, além de atrapalhar na agilidade do processo de entrega de software, pois de nada adianta uma parte do processo estar totalmente automatizada e otimizada, se a outra parte não estiver. O foco deve ser em otimizar o processo como um todo e não somente uma parte dele.
+
 ## Automatizando o deploy
+
+A ideia agora então é tentar automatizar o processo de deploy da aplicação, sendo que para isso precisaremos de alguma ferramenta que consiga deixar o processo o mais simples possível.
+
+Existem diversas ferramentas no mercado que podemos utilizar para automatizar o deploy de uma aplicação, sendo que a escolha dela(s) pode variar de acordo com as tecnologias utilizadas na aplicação.
+
+No nosso caso utilizaremos o **Jenkins**, pois já estamos o utilizando no processo de integração contínua, o que facilitará nosso trabalho, e também utilizaremos o **Vagrant**, já que estamos utilizando máquinas virtuais com o VirtualBox.
+
 
 ## One-Click deploy
 
