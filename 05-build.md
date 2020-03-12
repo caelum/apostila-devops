@@ -216,9 +216,20 @@ Nesse exercício vamos adicionar na aplicação o conceito de **Profiles**, para
   }
   ```
 
-4. Por fim, na classe **DataSourceConfiguration** precisamos adicionar no método **producao** a anotação `@Profile("producao")`, ficando o código da seguinte maneira:
+4. Por fim, na classe **DataSourceConfiguration** precisamos adicionar no método **producao** a anotação `@Profile("producao")` e no método **desenvolvimento** a anotação `@Profile("desenvolvimento")`, ficando o código da seguinte maneira:
 
   ```java
+  @Bean
+  @Profile("desenvolvimento")
+  public DataSource desenvolvimento() {
+    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+    dataSource.setUrl("jdbc:mysql://localhost:3306/alura_forum?useSSL=false");
+    dataSource.setUsername("root");
+    dataSource.setPassword("");
+    return dataSource;
+  }
+
   @Bean
   @Profile("producao")
   public DataSource producao() {
