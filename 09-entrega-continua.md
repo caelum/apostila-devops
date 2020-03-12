@@ -509,7 +509,7 @@ Nesse exercício vamos utilizar o Jenkins para permitir que o deploy da aplicaç
 
   ![Opção Execute shell na seção Build](imagens/capitulo-09/jenkins-build-now.png)
 
-9. Espere o build finalizar, algo que pode levar alguns poucos minutos, e tente acessar a aplicação pelo browser: http://localhost:8080
+9. Espere o build finalizar, algo que pode levar alguns poucos minutos, e tente acessar a aplicação pelo browser: http://localhost:8080/alura-forum
 
 ## Blue-Green Deployment
 
