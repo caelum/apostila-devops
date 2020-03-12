@@ -463,6 +463,20 @@ Nesse exercício vamos adicionar o Vagrant em nossa aplicação, além de o conf
 
 ## One-Click deploy
 
+No exercício anterior conseguimos automatizar toda a parte de infra estrutura da nossa aplicação, permitindo com isso que tanto a criação das VMs, quanto o deploy da aplicação fossem executados de maneira automatizada. Sem dúvidas será muito mais simples e, principalmente, mais ágil realizar os deploys da aplicação a partir de agora.
+
+Podemos inclusive *aposentar* o *manual do deploy*, uma vez que não é mais necessário realizar todo aquele passo a passo de maneira manual, algo que era bem chato, trabalhoso e sujeito a erros.
+
+Entretanto, podemos melhorar ainda mais esse processo, pois tivemos que o executar via terminal, primeiramente executando o build da aplicação via Maven e depois realizando o deploy com o Vagrant.
+
+O ideal é que o processo de entrega da aplicação possa ser realizado por qualquer pessoa do time, sem a necessidade de ter programas instalados em seu computador, e de preferência utilizando alguma aplicação gráfica, na qual a pessoa precise apenas apertar um botão.
+
+Essa é justamente a ideia de uma prática que ficou conhecida como **One-click deployment**, cujo objetivo é automatizar todo o processo de deploy de uma aplicação, a ponto dele poder ser disparado com um único clique.
+
+Certamente essa é uma excelente ideia, pois visa em simplificar ao máximo a burocracia do deploy de uma aplicação, além de o tornar muito mais ágil de ser executado, o que permite ao time realizar deploy com mais frequência e assim de fato aplicar a prática de entrega contínua.
+
+Utilizaremos o Jenkins para realizar o processo de one-click deployment, visto que ele é uma das ferramentas que podem ser utilizadas para tal objetivo, além de que já estamos o utilizando no processo de integração contínua.
+
 ## Blue-Green Deployment
 
 ## Reduzindo o Lead Time
