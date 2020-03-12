@@ -477,6 +477,40 @@ Certamente essa é uma excelente ideia, pois visa em simplificar ao máximo a bu
 
 Utilizaremos o Jenkins para realizar o processo de one-click deployment, visto que ele é uma das ferramentas que podem ser utilizadas para tal objetivo, além de que já estamos o utilizando no processo de integração contínua.
 
+## Exercício: One-click deployment com Jenkins
+
+Nesse exercício vamos utilizar o Jenkins para permitir que o deploy da aplicação possa ser realizado com um único clique de um botão.
+
+**Atenção!** Para não ter problemas de conflitos é necessário finalizar as VMs que estiverem rodando no VirtualBox, bem como no ambiente local. Certifique-se disso antes de prosseguir no exercício.
+
+1. Acesse o Jenkins em: http://localhost:8082
+
+2. Clique na opção **New Item**, localizado no menu lateral esquerdo, preencha o campo  *item name* com **Deploy alura-forum**, escolha a opção **Freestyle project** e clique no botão **Ok**.
+
+  ![Tela de criação de novo item no Jenkins](imagens/capitulo-09/jenkins-new-item.png)
+
+3. Na seção **Source Code Management**, marque a opção **Git** e no campo **Repository URL** preencha com **file:///home/LOGIN_DA_TURMA/Desktop/alura-forum**. Obs: Deve ser o caminho do repositório Git da aplicação alura-forum em seu computador. Em caso de dificuldades, peça ajuda ao instrutor(a).
+
+  ![Source Code Management na tela de configuração de item no Jenkins](imagens/capitulo-09/jenkins-new-item-scm.png)
+
+4. Na seção **Build**, escolha a opção **Invoke top-level Maven targets** e preencha o campo *Goals* com: **clean package**.
+
+  ![Opção Invoke top-level Maven targets na seção Build](imagens/capitulo-09/jenkins-new-item-build-maven.png)
+
+5. Ainda na seção **Build**, agora escolha a opção **Execute Shell** e preencha o campo *Command* com: **BUILD_ID="deploy" vagrant up**.
+
+  ![Opção Execute shell na seção Build](imagens/capitulo-09/jenkins-new-item-build-vagrant.png)
+
+6. Clique no botão **Save**.
+
+7. Diferente do *Item* que criamos no capítulo de integração contínua, o qual verifica a cada 1 minuto por novos commits para ser executado, esse *Item* que acabamos de criar deve ser disparado manualmente.
+
+8. Na tela principal do Jenkins, acesse o Item **Deploy alura-forum** e clique no botão **Build Now**, localizado no menu lateral esquerdo.
+
+  ![Opção Execute shell na seção Build](imagens/capitulo-09/jenkins-build-now.png)
+
+9. Espere o build finalizar, algo que pode levar alguns poucos minutos, e tente acessar a aplicação pelo browser: http://localhost:8080
+
 ## Blue-Green Deployment
 
 ## Reduzindo o Lead Time
