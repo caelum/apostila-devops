@@ -390,6 +390,77 @@ config.vm.provision "shell", path: "vagrant/script.sh"
 
 No exemplo anterior o Vagrant vai procurar e executar os comandos do arquivo `script.sh`, que está localizado dentro do diretório `vagrant`, devendo esse diretório estar na raiz do projeto, ou seja, no mesmo diretório onde estiver o arquivo `Vagrantfile`, pois é a partir desse diretório que o Vagrant busca pelos arquivos referenciados nas configurações.
 
+## Exercício: Automatizando a infra da aplicação com Vagrant
+
+Nesse exercício vamos adicionar o Vagrant em nossa aplicação, além de o configurar conforme as necessidades de infra estrutura dela.
+
+1. Acesse o diretório do curso e copie o arquivo `vagrant-ubuntu.box` para o **Desktop**.
+
+2. Abra o terminal, acesse nele o `Desktop` e importe o `box` do Ubuntu com o seguinte comando:
+
+  ```
+  vagrant box add vagrant-ubuntu.box --name ubuntu/bionic64
+  ```
+
+3. Ainda no terminal, agora acesse o diretório da aplicação e execute o seguinte comando:
+
+  ```
+  vagrant init
+  ```
+
+4. O próximo passo será configurar o Vagrant para a nossa aplicação. Abra o arquivo `Vagrantfile` da aplicação em algum editor de texto, apague todo o seu conteúdo e digite nele as seguintes configurações:
+
+  ```
+  Vagrant.configure("2") do |config|
+
+    config.vm.define "alura-database" do |db|
+      db.vm.box = "ubuntu/bionic64"
+
+      db.vm.network "private_network", ip: "192.168.56.110"
+      db.vm.network "forwarded_port", guest: 3306, host: 3307
+
+      db.vm.provision "shell", path: "vagrant/database/install.sh"
+      db.vm.provision "file", source: "vagrant/database/mysqld.cnf", destination: "/tmp/mysqld.cnf"
+      db.vm.provision "file", source: "vagrant/database/script-inicial.sql", destination: "/tmp/script-inicial.sql"
+      db.vm.provision "shell", path: "vagrant/database/post-install.sh"
+    end
+
+    config.vm.define "alura-web" do |web|
+      web.vm.box = "ubuntu/bionic64"
+
+      web.vm.network "private_network", ip: "192.168.56.105"
+      web.vm.network "forwarded_port", guest: 8080, host: 8080
+
+      web.vm.provision "shell", path: "vagrant/web/install.sh"
+      web.vm.provision "file", source: "vagrant/web/apache-tomcat-8.5.47.tar.gz", destination: "/tmp/apache-tomcat-8.5.47.tar.gz"
+      web.vm.provision "file", source: "vagrant/web/tomcat.service", destination: "/tmp/tomcat.service"
+      web.vm.provision "file", source: "target/alura-forum-0.0.1-SNAPSHOT.war", destination: "/tmp/alura-forum.war"
+      web.vm.provision "shell", path: "vagrant/web/post-install.sh"
+    end
+
+  end
+  ```
+
+5. Agora precisamos dos `arquivos` e `scripts` que serão provisionados em cada uma das VMs. Acesse o diretório do curso e copie a pasta chamada **vagrant** para o diretório raiz da aplicação. Nessa pasta estão todos os arquivos referenciados no `Vagrantfile`.
+
+6. Pronto! Já estamos com todas as configurações do Vagrant para a nossa aplicação realizadas, já sendo possível o executar.
+
+7. Abra o VirtualBox e apague as VMs criadas anteriormente. Verifique também se a aplicação **não** está sendo executada localmente, no Eclipse.
+
+8. No terminal, dentro do diretório raiz da aplicação, faça o build da aplicação via Maven, executando o seguinte comando:
+
+  ```
+  mvn clean package
+  ```
+
+9. Agora execute o Vagrant para criar e subir as VMs no VirtualBox:
+
+  ```
+  vagrant up
+  ```
+
+10. Após a execução do Vagrant finalizar, algo que pode levar alguns poucos minutos, verifique se as VMs foram criadas e estão sendo executadas normalmente no VirtualBox, e também tente acessar a aplicação abrindo o browser e entrando em: http://localhost:8080/alura-forum
+
 ## One-Click deploy
 
 ## Blue-Green Deployment
