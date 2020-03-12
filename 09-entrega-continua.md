@@ -511,6 +511,52 @@ Nesse exercício vamos utilizar o Jenkins para permitir que o deploy da aplicaç
 
 9. Espere o build finalizar, algo que pode levar alguns poucos minutos, e tente acessar a aplicação pelo browser: http://localhost:8080/alura-forum
 
+## Immutable Infrastructure
+
+No exemplo do exercício anterior, cada vez que o deploy é realizado o Vagrant **destrói** as VMs existentes e na sequência cria novas VMs do zero.
+
+Esse é um conceito conhecido como **Immutable Infrastructure**(Infraestrutura imutável), na qual não se realiza **alterações** em um servidor quando é necessário atualizar seus softwares, mas sim se cria um novo servidor já com as novas configurações desejadas.
+
+Antigamente esse conceito não era muito popular, pois as pessoas que trabalham nos times de Ops costumam sempre evoluir os servidores existentes, atualizando pacotes, softwares e configurações conforme a demanda e necessidade, pois esse é o jeito mais natural de trabalhar, ou seja, no qual os servidores são tratados como sendo **mutáveis**.
+
+Porém, trabalhar com servidores mutáveis pode levar a alguns problemas clássicos, que são bem comuns em ambientes que utilizam essa abordagem.
+
+Por exemplo, é bem comum que as modificações feitas nos servidores não sejam *versionadas* e nem *documentadas*, e com isso apenas a pessoa que as realizou tem conhecimento de tais modificações.
+
+Um outro problema comum é que às vezes pode ocorrer erros ou conflitos ao atualizar algum software em um servidor, por conta de versões ou configurações anteriores, ou por conta de outros softwares conflitantes.
+
+Isso pode levar aos problemas e dificuldades de se realizar deploys de maneira simples e ágil, pois eventualmente o time vai precisar descobrir e corrigir os problemas que ocorrerem por conta de atualizações realizadas nos servidores, algo que geralmente pode consumir bastante tempo, gerando dores de cabeça e estresse.
+
+Na abordagem de se utilizar servidores imutáveis isso acaba sendo evitado, pois se um servidor apresentar problemas, o time não precisa ficar tentando "apagar os incêndios" que forem surgindo, já que eles podem simplesmente jogar fora o servidor problemático e construir um novo para substituí-lo.
+
+Obviamente, essa abordagem se refere a servidores virtuais e não a servidores físicos.
+
+Sendo assim, é recomendável sempre preferir trabalhar com servidores imutáveis, pois essa abordagem costuma gerar menos dores de cabeça para o time DevOps.
+
+### Imutabilidade e banco de dados
+
+Embora a imutabilidade apresente vantagens e seja recomendada, existem cenários que essa abordagem pode gerar problemas, em especial no caso de servidores que precisam armazenar informações que não podem simplesmente ser apagadas.
+
+O exemplo clássico dessa situação acontece com os servidores de banco de dados, pois seu papel principal é manter os dados da aplicação que, por sua natureza, são mutáveis e precisam ser mantidos, independente de atualizações de softwares ou do próprio servidor em si.
+
+A solução para esse problema é configurar tais servidores para não armazenarem seus dados internamente, pois eles poderão ser destruídos futuramente, ou seja, devemos **externalizar** os dados de tais servidores, os armazenando em algum lugar que seja seguro.
+
+No exercício anterior nós utilizamos a abordagem de servidores imutáveis, entretanto não nos preocupamos com os dados do servidor de banco de dados, e com isso a cada novo deploy todos os novos dados, que foram inseridos após o deploy, serão perdidos.
+
+### Vagrant Synced Folder
+
+No Vagrant podemos resolver esse problema utilizando o conceito de **Synced Folder**, para que os dados sejam armazenados fora do servidor.
+
+Synced Folder tem como objetivo o **compartilhamento** de diretórios entre o host e a VM, permitindo com isso que os dados de uma VM sejam armazenados dentro do próprio host.
+
+Para utilizar esse conceito no Vagrant devemos adicionar a seguinte propriedade no Vagrantfile:
+
+```
+config.vm.synced_folder "diretorio/host", "/diretorio/vm"
+```
+
+Sendo que o primeiro parâmetro é o diretório no *host*, localizado à partir do diretório raiz do projeto, e o segundo é o caminho absoluto do diretório na VM.
+
 ## Blue-Green Deployment
 
 ## Reduzindo o Lead Time
