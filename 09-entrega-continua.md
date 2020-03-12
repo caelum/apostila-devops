@@ -497,7 +497,7 @@ Nesse exercício vamos utilizar o Jenkins para permitir que o deploy da aplicaç
 
   ![Opção Invoke top-level Maven targets na seção Build](imagens/capitulo-09/jenkins-new-item-build-maven.png)
 
-5. Ainda na seção **Build**, agora escolha a opção **Execute Shell** e preencha o campo *Command* com: **BUILD_ID="deploy" vagrant up**.
+5. Ainda na seção **Build**, agora escolha a opção **Execute Shell** e preencha o campo *Command* com: **BUILD_ID="deploy" vagrant destroy -f && vagrant up**.
 
   ![Opção Execute shell na seção Build](imagens/capitulo-09/jenkins-new-item-build-vagrant.png)
 
