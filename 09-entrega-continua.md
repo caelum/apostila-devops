@@ -557,6 +557,22 @@ config.vm.synced_folder "diretorio/host", "/diretorio/vm"
 
 Sendo que o primeiro parâmetro é o diretório no *host*, localizado à partir do diretório raiz do projeto, e o segundo é o caminho absoluto do diretório na VM.
 
+## Zero Downtime Deployment
+
+Discutimos no início desse capítulo que em ambientes tradicionais, que não seguem o modelo DevOps, é comum que os deploys sejam realizados apenas dentro da *janela de deploy*, sendo que ela costuma acontecer de noite ou de madrugada, principalmente nas sextas-feiras.
+
+Um dos motivos disso é que os times de Dev e de Ops terão mais tempo para resolver os problemas que surgirem no deploy, mas há também um outro motivo importante para isso, que é o fato do deploy de uma aplicação causar uma **indisponibilidade temporária** dela. 
+
+Essa situação é conhecida pelo termo **Downtime**, que significa tempo fora do ar, sendo muito comum diversas aplicações o causarem sempre que um deploy está sendo realizado.
+
+Isso pode ser um problema, pois às vezes é necessário realizar o deploy com alguma correção de um bug crítico o mais rápido possível, não havendo a possibilidade de esperar até a próxima janela de deploy. Há também os casos de aplicações que não podem ficar indisponíveis, devendo manter o *uptime* o mais próximo possível de 100%.
+
+Para resolver essas situações e problemas foi criada uma prática que ficou conhecida como **Zero Downtime Deployment**, cujo objetivo é utilizar alguma técnica que permita realizar deploys de aplicações sem causar downtime.
+
+Para que o time DevOps consiga aplicar de maneira eficiente a prática de Continuous Delivery, também é importante que ele conheça a prática de zero downtime deployment e utilize alguma técnica com esse objetivo.
+
 ## Blue-Green Deployment
+
+## Canary Release
 
 ## Reduzindo o Lead Time
