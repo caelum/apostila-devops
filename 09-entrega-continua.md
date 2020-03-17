@@ -573,6 +573,44 @@ Para que o time DevOps consiga aplicar de maneira eficiente a prática de Contin
 
 ## Blue-Green Deployment
 
+Uma das principais técnicas que viabiliza o zero downtime deployment é conhecida como **blue-green deployment**, sendo que sua ideia consiste em manter duas versões da aplicação sendo executadas em ambiente de produção, de maneira simultânea.
+
+Ou seja, sempre teremos duas instancias da aplicação em produção, sendo que o deploy antigo é representado pela instância **Verde** e o novo deploy, contendo as últimas atualizações realizadas na aplicação, é representado pela instância **Azul**.
+
+É necessário ter alguma ferramenta que vai atuar como **roteador**, encaminhando as requisições dos usuários para o servidor apropriado. Essa ferramenta é conhecida como **Load Balancer (Balanceador de carga)**, sendo o **Apache** e o **Nginx** dois exemplos dela.
+
+![Diagrama representando o Blue-Green Deployment](imagens/capitulo-09/blue-green-1.png)
+
+Repare no diagrama anterior que temos as duas versões da aplicação sendo executadas simultaneamente, entretanto o roteador está encaminhando as requisições dos usuários para o servidor *verde*.
+
+Após realizar o novo deploy para o servidor *azul* e realizar todos os testes, para garantir que tudo está funcionando perfeitamente, devemos alterar as configurações no roteador para que ele passe a encaminhar as requisições para o servidor *azul*.
+
+![Diagrama representando o Blue-Green Deployment](imagens/capitulo-09/blue-green-2.png)
+
+Repare no diagrama anterior que agora todas as requisições são encaminhadas para o servidor azul, que representa a última versão da aplicação.
+
+Embora agora a versão verde não esteja mais sendo utilizada, é recomendado a manter em produção por mais algum tempo, pois caso aconteça algum problema com a versão azul, será possível fazer o **rollback** para a versão verde de maneira mais ágil, minimizando com isso os impactos que possam ocorrer.
+
 ## Canary Release
+
+Uma outra técnica, também bastante utilizada, para se realizar deploys com causar downtime da aplicação é conhecida como **Canary Release**, sendo que seu funcionamento é bem parecido com o blue-green deployment.
+
+![Diagrama representando o Canary Release](imagens/capitulo-09/canary-release.png)
+
+A diferença é que no Canary Release a nova versão da aplicação vai sendo liberada *aos poucos* e não de uma vez só, como acontece no blue-green deployment.
+
+A ideia consiste em selecionar um pequeno grupo de usuários, por exemplo os funcionários internos da empresa, liberando apenas para eles a nova versão da aplicação, para que se possa fazer testes e medir os impactos da nova versão, antes de a liberar para todos os usuários.
+
+Isso é bem útil no caso de releases de funcionalidades que podem causar impactos na infraestrutura da aplicação, demandando bastante uso de CPU e memória, por exemplo, pois assim o time consegue fazer um acompanhamento mais eficiente dos impactos causados, a medida que vão liberando a nova versão par mais usuários.
+
+Nesse caso também é possível fazer o *rollback* para a versão anterior de maneira ágil, caso ocorra algum problema mais grave.
+
+> **Para saber mais: Canary?**
+>
+> Canary significa **canário** em inglês, que é uma espécie de pássaro, sendo que esse termo foi baseado em uma técnica utilizada antigamente em minas de carvão.
+>
+> Em minas de carvão é comum haver um nível muito elevado de monóxido de carbono, algo bastante perigoso e que pode matar os mineiros, sendo que antigamente era muito difícil de detectar tal situação e muitas pessoas acabaram perdendo suas vidas no trabalho.
+>
+> Por conta disso, os mineiros passaram a sempre levar para as minas um pássaro canário em uma gaiola, pois no caso de haver um nível muito elevado de monóxido de carbono o canário era afetado muito mais rapidamente do que os humanos, morrendo rapidamente e gerando com isso um alerta aos mineiros, que precisavam sair daquele local o mais rápido possível.
 
 ## Reduzindo o Lead Time
