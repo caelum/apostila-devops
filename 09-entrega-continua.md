@@ -613,4 +613,64 @@ Nesse caso também é possível fazer o *rollback* para a versão anterior de ma
 >
 > Por conta disso, os mineiros passaram a sempre levar para as minas um pássaro canário em uma gaiola, pois no caso de haver um nível muito elevado de monóxido de carbono o canário era afetado muito mais rapidamente do que os humanos, morrendo rapidamente e gerando com isso um alerta aos mineiros, que precisavam sair daquele local o mais rápido possível.
 
-## Reduzindo o Lead Time
+## Métrica: Lead Time
+
+Outra métrica muito importante para um time DevOps, também citada no livro **Accelerate: The Science of Lean Software and DevOps**, é conhecida como **Lead Time**.
+
+![Quadro kanban com indicação do Lead Time](imagens/capitulo-09/lead-time.png)
+
+Lead time nada mais é do que o **tempo** que o time leva para concluir alguma demanda, do momento que ela foi **solicitada** até ela de fato ter sido **entregue** em produção. Por exemplo, se o lead time de um time é de 12 dias, isso significa que esse time consegue finalizar e entregar em produção uma demanda após 12 dias de trabalho.
+
+Mas claro, vale lembrar que esse valor é na verdade uma média, pois as demandas costumam ter tamanho e complexidade distintas, algo que pode influenciar na métrica. Uma dica é tentar padronizar o tamanho das demandas, para que o lead time delas seja o mais próximo possível.
+
+Perceba então que o Lead time é uma métrica muito importante para um time DevOps, pois ela indica sua eficiência em entregar software de maneira ágil.
+
+É importante que o time comece a medir seu lead time o quanto antes, inclusive antes até de começar a adotar as práticas do modelo DevOps, para que assim ele possa sempre a recalcular a cada prática adotada, verificando se ela trouxe resultados positivos.
+
+Todas as práticas que vimos ao longo do curso, como testes automatizados, build automatizado, integração e entrega contínua, contribuem para uma redução no lead time, sendo isso considerado algo muito importante, pois demonstra que tais práticas estão auxiliando o time a entregar software de maneira mais ágil e segura.
+
+## Métrica: Deployment Frequency
+
+**Deployment Frequency** é mais uma das quatro principais métricas DevOps, sendo que seu objetivo é medir a **frequência de deploys realizados** por um time. Essa métrica também é muito importante, pois demonstra a frequência que o time entrega software de valor para seus usuários.
+
+Em ambientes tradicionais, que não seguem o modelo DevOps, é comum que essa frequência seja baixa, sendo comum encontrar times que realizam apenas um único deploy por mês, ou até mesmo em períodos maiores, nos casos mais extremos.
+
+Isso geralmente acontece em times que trabalham com ciclos muito longos, acumulando bastante trabalho em andamento, algo que posterga bastante o deploy de ser realizado com um mínimo de segurança. Além disso, outro fator que contribui para uma frequência baixa de deploys são os processos manuais, como build, testes e o próprio deploy em si.
+
+Ou seja, perceba que as mesmas práticas de automatização e integração/deploy contínuos também favorecem para melhorar a métrica deployment frequency de um time DevOps.
+
+## O valor das métricas
+
+Ao longo do curso já discutimos sobre três das quatro principais métricas DevOps, sendo que mais adiante falaremos da última delas, e é provável que você já deve ter percebido o quão importante elas são para um time DevOps.
+
+Essas métricas são uma forma de um time DevOps medir os impactos e resultados obtidos a cada **passo** que ele dá, ou seja, a cada nova prática ou técnica adotada.
+
+Além disso, elas também servem para demonstrar de maneira concreta o valor e o retorno de se adotar o modelo DevOps e realizar mudanças culturais na organização, principalmente para pessoas não técnicas que estejam envolvidas no processo de desenvolvimento do software, tais como: gerentes de projetos, clientes, usuários e stakeholders.
+
+Isso tudo reforça o valor gerado por tais métricas a um time DevOps, sendo que elas devem ser medidas desde o início do processo de adoção do modelo DevOps, para que assim o time consiga acompanhar sua evolução.
+
+Entretanto, é necessário que exista algum tipo de *modelo*, com números ideais para tais métricas, para que o time DevOps possa usar como referência e consiga então saber se suas métricas atuais estão boas ou ruins e onde são necessárias melhorias.
+
+## Accelerate: State of DevOps Report
+
+![Tabela com níveis de performance baseados nas métricas DevOps](imagens/capitulo-09/metricas-performance.png)
+
+A tabela exibida na imagem anterior representa um modelo que podemos utilizar como referência para as quatro métricas DevOps.
+
+Ela foi retirada de um relatório chamado **Accelerate State of DevOps Report**, que é um relatório publicado pela organização **DORA(DevOps Research and Assessment)**, cujo objetivo é coletar e divulgar dados de performance das organizações que utilizam o modelo DevOps. O relatório completo pode ser acessado em: https://inthecloud.withgoogle.com/state-of-devops-18/dl-cd.html
+
+Repare que a tabela possui quatro linhas, representando cada uma das quatro métricas, e para cada uma delas existem colunas que indicam um **nível de maturidade**, sendo eles:
+
+* **Low(Baixo)**: Esse é o pior nível, indicando que o time precisa melhorar bastante a métrica relacionada a ele;
+* **Medium(Médio)**: Esse nível indica que o time já possui uma melhora em determinada métrica, mas pode melhorar ainda mais;
+* **High(Alto)**: Indica que uma determinada métrica está muito boa, devendo o time sempre tentar chegar a esse nível; e
+* **Elite(Elite)**: O nível Elite é o maior entre eles, sendo bem difícil encontrar times que conseguem alcançar tal nível de maturidade em determinada métrica.
+
+O relatório também mostra, de acordo com os dados coletados pela pesquisa, que times que estão no nível **Elite** em suas métricas possuem as seguintes características, quando comparados com times no nível **Low**:
+
+* **Deploy Frequency** é 46 vezes maior;
+* **Lead Time** é 2555 vezes mais rápido;
+* **Change Failure Rate** é 7 vezes menor; e
+* **Mean Time To Recover** é 2604 vezes mais rápido.
+
+Recomendamos que os times DevOps utilizem esse modelo como referência ao coletar suas métricas, para saber em qual nível de maturidade se encontram no momento e quais métricas podem ser melhoradas. Se possível, o time pode definir como objetivo de longo prazo tentar chegar ao nível **High** ou até mesmo ao nível **Elite**.
