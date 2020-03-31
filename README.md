@@ -103,11 +103,21 @@ Entrega Contínua
 2. Janela de deploy
 3. Continuous Delivery
 4. Os pilares da Continuous Delivery
-5. Os problemas do deploy manual
-6. Automatizando o deploy
-7. One-Click deploy
-8. Blue-Green Deployment
-9. Reduzindo o Lead Time
+5. Deployment Pipeline
+6. Os problemas do deploy manual
+7. Automatizando o deploy
+8. Vagrant
+9. Exercício: Automatizando a infra da aplicação com Vagrant
+10. One-Click deploy
+11. Exercício: One-click deployment com Jenkins
+12. Immutable Infrastructure
+13. Zero Downtime Deployment
+14. Blue-Green Deployment
+15. Canary Release
+16. Métrica: Lead Time
+17. Métrica: Deployment Frequency
+18. O valor das métricas
+19. Accelerate: State of DevOps Report
 
 Deploy Contínuo
 
