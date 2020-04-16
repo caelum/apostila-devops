@@ -34,5 +34,32 @@ Nesse caso o time vai precisar separar de alguma maneira o trabalho finalizado d
 
 ## Feature Toggle
 
+**Feature Toggle**, também conhecida como **Feature Flag**, é uma prática utilizada para controlar dinamicamente a liberação de funcionalidades em um software. A ideia consiste em ativar/desativar funcionalidades do software, podendo ser utilizada também para realizar testes de novas implementações de determinadas funcionalidades.
+
+Essa prática também pode ser utilizada com outros objetivos, além de controlar a release apenas das funcionalidades que estão concluídas, tais como:
+
+* Realização de testes A/B;
+* Validação de funcionalidades do ponto de vista de negócios;
+* Coletar métricas de impactos de performance de novas funcionalidades;
+* Desativar funcionalidades problemáticas; e
+* Release de funcionalidades seguindo o modelo de Canary Release.
+
+A implementação de feature toggles é feita diretamente no código do software, por exemplo de maneira simples utilizando `if/else`:
+
+```java
+if (FeatureToggles.NOVA_VALIDACAO_TOPICO.isAtiva()) {
+	return new ValidadorTopicoOtimizado();
+} else {
+	return new ValidadorTopico();
+}
+```
+
+Repare que o código anterior faz uma verificação para saber qual validador de tópicos utilizar, sendo que no exemplo anterior existem duas diferentes versões dele. Com isso é possível controlar qual versão da funcionalidade será disponibilizada em produção para os usuários, ou até mesmo controlar qual versão determinado usuário vai ter acesso.
+
+Também é possível delegar essa liberação para alguma pessoa que seja administradora do sistema, criando para isso uma tela na qual ela poderá ativar/desativar determinadas funcionalidades, evitando assim que o código precise ser alterado pelo time de desenvolvimento.
+
+São inúmeras possibilidades de se utilizar feature toggles, além de inúmeras maneiras de se implementar tal prática no software, devendo o time de desenvolvimento fazer um alinhamento com a área de negócios sobre qual a melhor estratégia a ser utilizada.
+
+Entretanto, existe uma desvantagem de se utilizar feature toggles, que é o fato dessa prática aumentar a complexidade do software, visto que o time de desenvolvimento terá que implementar e dar manutenção também no código dos feature toggles em si, que, dependendo do tipo de implementação utilizada, pode ser bastante trabalhoso e complexo.
 
 ## Exercício: Continuous Deployment com Jenkins
