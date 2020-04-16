@@ -63,3 +63,21 @@ São inúmeras possibilidades de se utilizar feature toggles, além de inúmeras
 Entretanto, existe uma desvantagem de se utilizar feature toggles, que é o fato dessa prática aumentar a complexidade do software, visto que o time de desenvolvimento terá que implementar e dar manutenção também no código dos feature toggles em si, que, dependendo do tipo de implementação utilizada, pode ser bastante trabalhoso e complexo.
 
 ## Exercício: Continuous Deployment com Jenkins
+
+Nesse exercício vamos utilizar o Jenkins para realizar o processo de continuous deployment, disparando o processo de deploy de maneira automatizada a cada novo commit registrado no Git.
+
+1. Acesse o Jenkins em: http://localhost:8082
+
+2. Clique na opção **New Item**, localizado no menu lateral esquerdo, preencha o campo  *item name* com **continuous deployment alura-forum**, na opção **Copy from** preencha com **deploy alura-forum** e clique no botão **Ok**.
+
+  ![Tela de criação de novo item no Jenkins](imagens/capitulo-10/jenkins-copy-item.png)
+
+3. Na seção **Build Triggers**, marque a opção **Poll SCM** e no campo **Schedule** preencha com: `* * * * *`.
+
+  ![Build Triggers na tela de configuração de item no Jenkins](imagens/capitulo-08/jenkins-new-item-build-triggers.png)
+
+4. Deixe as outras configurações conforme já estão preenchidas e clique no botão **Save**.
+
+5. Efetue alguma alteração na aplicação, faça um commit para registrá-la e verifique no Jenkins se o processo de deploy foi disparado automaticamente.
+
+6. Verifique também se o deploy foi realizado com sucesso, acessando a aplicação no browser em: http://localhost:8080/alura-forum
