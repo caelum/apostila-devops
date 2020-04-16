@@ -120,9 +120,12 @@ Entrega Contínua
 19. Accelerate: State of DevOps Report
 
 Deploy Contínuo
+1. Continuous Deployment
+2. Vantagens e desvantagens do continuous deployment
+3. Feature Toggle
+4. Exercício: Continuous Deployment com Jenkins
 
-
-Monitoramento e Logs
+Monitoramento
 
 
 ## Para mais informações sobre o curso, acesse: https://www.caelum.com.br/curso-devops
