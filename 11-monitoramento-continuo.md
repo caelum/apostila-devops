@@ -86,4 +86,40 @@ Uma outra coisa importante é que hoje em dia tais notificações podem ser feit
 
 ## O que devemos monitorar?
 
+Monitoramento contínuo é uma prática muito importante para um time DevOps, entretanto vale ressaltar que nem tudo que é *monitorável* deve ser monitorado. Isso porque existem dezenas de informações que podem ser monitoradas em relação às aplicações e suas infraestruturas, porém muitas delas podem não ser tão relevantes.
+
+Sendo assim, o time deve avaliar quais os tipos de informações que são essenciais e mais críticos para cada aplicação, fazendo assim um melhor planejamento da estratégia de monitoramento a ser adotada.
+
+Uma dica é analisar quais são os *requisitos não funcionais* mais críticos da aplicação, tais como: performance, escalabilidade, disponibilidade, etc., pois a partir daí o time terá uma boa visão de quais informações devem ser monitoradas e quais não são tão críticas.
+
+Existem algumas categorias de monitoramento, das quais podemos classificar e agrupar os itens a serem monitorados. Dependendo do contexto, algumas delas podem ter muita, pouca ou até mesmo nenhuma relevância, devendo todo o time analisar e discutir sobre isso.
+
+Dentre as principais categorias listamos:
+
+* **Server Health**: Essa é principal e mais óbvia categoria, pois aqui se encontram os itens referentes a infraestrutura, tais como: CPU, memória, espaço em disco, tempo médio de requisições, disponibilidade dos serviços, etc.
+* **Logs**: Aqui o foco é no monitoramento dos logs gerados pelos servidores e aplicações, afim de detectar possíveis problemas que merecem atenção e uma melhor análise.
+* **Deploys**: Aqui o foco é monitorar o importante processo de deploy da aplicação, afim de detectar problemas que possam acontecer em qualquer uma de suas etapas.
+* **Segurança**: Aqui a ideia é monitorar itens relacionados à segurança da aplicação e de sua infraestrutura, tais como: tentativas de intrusão, detecção de scripts maliciosos, vulnerabilidades, etc.
+
+## Monitoramento de negócios
+
+Além de monitorar informações técnicas da aplicação e sua infraestrutura, é extremamente importante também definir aspectos de negócios que também poderiam ser monitorados, gerando com isso mais valor para as pessoas da área de negócios que estejam envolvidas com o produto.
+
+Nesse caso, é essencial que o time DevOps colabore juntamente com o time de business da organização, para que todos consigam identificar informações de negócios que tem muito valor e deveriam também estar no leque dos itens a serem monitorados.
+
+Isso é algo muito útil para uma organização como um todo, embora não seja muito comum de encontrar times que o façam, pois geralmente monitoramento é restrito apenas a itens técnicos.
+
+Para facilitar o entendimento sobre monitoramento de negócios, vamos a um exemplo utilizando nossa aplicação, o fórum de dúvidas da Alura, como base. Pensando do ponto de vista de negócios, a seguir listamos algumas informações que podem ser consideradas como importantes e relevantes para serem monitoradas:
+
+* **Número de tópicos abertos por curso**: Para identificar gargalos de tópicos sendo abertos para um determinado curso, ou até mesmo uma situação incomum de nenhum tópico aberto a determinado tempo para o curso.
+* **Número de tópicos abertos por categoria**: Para identificar gargalos de tópicos sendo abertos para uma determinada categoria, ou até mesmo uma situação incomum de nenhum tópico aberto a determinado tempo para a categoria.
+* **Número de tópicos sem resposta**: Para identificar alunos(as) com tópicos não respondidos no fórum, o que poderia levar a uma insatisfação com a plataforma.
+* **Número de tópicos não solucionados**: Para identificar tópicos que mesmo possuindo respostas ainda não foram solucionados, o que poderia levar a uma insatisfação com a plataforma.
+
+Os exemplos citados acima poderiam ser relatórios disponibilizados como funcionalidades na própria aplicação, entretanto relatórios dependem que alguém os acessem e realizem uma analise das informações, algo que pode ser trabalhoso, chato e sujeito a erros humanos.
+
+Ao monitorar na aplicação tais informações, estamos automatizando o processo de coleta e analise delas, sem depender da necessidade de uma pessoa ter que interagir com a aplicação, além de que também é possível configurar alertas para serem disparados quando tais informações chegarem a um número considerado como crítico, para que assim alguém possa de imediato tomar uma ação.
+
+Essa é justamente a grande vantagem de se realizar monitoramento contínuo de negócios, além do técnico, visando em gerar mais valor para o produto, para a organização e também para seus clientes.
+
 ## Métrica: Mean Time To Recover
