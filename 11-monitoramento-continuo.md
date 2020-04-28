@@ -123,3 +123,15 @@ Ao monitorar na aplicação tais informações, estamos automatizando o processo
 Essa é justamente a grande vantagem de se realizar monitoramento contínuo de negócios, além do técnico, visando em gerar mais valor para o produto, para a organização e também para seus clientes.
 
 ## Métrica: Mean Time To Recover
+
+**Mean Time To Recover** é a última das quatro principais métricas DevOps, que ainda não havia sido discutida até então no curso, sendo que seu objetivo é medir o **tempo médio de recuperação** que um time leva para se recuperar de falhas. Essa métrica também é muito importante, pois demonstra a eficiência e agilidade de um time quando falhas ocorrem.
+
+Já discutimos aqui nesse capítulo que falhas são inevitáveis, sendo que o time deve assumir que uma hora ou outra elas vão acontecer, e por isso é tão importante realizar a prática de monitoramento contínuo, além de também estar preparado para quando elas acontecerem.
+
+Em ambientes tradicionais é comum encontrar times que têm dificuldades de detectar quando falhas ocorrem, de descobrir o que as ocasionou e também dificuldades em se recuperar delas, aumentando com isso o tempo médio de recuperação.
+
+Nos casos mais tensos é comum encontrar times que levam até semanas para se recuperar por completo de uma falha. Imagine o impacto para a organização em ter uma indisponibilidade dessas.
+
+O ideal é que o time leve poucas horas, no máximo 1 dia, para se recuperar de falhas, pois assim os impactos serão minimizados. Claro, isso é algo bem difícil de se alcançar, mas ao utilizar a prática de monitoramento contínuo se torna mais fácil.
+
+A recomendação aqui é para que o time colete essa métrica desde o início do processo de adoção ao DevOps, analisando sua evolução e utilizando práticas para diminuir seu valor com o passar do tempo.
