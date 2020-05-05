@@ -122,6 +122,114 @@ Ao monitorar na aplicação tais informações, estamos automatizando o processo
 
 Essa é justamente a grande vantagem de se realizar monitoramento contínuo de negócios, além do técnico, visando em gerar mais valor para o produto, para a organização e também para seus clientes.
 
+## Exercício: Monitoramento com Glowroot
+
+Nesse exercício vamos praticar o monitoramento de aplicações utilizando a ferramenta Glowroot, que é um dos APM(Application Performance Management) gratuitos mais populares utilizados em aplicações Java.
+
+1. Altere o arquivo `Vagrantfile` para configurar o mapeamento da porta **4000**, porta padrão utilizada pelo Glowroot, entre a VM **alura-web** e o host:
+
+	```
+	web.vm.network "forwarded_port", guest: 4000, host: 4000
+	```
+
+2. Ainda no arquivo `Vagrantfile`, precisaremos adicionar mais dois passos no processo de criação da VM **alura-web**, para copiar para ela o `Glowroot` e seu arquivo de configurações. Adicione as seguintes linhas **antes** da linha que executa o shell de `post-install`:
+
+	```
+	web.vm.provision "file", source: "vagrant/web/glowroot.zip", destination: "/tmp/glowroot.zip"
+    web.vm.provision "file", source: "vagrant/web/admin.json", destination: "/tmp/admin.json"
+	```
+
+Confira se seu arquivo `Vagrantfile` está preenchido corretamente:
+
+	```
+	Vagrant.configure("2") do |config|
+
+	  config.vm.define "alura-database" do |db|
+	    db.vm.box = "ubuntu/bionic64"
+
+	    db.vm.network "private_network", ip: "192.168.56.110"
+	    db.vm.network "forwarded_port", guest: 3306, host: 3307
+
+	    db.vm.provision "shell", path: "vagrant/database/install.sh"
+	    db.vm.provision "file", source: "vagrant/database/mysqld.cnf", destination: "/tmp/mysqld.cnf"
+	    db.vm.provision "file", source: "vagrant/database/script-inicial.sql", destination: "/tmp/script-inicial.sql"
+	    db.vm.provision "shell", path: "vagrant/database/post-install.sh"
+	  end
+
+	  config.vm.define "alura-web" do |web|
+	    web.vm.box = "ubuntu/bionic64"
+
+	    web.vm.network "private_network", ip: "192.168.56.105"
+	    web.vm.network "forwarded_port", guest: 8080, host: 8080
+	    web.vm.network "forwarded_port", guest: 4000, host: 4000
+
+	    web.vm.provision "shell", path: "vagrant/web/install.sh"
+	    web.vm.provision "file", source: "vagrant/web/apache-tomcat-8.5.47.tar.gz", destination: "/tmp/apache-tomcat-8.5.47.tar.gz"
+	    web.vm.provision "file", source: "vagrant/web/tomcat.service", destination: "/tmp/tomcat.service"
+	    web.vm.provision "file", source: "target/alura-forum-0.0.1-SNAPSHOT.war", destination: "/tmp/alura-forum.war"
+	    web.vm.provision "file", source: "vagrant/web/glowroot.zip", destination: "/tmp/glowroot.zip"
+	    web.vm.provision "file", source: "vagrant/web/admin.json", destination: "/tmp/admin.json"
+	    web.vm.provision "shell", path: "vagrant/web/post-install.sh"
+	  end
+
+	end
+	```
+
+3. Precisaremos instalar o programa `unzip` na VM. Altere o arquivo **install.sh** adicionando ao final dele a seguinte linha:
+
+	```
+	sudo apt-get install -y unzip
+	```
+
+4. Agora no arquivo **post-install.sh**, adicione as seguintes linhas logo após a linha que configura a cópia do `war` da aplicação:
+
+	```
+	sudo mv /tmp/glowroot.zip /opt/glowroot.zip
+	sudo unzip /opt/glowroot.zip -d /opt
+	sudo rm /opt/glowroot.zip
+	sudo mv /tmp/admin.json /opt/glowroot/admin.json
+	sudo chgrp -R tomcat /opt/glowroot
+	sudo chown -R tomcat /opt/glowroot
+	```
+
+Confira se seu arquivo `post-install.sh` está preenchido corretamente:
+
+	```
+	sudo useradd -r -m -U -d /opt/tomcat -s /bin/false tomcat
+
+	sudo tar xf /tmp/apache-tomcat-8.5.47.tar.gz -C /opt/tomcat
+	sudo mv /opt/tomcat/apache-tomcat-8.5.47 /opt/tomcat/tomcat8
+	sudo mv /tmp/tomcat.service /etc/systemd/system
+	sudo mv /tmp/alura-forum.war /opt/tomcat/tomcat8/webapps
+
+	sudo mv /tmp/glowroot.zip /opt/glowroot.zip
+	sudo unzip /opt/glowroot.zip -d /opt
+	sudo rm /opt/glowroot.zip
+	sudo mv /tmp/admin.json /opt/glowroot/admin.json
+	sudo chgrp -R tomcat /opt/glowroot
+	sudo chown -R tomcat /opt/glowroot
+
+	sudo ufw allow 8080
+	sudo chgrp -R tomcat /opt/tomcat
+	sudo chown -R tomcat /opt/tomcat
+
+	sudo systemctl daemon-reload
+	sudo systemctl start tomcat
+	sudo systemctl enable tomcat
+	```
+
+5. Por fim, altere no arquivo **tomcat.service** a seguinte linha, para adicionar o monitoramento via Glowroot:
+
+	```
+	Environment="CATALINA_OPTS=-Xms384M -Xmx384M -javaagent:/opt/glowroot/glowroot.jar"
+	```
+
+6. Realize um deploy da aplicação, utilizando o `item` **Deploy alura-forum** no Jenkins, e após o processo ser finalizado acesse o Glowroot pelo browser em: http://localhost:4000.
+
+7. Para que o Glowroot exiba as informações de monitoramento é necessário disparar algumas requisições pela aplicação. Acesse a aplicação em: http://localhost:8080/alura-forum e navegue por suas funcionalidades, para que assim o Glowroot comece a coletar dados e exibir em sua interface.
+
+8. Após disparar diversas requisições pela aplicação, acesse novamente o Glowroot e explore sua interface e as informações que ele disponibiliza.
+
 ## Métrica: Mean Time To Recover
 
 **Mean Time To Recover** é a última das quatro principais métricas DevOps, que ainda não havia sido discutida até então no curso, sendo que seu objetivo é medir o **tempo médio de recuperação** que um time leva para se recuperar de falhas. Essa métrica também é muito importante, pois demonstra a eficiência e agilidade de um time quando falhas ocorrem.
