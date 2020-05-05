@@ -126,6 +126,14 @@ Deploy Contínuo
 4. Exercício: Continuous Deployment com Jenkins
 
 Monitoramento
+1. O problema: Sistema fora do ar
+2. A má prática: Apagar incêndios
+3. A solução: Monitoramento Contínuo
+4. Ferramentas de monitoramento
+5. O que devemos monitorar?
+6. Monitoramento de negócios
+7. Exercício: Monitoramento com Glowroot
+8. Métrica: Mean Time To Recover
 
 
 ## Para mais informações sobre o curso, acesse: https://www.caelum.com.br/curso-devops
